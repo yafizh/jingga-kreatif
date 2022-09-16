@@ -24,3 +24,9 @@ Route::get('/vendor', function () {
         "active" => "vendor"
     ]);
 });
+
+Route::get('/crew', function () {
+    return view('landing.page.crew', [
+        "active" => "crew"
+    ]);
+});
