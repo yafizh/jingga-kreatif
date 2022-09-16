@@ -1,4 +1,4 @@
-<footer id="footer" class="container-fluid text-center text-white p-1 bg-dark mt-5 pt-5">
+<footer id="footer" class="container-fluid text-center text-white p-1 bg-dark pt-5">
     <div class="row g-0 justify-content-center px-5">
         <div class="col-md-2 mb-3 text-start">
             <h5 class="text-start">Kontak</h5>
