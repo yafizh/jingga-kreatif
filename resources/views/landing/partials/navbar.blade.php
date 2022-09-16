@@ -11,13 +11,13 @@
             <ul class="navbar-nav w-100 mb-2 mb-lg-0 justify-content-center d-flex">
                 <li class="nav-item">
                     <a class="nav-link {{ $active == 'home' ? 'active' : '' }}" aria-current="page"
-                        href="portfolio.php">Home</a>
+                        href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active == 'vendor' ? 'active' : '' }}" href="vendor.php">Vendor</a>
+                    <a class="nav-link {{ $active == 'vendor' ? 'active' : '' }}" href="/vendor">Vendor</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active == 'crew' ? 'active' : '' }}" href="crew.php">Crew</a>
+                    <a class="nav-link {{ $active == 'crew' ? 'active' : '' }}" href="/crew">Crew</a>
                 </li>
             </ul>
         </div>

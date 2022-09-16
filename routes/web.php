@@ -18,3 +18,9 @@ Route::get('/', function () {
         "active" => "home"
     ]);
 });
+
+Route::get('/vendor', function () {
+    return view('landing.page.vendor', [
+        "active" => "vendor"
+    ]);
+});
