@@ -10,20 +10,20 @@
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav w-100 mb-2 mb-lg-0 justify-content-center d-flex">
                 <li class="nav-item">
-                    <a class="nav-link {{ $active == 'home' ? 'active' : '' }}" aria-current="page"
+                    <a class="nav-link {{ $active == 'home' ? 'text-primary' : 'text-white' }}" aria-current="page"
                         href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active == 'vendor' ? 'active' : '' }}" href="/vendor">Vendor</a>
+                    <a class="nav-link {{ $active == 'vendor' ? 'text-primary' : 'text-white' }}" href="/vendor">Vendor</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active == 'crew' ? 'active' : '' }}" href="/crew">Crew</a>
+                    <a class="nav-link {{ $active == 'crew' ? 'text-primary' : 'text-white' }}" href="/crew">Crew</a>
                 </li>
             </ul>
         </div>
         <div>
-            <a href="#" class="me-3 btn btn-outline-light">Login</a>
-            <a class="me-3 btn text-white" href="#">Daftar</a>
+            <a href="#" class="me-3 btn btn-outline-primary text-white">Login</a>
+            <a class="me-3 btn btn-primary text-white" href="#">Daftar</a>
         </div>
     </div>
 </nav>
