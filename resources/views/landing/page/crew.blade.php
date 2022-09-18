@@ -35,7 +35,7 @@
         {{-- The Vendors Section --}}
         <div class="row justify-content-center py-5">
             <h3 style="font-weight: 600;" class="text-center mb-5">MEET THE TEAM</h3>
-            <div class="col-10 col-sm-10 col-xxl-8">
+            <div class="col-10 col-sm-10 col-xl-9 col-xxl-8">
                 <div class="row justify-content-center">
                     <div class="col-auto">
                         <div class="mb-5 d-flex flex-column align-items-center">
