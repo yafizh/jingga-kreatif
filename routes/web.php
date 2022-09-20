@@ -30,3 +30,24 @@ Route::get('/crew', function () {
         "active" => "crew"
     ]);
 });
+
+Route::get('/dashboard/introduction', function () {
+    return view('dashboard.client.page.introduction', [
+        "active" => "introduction",
+        "active_navigation" => 1
+    ]);
+});
+
+Route::get('/dashboard/registration', function () {
+    return view('dashboard.client.page.registration', [
+        "active" => "registration",
+        "active_navigation" => 2
+    ]);
+});
+
+Route::get('/dashboard/vendor', function () {
+    return view('dashboard.client.page.vendor', [
+        "active" => "vendor",
+        "active_navigation" => 3
+    ]);
+});
