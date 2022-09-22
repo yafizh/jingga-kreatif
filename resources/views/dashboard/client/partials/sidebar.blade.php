@@ -22,6 +22,12 @@
             </div>
             <h6 class="m-0 text-center">Perbaharui Data</h6>
         </div>
+        <div class="sidebar-item my-3">
+            <div class="mb-2">
+                <i class="sidebar-icon fa-solid fa-calendar-days"></i>
+            </div>
+            <h6 class="m-0 text-center">Riwayat Meeting</h6>
+        </div>
         <div class="sidebar-item my-3" onclick="return confirm('Are You Sure?')">
             <div class="mb-2">
                 <i class="sidebar-icon fa-solid fa-right-from-bracket"></i>

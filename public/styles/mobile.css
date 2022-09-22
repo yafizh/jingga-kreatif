@@ -1,10 +1,4 @@
 @media (max-width: 480px) {
-    .menu {
-        display: flex;
-        justify-content: space-evenly;
-        flex-direction: row;
-    }
-
     .brand {
         display: flex;
     }
@@ -20,12 +14,12 @@
         width: 100%;
         overflow: hidden;
         z-index: 1;
-        transition: height 0.8s;
+        transition: height 0.4s;
         height: 72px;
     }
 
     aside.open {
-        height: 200px;
+        height: 100%;
     }
 
     main {
