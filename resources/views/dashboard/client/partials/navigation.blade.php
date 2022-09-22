@@ -31,23 +31,28 @@
             </div>
         </a>
 
-        <div class="line"></div>
+        <div class="line {{ $active_navigation >= 4 ? 'navigation-active' : '' }}"></div>
 
-        <div class="circle">
-            <div class="outer mb-3">
-                <div class="inner"></div>
+        <a href="/dashboard/groom" class="text-decoration-none text-reset">
+            <div class="circle">
+                <div class="outer mb-3 {{ $active_navigation >= 4 ? 'navigation-active' : '' }}">
+                    <div class="inner"></div>
+                </div>
+                <h6>Mempelai Pria</h6>
             </div>
-            <h6>Mempelai Pria</h6>
-        </div>
+        </a>
 
-        <div class="line"></div>
+        <div class="line {{ $active_navigation >= 5 ? 'navigation-active' : '' }}"></div>
 
-        <div class="circle">
-            <div class="outer mb-3">
-                <div class="inner"></div>
+        <a href="/dashboard/bride" class="text-decoration-none text-reset">
+            <div class="circle">
+                <div class="outer mb-3 {{ $active_navigation >= 5 ? 'navigation-active' : '' }}">
+                    <div class="inner"></div>
+                </div>
+                <h6>Mempelai Wanita</h6>
             </div>
-            <h6>Mempelai Wanita</h6>
-        </div>
+        </a>
+
 
         <div class="line"></div>
 

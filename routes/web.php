@@ -51,3 +51,17 @@ Route::get('/dashboard/vendor', function () {
         "active_navigation" => 3
     ]);
 });
+
+Route::get('/dashboard/groom', function () {
+    return view('dashboard.client.page.groom', [
+        "active" => "groom",
+        "active_navigation" => 4
+    ]);
+});
+
+Route::get('/dashboard/bride', function () {
+    return view('dashboard.client.page.bride', [
+        "active" => "bride",
+        "active_navigation" => 5
+    ]);
+});
