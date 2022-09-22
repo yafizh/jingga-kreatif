@@ -37,6 +37,10 @@
                         placeholder="your mother's name">
                     <label for="mother_name">Nama Ibu</label>
                 </div>
+                <div class="d-flex justify-content-center w-100 mt-4">
+                    <a href="/dashboard/bride" class="btn btn-primary text-white"
+                        onclick="return confirm('Yakin dengan identitas mempelai pria yang dimasukan?')">Submit</a>
+                </div>
             </div>
         </div>
         <div class="col-12 col-lg-4 col-xxl-3">
@@ -51,7 +55,8 @@
                 <div class="col-12 col-sm-6 col-lg-12 d-flex align-items-center">
                     <div class="px-5 py-4 bg-white jingga-shadow rounded-2 w-100">
                         <h5 class="text-center">Tidak ada Dokumen</h5>
-                        <p class="text-center">Upload dokumen tambahan jika ada di sini dengan menekan tombol Pilih Dokumen</p>
+                        <p class="text-center">Upload dokumen tambahan jika ada di sini dengan menekan tombol Pilih Dokumen
+                        </p>
                         <button class="btn btn-primary w-100">Pilih Dokumen</button>
                     </div>
                 </div>

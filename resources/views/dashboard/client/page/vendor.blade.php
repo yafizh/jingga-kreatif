@@ -5,6 +5,8 @@
     <div class="row w-100 justify-content-center">
         <div class="col-12">
             <h3 class="my-4">Pemilihan Vendor</h3>
+        </div>
+        <div class="col-12">
             <div class="row">
                 <div class="col-12">
                     <h4 class="mb-3">Dekorasi</h4>
@@ -36,6 +38,12 @@
 
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="d-flex justify-content-center w-100 mt-4">
+                <a href="/dashboard/groom" class="btn btn-primary text-white"
+                    onclick="return confirm('Yakin dengan semua vendor yang dipilih?')">Selesai Memilih</a>
             </div>
         </div>
     </div>

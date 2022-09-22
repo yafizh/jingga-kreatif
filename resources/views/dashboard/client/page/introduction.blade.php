@@ -105,7 +105,7 @@
                     ipsam officiis tenetur perferendis iure laborum doloribus dignissimos, beatae fugit tempora labore
                     exercitationem cum amet hic.</p>
                 <div class="d-flex justify-content-center w-100 mt-4">
-                    <button class="btn btn-primary text-white" style="width: 10rem;">Mengerti</button>
+                    <a href="/dashboard/registration" class="btn btn-primary text-white">Mengerti</a>
                 </div>
             </div>
         </div>

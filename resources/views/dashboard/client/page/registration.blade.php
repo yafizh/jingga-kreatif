@@ -17,7 +17,7 @@
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control border-0 jingga-shadow" id="email"
                             placeholder="example@gmail.com">
-                        <label for="email">Email address</label>
+                        <label for="email">Alamat Email Aktif</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control border-0 jingga-shadow" id="email_verification"
@@ -39,7 +39,7 @@
                     </div>
                 </form>
                 <div class="d-flex justify-content-center w-100 mt-4">
-                    <button class="btn btn-primary text-white disabled" style="width: 10rem;">Daftar</button>
+                    <a href="/dashboard/vendor" class="btn btn-primary text-white" onclick="return confirm('Are You Sure?')">Daftar Akun</a>
                 </div>
             </div>
         </div>

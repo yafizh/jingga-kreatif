@@ -37,6 +37,10 @@
                         placeholder="your mother's name">
                     <label for="mother_name">Nama Ibu</label>
                 </div>
+                <div class="d-flex justify-content-center w-100 mt-4">
+                    <a href="/dashboard/payment" class="btn btn-primary text-white"
+                        onclick="return confirm('Yakin dengan identitas mempelai wanita yang dimasukan?')">Submit</a>
+                </div>
             </div>
         </div>
         <div class="col-12 col-lg-4 col-xxl-3">
