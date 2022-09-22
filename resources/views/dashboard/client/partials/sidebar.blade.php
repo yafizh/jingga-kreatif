@@ -14,19 +14,19 @@
             <div class="mb-2">
                 <i class="sidebar-icon fa-solid fa-house"></i>
             </div>
-            <h6 class="m-0">Home</h6>
+            <h6 class="m-0">Utama</h6>
         </div>
         <div class="sidebar-item my-3">
             <div class="mb-2">
                 <i class="sidebar-icon fa-solid fa-user"></i>
             </div>
-            <h6 class="m-0">Account</h6>
+            <h6 class="m-0 text-center">Perbaharui Data</h6>
         </div>
         <div class="sidebar-item my-3" onclick="return confirm('Are You Sure?')">
             <div class="mb-2">
                 <i class="sidebar-icon fa-solid fa-right-from-bracket"></i>
             </div>
-            <h6 class="m-0">Logot</h6>
+            <h6 class="m-0">Keluar</h6>
         </div>
     </div>
 </aside>
