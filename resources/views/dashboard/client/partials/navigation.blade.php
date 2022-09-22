@@ -1,13 +1,12 @@
 <nav>
     <div class="navigation">
-        <a href="/dashboard/introduction" class="text-decoration-none text-reset">
-            <div class="circle">
-                <div class="outer mb-3 {{ $active_navigation >= 1 ? 'navigation-active' : '' }}">
-                    <div class="inner"></div>
-                </div>
-                <h6>Pengenalan</h6>
+
+        <div class="circle">
+            <div class="outer mb-3 {{ $active_navigation >= 1 ? 'navigation-active' : '' }}">
+                <div class="inner"></div>
             </div>
-        </a>
+            <h6>Pengenalan</h6>
+        </div>
 
         <div class="line {{ $active_navigation >= 2 ? 'navigation-active' : '' }}"></div>
 
@@ -54,14 +53,16 @@
         </a>
 
 
-        <div class="line"></div>
+        <div class="line {{ $active_navigation >= 6 ? 'navigation-active' : '' }}"></div>
 
-        <div class="circle">
-            <div class="outer mb-3">
-                <div class="inner"></div>
+        <a href="/dashboard/meeting" class="text-decoration-none text-reset">
+            <div class="circle">
+                <div class="outer mb-3 {{ $active_navigation >= 6 ? 'navigation-active' : '' }}">
+                    <div class="inner"></div>
+                </div>
+                <h6>Riwayat Meeting</h6>
             </div>
-            <h6>Riwayat Meeting</h6>
-        </div>
+        </a>
 
         <div class="line"></div>
 

@@ -65,3 +65,10 @@ Route::get('/dashboard/bride', function () {
         "active_navigation" => 5
     ]);
 });
+
+Route::get('/dashboard/meeting', function () {
+    return view('dashboard.client.page.meeting', [
+        "active" => "meeting",
+        "active_navigation" => 6
+    ]);
+});
