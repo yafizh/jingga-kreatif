@@ -1,0 +1,46 @@
+@media (max-width: 480px) {
+    .menu {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+    }
+
+    .brand {
+        display: flex;
+    }
+    .brand .brand-logo {
+        flex-grow: 1;
+        height: 40px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url("/images/logo.png");
+    }
+
+    aside {
+        width: 100%;
+        overflow: hidden;
+        z-index: 1;
+        transition: height 0.8s;
+        height: 72px;
+    }
+
+    aside.open {
+        height: 200px;
+    }
+
+    main {
+        padding: 104px 8px 0 8px;
+    }
+
+    .brand #navbar-toggle {
+        display: block;
+    }
+
+    .brand h6 {
+        display: none;
+    }
+
+    .toast-container {
+        padding: 96px 8px 0 8px;
+    }
+}

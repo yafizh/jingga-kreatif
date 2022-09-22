@@ -15,3 +15,13 @@ body {
 main {
     padding: 32px 8px 32px 104px;
 }
+
+/* Custome This */
+.btn-primary,
+.btn-outline-primary:hover {
+    color: white!important;
+}
+
+.toast-container {
+    padding: 8px;
+}
