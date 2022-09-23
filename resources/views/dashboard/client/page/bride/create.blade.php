@@ -1,6 +1,7 @@
 @extends('dashboard.client.layout.main')
 
 @section('content')
+    @include('dashboard.client.partials.navigation')
     <div class="row w-100 justify-content-center">
         <div class="col-12">
             <h3 class="my-4 text-center">Identitas Mempelai Wanita</h3>
@@ -55,7 +56,8 @@
                 <div class="col-12 col-sm-6 col-lg-12 d-flex align-items-center">
                     <div class="px-5 py-4 bg-white jingga-shadow rounded-2 w-100">
                         <h5 class="text-center">Tidak ada Dokumen</h5>
-                        <p class="text-center">Upload dokumen tambahan jika ada di sini dengan menekan tombol Pilih Dokumen</p>
+                        <p class="text-center">Upload dokumen tambahan jika ada di sini dengan menekan tombol Pilih Dokumen
+                        </p>
                         <button class="btn btn-primary w-100">Pilih Dokumen</button>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 @extends('dashboard.client.layout.main')
 
 @section('content')
+    @include('dashboard.client.partials.navigation')
     <div class="row w-100 justify-content-center">
         <div class="col-12 text-center">
             <h3 class="my-4">Formulir Pendaftaran</h3>
@@ -39,7 +40,8 @@
                     </div>
                 </form>
                 <div class="d-flex justify-content-center w-100 mt-4">
-                    <a href="/dashboard/vendor" class="btn btn-primary text-white" onclick="return confirm('Are You Sure?')">Daftar Akun</a>
+                    <a href="/dashboard/vendor" class="btn btn-primary text-white"
+                        onclick="return confirm('Are You Sure?')">Daftar Akun</a>
                 </div>
             </div>
         </div>

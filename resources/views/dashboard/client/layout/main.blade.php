@@ -16,7 +16,6 @@
 <body>
     @include('dashboard.client.partials.sidebar')
     <main class="d-flex flex-column align-items-center">
-        @include('dashboard.client.partials.navigation')
         @yield('content')
     </main>
     <script src="https://code.jquery.com/jquery-3.6.1.slim.js"></script>

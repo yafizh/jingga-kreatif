@@ -1,6 +1,7 @@
 @extends('dashboard.client.layout.main')
 
 @section('content')
+    @include('dashboard.client.partials.navigation')
     {{-- Main Content --}}
     <div class="row w-100 justify-content-center">
         <div class="col-12">
