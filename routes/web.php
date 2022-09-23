@@ -32,42 +32,42 @@ Route::get('/crew', function () {
 });
 
 Route::get('/dashboard/introduction', function () {
-    return view('dashboard.client.page.introduction', [
+    return view('dashboard.client.page.introduction.index', [
         "active" => "introduction",
         "active_navigation" => 1
     ]);
 });
 
 Route::get('/dashboard/registration', function () {
-    return view('dashboard.client.page.registration', [
+    return view('dashboard.client.page.registration.create', [
         "active" => "registration",
         "active_navigation" => 2
     ]);
 });
 
 Route::get('/dashboard/vendor', function () {
-    return view('dashboard.client.page.vendor', [
+    return view('dashboard.client.page.vendor.create', [
         "active" => "vendor",
         "active_navigation" => 3
     ]);
 });
 
 Route::get('/dashboard/groom', function () {
-    return view('dashboard.client.page.groom', [
+    return view('dashboard.client.page.groom.create', [
         "active" => "groom",
         "active_navigation" => 4
     ]);
 });
 
 Route::get('/dashboard/bride', function () {
-    return view('dashboard.client.page.bride', [
+    return view('dashboard.client.page.bride.create', [
         "active" => "bride",
         "active_navigation" => 5
     ]);
 });
 
 Route::get('/dashboard/meeting', function () {
-    return view('dashboard.client.page.meeting', [
+    return view('dashboard.client.page.meeting.index', [
         "active" => "meeting",
         "active_navigation" => 6
     ]);
