@@ -66,9 +66,15 @@ Route::get('/dashboard/bride', function () {
     ]);
 });
 
+Route::get('/dashboard/payment', function () {
+    return view('dashboard.client.page.payment.index', [
+        "active" => "payment",
+        "active_navigation" => 6
+    ]);
+});
+
 Route::get('/dashboard/meeting', function () {
     return view('dashboard.client.page.meeting.index', [
         "active" => "meeting",
-        "active_navigation" => 6
     ]);
 });
