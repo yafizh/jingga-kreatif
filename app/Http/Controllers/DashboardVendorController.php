@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vendor;
+use App\Models\VendorImage;
 use App\Models\VendorType;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class DashboardVendorController extends Controller
 {
@@ -39,6 +39,14 @@ class DashboardVendorController extends Controller
             $validatedData['logo'] = $request->file('logo')->store('vendor-logo');
 
         $vendor_id = Vendor::create($validatedData)->id;
+        if ($request->file('images')) {
+            foreach ($request->file('images') as $image) {
+                VendorImage::create([
+                    'vendor_id' => $vendor_id,
+                    'image' => $image->store('vendor-images')
+                ]);
+            }
+        }
         return redirect('/dashboard/vendor')->with('created', $vendor_id);
     }
 
@@ -64,8 +72,18 @@ class DashboardVendorController extends Controller
             "description" => "required",
         ]);
 
-        if ($request->file('logo')){
+        if ($request->file('logo')) {
             $validatedData['logo'] = $request->file('logo')->store('vendor-logo');
+        }
+
+        if ($request->file('images')) {
+            VendorImage::where('vendor_id', $vendor->id)->delete();
+            foreach ($request->file('images') as $image) {
+                VendorImage::create([
+                    'vendor_id' => $vendor->id,
+                    'image' => $image->store('vendor-images')
+                ]);
+            }
         }
 
         Vendor::where('id', $vendor->id)->update($validatedData);

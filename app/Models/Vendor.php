@@ -15,4 +15,9 @@ class Vendor extends Model
     {
         return $this->belongsTo(VendorType::class);
     }
+
+    public function vendorImages()
+    {
+        return $this->hasMany(VendorImage::class);
+    }
 }

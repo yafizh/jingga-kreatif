@@ -59,6 +59,17 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label for="images">Detail Gambar</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="images"
+                                                    name="images[]" multiple>
+                                                <label class="custom-file-label" for="images">Pilih beberapa
+                                                    gambar</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="description">Keterangan</label>
                                         <input id="description" type="hidden"
                                             value="{{ old('description', $vendor->description) }}" name="description">
