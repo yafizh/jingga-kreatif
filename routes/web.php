@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\DashboardClientController;
+use App\Http\Controllers\DashboardEmployeeController;
+use App\Http\Controllers\DashboardVendorController;
+use App\Http\Controllers\DashboardVendorTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,12 +49,12 @@ Route::get('/dashboard/registration', function () {
     ]);
 });
 
-Route::get('/dashboard/vendor', function () {
-    return view('dashboard.client.page.vendor.create', [
-        "active" => "vendor",
-        "active_navigation" => 3
-    ]);
-});
+// Route::get('/dashboard/vendor', function () {
+//     return view('dashboard.client.page.vendor.create', [
+//         "active" => "vendor",
+//         "active_navigation" => 3
+//     ]);
+// });
 
 Route::get('/dashboard/groom', function () {
     return view('dashboard.client.page.groom.create', [
@@ -78,3 +82,9 @@ Route::get('/dashboard/meeting', function () {
         "active" => "meeting",
     ]);
 });
+
+// Admin
+Route::resource('/dashboard/employee', DashboardEmployeeController::class);
+Route::resource('/dashboard/client', DashboardClientController::class);
+Route::resource('/dashboard/vendor-type', DashboardVendorTypeController::class);
+Route::resource('/dashboard/vendor', DashboardVendorController::class);
