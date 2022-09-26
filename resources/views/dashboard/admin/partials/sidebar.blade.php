@@ -20,22 +20,6 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                <li class="nav-item">
-                    <a href="/dashboard/employee" class="nav-link {{ $active == 'employee' ? 'active' : '' }}">
-                        <i class="nav-icon fa fa-users" aria-hidden="true"></i>
-                        <p>
-                            Data Karyawan
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/dashboard/client" class="nav-link {{ $active == 'client' ? 'active' : '' }}">
-                        <i class="nav-icon fa fa-users" aria-hidden="true"></i>
-                        <p>
-                            Data Klien
-                        </p>
-                    </a>
-                </li>
                 <li class="nav-item {{ in_array($active, ['vendor_type', 'vendor']) ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ in_array($active, ['vendor_type', 'vendor']) ? 'active' : '' }}">
                         <i class="nav-icon far fa-folder"></i>
@@ -60,42 +44,30 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-retweet"></i>
+                    <a href="/dashboard/employee" class="nav-link {{ $active == 'employee' ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                         <p>
-                            <i class="fas fa-angle-left right"></i>
-                            Proses Data
+                            Data Karyawan
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Pengajuan</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Meeting</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Anggaran</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Pembayaran</p>
-                            </a>
-                        </li>
-                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="/dashboard/client" class="nav-link {{ $active == 'client' ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-users" aria-hidden="true"></i>
+                        <p>
+                            Data Klien
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/dashboard/" class="nav-link {{ $active == '' ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-users" aria-hidden="true"></i>
+                        <p>
+                            Pengajuan
+                        </p>
+                    </a>
                 </li>
             </ul>
         </nav>
     </div>
-    <!-- /.sidebar -->
 </aside>
