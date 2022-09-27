@@ -20,7 +20,7 @@
         <div class="row justify-content-center py-5">
             <div class="col-12 col-md-9 col-xl-6">
                 <div class="text-center">
-                    <a href="#" class="btn text-white btn-primary">Pesan Disini</a>
+                    <a href="/dashboard/introduction" class="btn text-white btn-primary">Pesan Disini</a>
                     <div class="py-4">
                         <h3>APA ITU JINGGA KREATIF?</h3>
                         <p style=" text-align: justify;">Jingga Kreatif adalah suatu perusahaan yang bergerak dibidang Jasa
