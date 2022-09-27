@@ -10,32 +10,34 @@
     </div>
     <hr>
     <div class="menu w-100">
-        <div class="sidebar-item my-3 {{ $active != "meeting" ? "sidebar-active" : ""  }}">
+        <div class="sidebar-item my-3 {{ $active != 'meeting' ? 'sidebar-active' : '' }}">
             <div class="mb-2">
                 <i class="sidebar-icon fa-solid fa-house"></i>
             </div>
             <h6 class="m-0">Utama</h6>
         </div>
-        <div class="sidebar-item my-3">
-            <div class="mb-2">
-                <i class="sidebar-icon fa-solid fa-user"></i>
-            </div>
-            <h6 class="m-0 text-center">Perbaharui Data</h6>
-        </div>
-        <a href="/dashboard/meeting" class="text-reset text-decoration-none">
-            <div class="sidebar-item my-3 {{ $active == "meeting" ? "sidebar-active" : ""  }}">
+        @if (auth()->user())
+            <div class="sidebar-item my-3">
                 <div class="mb-2">
-                    <i class="sidebar-icon fa-solid fa-calendar-days"></i>
+                    <i class="sidebar-icon fa-solid fa-user"></i>
                 </div>
-                <h6 class="m-0 text-center">Riwayat Meeting</h6>
+                <h6 class="m-0 text-center">Perbaharui Data</h6>
             </div>
-        </a>
-        <div class="sidebar-item my-3" onclick="return confirm('Are You Sure?')">
-            <div class="mb-2">
-                <i class="sidebar-icon fa-solid fa-right-from-bracket"></i>
+            <a href="/dashboard/meeting" class="text-reset text-decoration-none">
+                <div class="sidebar-item my-3 {{ $active == 'meeting' ? 'sidebar-active' : '' }}">
+                    <div class="mb-2">
+                        <i class="sidebar-icon fa-solid fa-calendar-days"></i>
+                    </div>
+                    <h6 class="m-0 text-center">Riwayat Meeting</h6>
+                </div>
+            </a>
+            <div class="sidebar-item my-3" onclick="return confirm('Are You Sure?')">
+                <div class="mb-2">
+                    <i class="sidebar-icon fa-solid fa-right-from-bracket"></i>
+                </div>
+                <h6 class="m-0">Keluar</h6>
             </div>
-            <h6 class="m-0">Keluar</h6>
-        </div>
+        @endif
     </div>
 </aside>
 <script>

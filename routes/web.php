@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardClientController;
 use App\Http\Controllers\DashboardEmployeeController;
 use App\Http\Controllers\DashboardVendorController;
 use App\Http\Controllers\DashboardVendorTypeController;
+use App\Http\Controllers\MailerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +50,7 @@ Route::get('/dashboard/registration', function () {
         "active_navigation" => 2
     ]);
 });
+Route::post('/dashboard/registration', [AuthController::class, 'registration']);
 
 // Route::get('/dashboard/vendor', function () {
 //     return view('dashboard.client.page.vendor.create', [
@@ -75,7 +78,7 @@ Route::get('/dashboard/payment', function () {
         "active" => "payment",
         "active_navigation" => 6
     ]);
-});
+})->middleware('auth');
 
 Route::get('/dashboard/meeting', function () {
     return view('dashboard.client.page.meeting.index', [
@@ -83,6 +86,7 @@ Route::get('/dashboard/meeting', function () {
     ]);
 });
 
+Route::post('/dashboard/mail/send', [MailerController::class, 'composeEmail']);
 // Admin
 Route::resource('/dashboard/employee', DashboardEmployeeController::class);
 Route::resource('/dashboard/client', DashboardClientController::class);
