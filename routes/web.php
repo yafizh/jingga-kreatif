@@ -62,14 +62,14 @@ Route::post('/dashboard/registration', [AuthController::class, 'registration']);
 Route::get('/dashboard/groom', function () {
     return view('dashboard.client.page.groom.create', [
         "active" => "groom",
-        "active_navigation" => 4
+        "active_navigation" => 3
     ]);
 });
 
 Route::get('/dashboard/bride', function () {
     return view('dashboard.client.page.bride.create', [
         "active" => "bride",
-        "active_navigation" => 5
+        "active_navigation" => 4
     ]);
 });
 
