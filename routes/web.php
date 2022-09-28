@@ -3,8 +3,10 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardClientController;
 use App\Http\Controllers\DashboardEmployeeController;
+use App\Http\Controllers\DashboardNewlywedController;
 use App\Http\Controllers\DashboardVendorController;
 use App\Http\Controllers\DashboardVendorTypeController;
+use App\Http\Controllers\DashboardWeddingController;
 use App\Http\Controllers\MailerController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'authenticate']);
 
 Route::get('/', function () {
     return view('landing.page.portfolio', [
@@ -52,26 +58,21 @@ Route::get('/dashboard/registration', function () {
 });
 Route::post('/dashboard/registration', [AuthController::class, 'registration']);
 
-// Route::get('/dashboard/vendor', function () {
-//     return view('dashboard.client.page.vendor.create', [
-//         "active" => "vendor",
-//         "active_navigation" => 3
-//     ]);
-// });
-
 Route::get('/dashboard/groom', function () {
-    return view('dashboard.client.page.groom.create', [
+    return view('dashboard.client.page.newlywed.create', [
         "active" => "groom",
+        "newlywed" => true,
         "active_navigation" => 3
     ]);
-});
+})->middleware('auth');
 
 Route::get('/dashboard/bride', function () {
-    return view('dashboard.client.page.bride.create', [
+    return view('dashboard.client.page.newlywed.create', [
         "active" => "bride",
+        "newlywed" => false,
         "active_navigation" => 4
     ]);
-});
+})->middleware('auth');
 
 Route::get('/dashboard/payment', function () {
     return view('dashboard.client.page.payment.index', [
@@ -86,9 +87,13 @@ Route::get('/dashboard/meeting', function () {
     ]);
 });
 
+Route::get('/dashboard/vendor/getCategorizedVendor', [DashboardVendorController::class, 'getCategorizedVendor'])->middleware('auth');
+Route::post('/dashboard/wedding/storeChoosedVendor', [DashboardWeddingController::class, 'storeChoosedVendor'])->middleware('auth');
+
 Route::post('/dashboard/mail/send', [MailerController::class, 'composeEmail']);
 // Admin
 Route::resource('/dashboard/employee', DashboardEmployeeController::class);
 Route::resource('/dashboard/client', DashboardClientController::class);
 Route::resource('/dashboard/vendor-type', DashboardVendorTypeController::class);
-Route::resource('/dashboard/vendor', DashboardVendorController::class);
+Route::resource('/dashboard/vendor', DashboardVendorController::class)->middleware('auth');
+Route::resource('/dashboard/newlywed', DashboardNewlywedController::class);

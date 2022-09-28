@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\User;
+use App\Models\Wedding;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public function index()
+    {
+        return view('dashboard.login');
+    }
+
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
@@ -18,7 +24,16 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            if (Auth::user()->client) {
+                if (!count(Auth::user()->client->wedding->newlyweds)) {
+                    return redirect()->intended('/dashboard/groom');
+                } elseif (count(Auth::user()->client->wedding->newlyweds) === 1) {
+                    return redirect()->intended('/dashboard/bride');
+                } elseif (count(Auth::user()->client->wedding->newlyweds) === 2) {
+                    return redirect()->intended('/dashboard/vendor');
+                }
+            } else
+                return redirect()->intended('/dashboard/admin');
         }
 
         return back()->with('auth', 'Username atau Password Salah!');
@@ -43,11 +58,15 @@ class AuthController extends Controller
             'password' => bcrypt($validatedData['password'])
         ])->id;
 
-        Client::create([
+        $client_id = Client::create([
             'user_id' => $user_id,
             'name' => $validatedData['name'],
             'phone_number' => $validatedData['phone_number'],
             'email' => $validatedData['email'],
+        ])->id;
+
+        Wedding::create([
+            'client_id' => $client_id
         ]);
 
         return redirect('/dashboard/groom');
