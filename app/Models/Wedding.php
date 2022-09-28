@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class Wedding extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function wedding()
+    public function newlyweds()
     {
-        return $this->hasOne(Wedding::class);
+        return $this->hasMany(Newlywed::class);
     }
 }
