@@ -20,8 +20,9 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                <li class="nav-item {{ in_array($active, ['vendor_type', 'vendor']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ in_array($active, ['vendor_type', 'vendor']) ? 'active' : '' }}">
+                <li class="nav-item {{ in_array($active, ['vendor_type', 'vendor', 'theme']) ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ in_array($active, ['vendor_type', 'vendor', 'theme']) ? 'active' : '' }}">
                         <i class="nav-icon far fa-folder"></i>
                         <p>
                             Master Data
@@ -30,7 +31,8 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/dashboard/vendor-type" class="nav-link {{ $active == 'vendor_type' ? 'active' : '' }}">
+                            <a href="/dashboard/vendor-type"
+                                class="nav-link {{ $active == 'vendor_type' ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Jenis Vendor</p>
                             </a>
@@ -39,6 +41,12 @@
                             <a href="/dashboard/vendor" class="nav-link {{ $active == 'vendor' ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Vendor</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dashboard/theme" class="nav-link {{ $active == 'theme' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Konsep</p>
                             </a>
                         </li>
                     </ul>
@@ -60,7 +68,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/dashboard/" class="nav-link {{ $active == '' ? 'active' : '' }}">
+                    <a href="/dashboard/wedding" class="nav-link {{ $active == '' ? 'active' : '' }}">
                         <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                         <p>
                             Pengajuan
