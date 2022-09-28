@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\User;
 use App\Models\Vendor;
 use App\Models\VendorType;
 use Illuminate\Database\Seeder;
@@ -12,6 +13,11 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
+        User::create([
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin'),
+        ]);
+
         $dekorasi = VendorType::create([
             'name' => 'Dekorasi',
             'description' => ''
