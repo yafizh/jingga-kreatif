@@ -6,11 +6,18 @@ use App\Models\Vendor;
 use App\Models\VendorImage;
 use App\Models\VendorType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardVendorController extends Controller
 {
     public function index()
     {
+        if (Auth::user()->client) {
+            return view('dashboard.client.page.vendor.create', [
+                "active" => "vendor",
+                "active_navigation" => 5
+            ]);
+        }
         return view('dashboard.admin.page.vendor.index', [
             "active" => "vendor",
             "vendors" => Vendor::where('is_deleted', false)->latest()->get()
@@ -94,5 +101,24 @@ class DashboardVendorController extends Controller
     {
         Vendor::where('id', $vendor->id)->update(['is_deleted' => true]);
         return redirect('/dashboard/vendor')->with('deleted', $vendor->name);
+    }
+
+    public function getCategorizedVendor()
+    {
+        $vendors = [
+            "vendor_type_id" => [],
+            "vendor" => [],
+        ];
+        foreach (Vendor::all() as $vendor) {
+            if (in_array($vendor->vendor_type_id, $vendors["vendor_type_id"])) {
+                $vendor->vendor_type_name = $vendor->vendorType->name;
+                $vendors["vendor"][$vendor->vendor_type_id][] = $vendor;
+            } else {
+                $vendors["vendor_type_id"][] = $vendor->vendor_type_id;
+                $vendor->vendor_type_name = $vendor->vendorType->name;
+                $vendors["vendor"][$vendor->vendor_type_id][] = $vendor;
+            }
+        }
+        return response()->json($vendors);
     }
 }
