@@ -4,59 +4,63 @@ namespace App\Http\Controllers;
 
 use App\Models\Wedding;
 use App\Models\WeddingVendor;
+use Carbon\Carbon;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardWeddingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return view('dashboard.admin.page.wedding.index', [
+            "active" => "wedding",
+            "weddings" => Wedding::where('wedding_status', null)->orderBy('id', 'DESC')->get()
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Wedding  $wedding
-     * @return \Illuminate\Http\Response
-     */
     public function show(Wedding $wedding)
     {
-        //
+        $client = $wedding->client;
+        $groom = $wedding->newlyweds->filter(function ($newlywed) {
+            return $newlywed->sex;
+        })->first();
+        $bride = $wedding->newlyweds->filter(function ($newlywed) {
+            return !$newlywed->sex;
+        })->first();
+        $meetings = $wedding->meetings->filter(function ($meeting) {
+            return !$meeting->is_deleted;
+        })->map(function ($meeting) {
+            $meeting_date = new Carbon($meeting->meeting_date);
+            $meeting->meeting_date = $meeting_date->day . " " . $meeting_date->locale('ID')->getTranslatedMonthName() . " " . $meeting_date->year;
+            $meeting->meeting_day = $meeting_date->locale('ID')->getTranslatedDayName();
+            return $meeting;
+        })->reverse();
+        $payments = $wedding->payments->filter(function ($payment) {
+            return !$payment->is_deleted;
+        })->reverse();
+
+        return view('dashboard.admin.page.wedding.show', [
+            "active" => "wedding",
+            "wedding" => $wedding,
+            "client" => $client,
+            "groom" => $groom,
+            "bride" => $bride,
+            "meetings" => $meetings,
+            "payments" => $payments,
+            "section" => session('section', 'profile')
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Wedding  $wedding
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Wedding $wedding)
     {
         //
