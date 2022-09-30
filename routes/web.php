@@ -14,8 +14,10 @@ use App\Http\Controllers\MailerController;
 use Illuminate\Support\Facades\Route;
 
 
+// Authentication Route
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
+Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::get('/', function () {
     return view('landing.page.portfolio', [
