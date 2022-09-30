@@ -54,7 +54,7 @@ class DashboardClientController extends Controller
 
     public function destroy(Client $client)
     {
-        Client::where('id', $client->id)->update(['is_deleted', true]);
+        Client::where('id', $client->id)->update(['is_deleted' => true]);
         return redirect('/dashboard/client')->with('deleted', $client->name);
     }
 }

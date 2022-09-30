@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('wedding_id');
             $table->string('nik', 20);
+            $table->string('name');
             $table->string('birthplace');
             $table->date('birthdate');
             $table->boolean('sex'); // Jenis Kelamin (Pria=1/Wanita=0)

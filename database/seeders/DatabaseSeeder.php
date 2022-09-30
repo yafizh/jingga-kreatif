@@ -4,9 +4,11 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Client;
 use App\Models\User;
 use App\Models\Vendor;
 use App\Models\VendorType;
+use App\Models\Wedding;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,6 +18,22 @@ class DatabaseSeeder extends Seeder
         User::create([
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
+        ]);
+
+        User::create([
+            'email' => 'jinggakreatif93@gmail.com',
+            'password' => bcrypt('jinggakreatif93@gmail.com'),
+        ]);
+
+        Client::create([
+            'user_id' => 2,
+            'name' => 'Nurcholis',
+            'phone_number' => '098766222322',
+            'email' => 'jinggakreatif93@gmail.com',
+        ]);
+
+        Wedding::create([
+            'client_id' => 1
         ]);
 
         $dekorasi = VendorType::create([
@@ -138,6 +156,5 @@ class DatabaseSeeder extends Seeder
             "logo" => "vendor-logo/lasika.png",
             "description" => "",
         ]);
-
     }
 }
