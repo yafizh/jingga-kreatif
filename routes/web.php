@@ -3,24 +3,15 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardClientController;
 use App\Http\Controllers\DashboardEmployeeController;
+use App\Http\Controllers\DashboardMeetingController;
 use App\Http\Controllers\DashboardNewlywedController;
+use App\Http\Controllers\DashboardPaymentController;
 use App\Http\Controllers\DashboardThemeController;
 use App\Http\Controllers\DashboardVendorController;
 use App\Http\Controllers\DashboardVendorTypeController;
 use App\Http\Controllers\DashboardWeddingController;
 use App\Http\Controllers\MailerController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
@@ -80,13 +71,27 @@ Route::get('/dashboard/payment', function () {
         "active" => "payment",
         "active_navigation" => 6
     ]);
-})->middleware('auth');
+});
 
 Route::get('/dashboard/meeting', function () {
     return view('dashboard.client.page.meeting.index', [
         "active" => "meeting",
     ]);
 });
+
+// Meeting
+Route::get('/dashboard/meeting/create/{wedding}', [DashboardMeetingController::class, 'create']);
+Route::post('/dashboard/meeting/{wedding}', [DashboardMeetingController::class, 'store']);
+Route::get('/dashboard/meeting/{meeting}/edit', [DashboardMeetingController::class, 'edit']);
+Route::put('/dashboard/meeting/{meeting}', [DashboardMeetingController::class, 'update']);
+Route::delete('/dashboard/meeting/{meeting}', [DashboardMeetingController::class, 'destroy']);
+
+// Payment
+Route::get('/dashboard/payment/create/{wedding}', [DashboardPaymentController::class, 'create']);
+Route::post('/dashboard/payment/{wedding}', [DashboardPaymentController::class, 'store']);
+Route::get('/dashboard/payment/{payment}/edit', [DashboardPaymentController::class, 'edit']);
+Route::put('/dashboard/payment/{payment}', [DashboardPaymentController::class, 'update']);
+Route::delete('/dashboard/payment/{payment}', [DashboardPaymentController::class, 'destroy']);
 
 Route::get('/dashboard/vendor/getCategorizedVendor', [DashboardVendorController::class, 'getCategorizedVendor'])->middleware('auth');
 Route::post('/dashboard/wedding/storeChoosedVendor', [DashboardWeddingController::class, 'storeChoosedVendor'])->middleware('auth');
