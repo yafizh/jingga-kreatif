@@ -70,36 +70,31 @@ const vendorGenerator = (vendors) => {
     vendors.forEach((vendor) => {
         const card = document.createElement("div");
         card.classList.add("card");
-        card.style.width = "12rem";
-        card.style.height = "360px";
+
+        const card_image = document.createElement("div");
+        card_image.classList.add("card-image");
 
         const img = document.createElement("img");
         img.setAttribute(
             "src",
             `${window.location.origin}/storage/${vendor.logo}`
         );
-        img.style.objectFit = "contain";
-        img.style.minHeight = "176px";
-        img.style.width = "100%";
 
-        const card_body1 = document.createElement("div");
-        card_body1.classList.add("card-body");
-        card_body1.classList.add("d-flex");
-        card_body1.classList.add("justify-content-center");
-        card_body1.classList.add("align-items-center");
-        card_body1.style.minHeight = "88px";
+        const overplay = document.createElement("div");
+        overplay.classList.add("overplay");
 
-        const card_title = document.createElement("h5");
-        card_title.classList.add("m-0");
-        card_title.classList.add("card-title");
-        card_title.classList.add("text-center");
-        card_title.innerText = vendor.name;
+        const vendor_name = document.createElement("h5");
+        vendor_name.innerText = vendor.name;
 
-        card_body1.append(card_title);
+        const vendor_price = document.createElement("h6");
+        vendor_price.innerText = `Rp ${rupiahFormat(vendor.price)}`;
 
-        const card_body2 = document.createElement("div");
-        card_body2.classList.add("card-body");
-        card_body2.classList.add("pt-0");
+        overplay.append(vendor_name);
+        overplay.append(vendor_price);
+
+        const card_body = document.createElement("div");
+        card_body.classList.add("card-body");
+        card_body.classList.add("pt-0");
 
         const choose_button = document.createElement("button");
         choose_button.classList.add("choose");
@@ -141,14 +136,16 @@ const vendorGenerator = (vendors) => {
         detail_button.classList.add("btn-outline-primary");
         detail_button.classList.add("btn-sm");
         detail_button.classList.add("w-100");
-        detail_button.innerText = "Lihat Detai";
+        detail_button.innerText = "Lihat Detail";
 
-        card_body2.append(choose_button);
-        card_body2.append(detail_button);
+        card_body.append(choose_button);
+        card_body.append(detail_button);
 
-        card.append(img);
-        card.append(card_body1);
-        card.append(card_body2);
+        card_image.append(img);
+        card_image.append(overplay);
+
+        card.append(card_image);
+        card.append(card_body);
 
         card_container.append(card);
     });
