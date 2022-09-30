@@ -31,12 +31,14 @@
                     <h6 class="m-0 text-center">Riwayat Meeting</h6>
                 </div>
             </a>
-            <div class="sidebar-item my-3" onclick="return confirm('Are You Sure?')">
-                <div class="mb-2">
-                    <i class="sidebar-icon fa-solid fa-right-from-bracket"></i>
+            <a href="/logout" class="text-reset text-decoration-none">
+                <div class="sidebar-item my-3" onclick="return confirm('Are You Sure?')">
+                    <div class="mb-2">
+                        <i class="sidebar-icon fa-solid fa-right-from-bracket"></i>
+                    </div>
+                    <h6 class="m-0">Keluar</h6>
                 </div>
-                <h6 class="m-0">Keluar</h6>
-            </div>
+            </a>
         @endif
     </div>
 </aside>

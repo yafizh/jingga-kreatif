@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Client;
+use App\Models\Newlywed;
 use App\Models\User;
 use App\Models\Vendor;
 use App\Models\VendorType;
@@ -34,6 +35,30 @@ class DatabaseSeeder extends Seeder
 
         Wedding::create([
             'client_id' => 1
+        ]);
+
+        Newlywed::create([
+            'wedding_id' => 1,
+            'nik' => '3525015201880002',
+            'name' => 'Muhammad Putra',
+            'birthplace' => 'Martapura',
+            'birthdate' => '2000-01-01',
+            'sex' => true,
+            'father_name' => 'Putra',
+            'mother_name' => 'Putri',
+            'photo' => '',
+        ]);
+
+        Newlywed::create([
+            'wedding_id' => 1,
+            'nik' => '3525016005650004',
+            'name' => 'Just Putri',
+            'birthplace' => 'Banjarbaru',
+            'birthdate' => '2000-05-05',
+            'sex' => false,
+            'father_name' => 'Putra 2',
+            'mother_name' => 'Putri 2',
+            'photo' => '',
         ]);
 
         $dekorasi = VendorType::create([

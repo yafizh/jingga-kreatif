@@ -74,15 +74,15 @@
                         <div class="d-flex justify-content-between flex-column px-5 py-4 bg-white jingga-shadow rounded-2 w-100"
                             style="min-height: 240px;">
                             <h5 class="text-center">Tidak ada Dokumen</h5>
-                            {{-- <p class="text-center">Upload dokumen tambahan jika ada di sini dengan menekan tombol Pilih
+                            <p class="text-center">Upload dokumen tambahan jika ada di sini dengan menekan tombol Pilih
                                 Dokumen
-                            </p> --}}
-                            <ol>
+                            </p>
+                            {{-- <ol>
                                 <li><a href="" target="_blank">Dokumen 1</a></li>
                                 <li><a href="" target="_blank">Dokumen 1</a></li>
                                 <li><a href="" target="_blank">Dokumen 1</a></li>
                                 <li><a href="" target="_blank">Dokumen 1</a></li>
-                            </ol>
+                            </ol> --}}
 
                             <button class="btn btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Pilih
                                 Dokumen</button>
