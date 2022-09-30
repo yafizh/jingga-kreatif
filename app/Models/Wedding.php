@@ -21,6 +21,16 @@ class Wedding extends Model
         return $this->hasMany(Newlywed::class);
     }
 
+    public function theme()
+    {
+        return $this->hasOne(Theme::class);
+    }
+
+    public function vendors()
+    {
+        return $this->hasMany(Vendor::class);
+    }
+
     public function meetings()
     {
         return $this->hasMany(Meeting::class);

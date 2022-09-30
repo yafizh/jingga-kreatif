@@ -25,13 +25,16 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             if (Auth::user()->client) {
-                if (!count(Auth::user()->client->wedding->newlyweds)) {
+                if (!count(Auth::user()->client->wedding->newlyweds))
                     return redirect()->intended('/dashboard/groom');
-                } elseif (count(Auth::user()->client->wedding->newlyweds) === 1) {
+
+                if (count(Auth::user()->client->wedding->newlyweds) === 1)
                     return redirect()->intended('/dashboard/bride');
-                } elseif (count(Auth::user()->client->wedding->newlyweds) === 2) {
+
+                if (count(Auth::user()->client->wedding->newlyweds) === 2)
                     return redirect()->intended('/dashboard/vendor');
-                }
+
+                return redirect()->intended('/dashboard/payment');
             } else
                 return redirect()->intended('/dashboard/admin');
         }
