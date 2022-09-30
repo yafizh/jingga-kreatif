@@ -68,7 +68,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/dashboard/wedding" class="nav-link {{ $active == '' ? 'active' : '' }}">
+                    <a href="/dashboard/wedding" class="nav-link {{ $active == 'wedding' ? 'active' : '' }}">
                         <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                         <p>
                             Pengajuan
