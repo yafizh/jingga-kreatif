@@ -13,6 +13,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+
+    <style>
+        .card-primary.card-outline {
+            border-top-color: #F15A24;
+        }
+
+        .btn-primary:visited,
+        .btn-primary:active {
+            border-color: #ea480e !important;
+            background-color: #ea480e !important;
+        }
+
+        .btn-primary:hover {
+            border-color: #f05016;
+            background-color: #f05016;
+        }
+
+        .btn-primary:focus,
+        .btn-primary,
+        .primary {
+            border-color: #F15A24;
+            background-color: #F15A24;
+        }
+
+        .btn-primary {
+            border-color: #ff5100;
+            background-color: #ff5100 !important;
+        }
+
+        .btn-primary:hover {
+            border-color: #e64900;
+            background-color: #e64900 !important;
+        }
+
+        #btn-login:hover {
+            background-color: #ff5100;
+            color: white;
+        }
+
+        .navbar-brand:hover,
+        .navbar-nav .nav-item a:hover {
+            color: #ff5100 !important;
+        }
+    </style>
 </head>
 
 
@@ -28,8 +72,8 @@
                 <form action="/login" method="POST">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Email" name="email"
-                            autocomplete="off" required>
+                        <input type="text" class="form-control" placeholder="Email" name="email" autocomplete="off"
+                            required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>

@@ -17,6 +17,50 @@
     {{-- Trix Editor --}}
     <link rel="stylesheet" type="text/css" href="/styles/trix.css">
     <script type="text/javascript" src="/scripts/trix.js"></script>
+
+    <style>
+        aside .active {
+            background-color: #ff5100 !important;
+            color: white !important;
+        }
+
+        .card-primary .card-header {
+            background-color: #ff5100 !important;
+        }
+
+        .page-item.active .page-link {
+            color: #fff !important;
+            background-color: #ff5100 !important;
+            border-color: #ff5100 !important;
+        }
+
+        .page-link {
+            color: #ff5100 !important;
+            background-color: #fff !important;
+            border: 1px solid #dee2e6 !important;
+        }
+
+        .page-link:hover {
+            color: #fff !important;
+            background-color: #ff5100 !important;
+            border-color: #ff5100 !important;
+        }
+
+        .btn-primary {
+            border-color: #ff5100;
+            background-color: #ff5100 !important;
+        }
+
+        .btn-primary:hover {
+            border-color: #e64900;
+            background-color: #e64900 !important;
+        }
+
+        .navbar-brand:hover,
+        .navbar-nav .nav-item a:hover {
+            color: #ff5100 !important;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
