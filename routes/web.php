@@ -95,15 +95,21 @@ Route::get('/dashboard/payment/{payment}/edit', [DashboardPaymentController::cla
 Route::put('/dashboard/payment/{payment}', [DashboardPaymentController::class, 'update']);
 Route::delete('/dashboard/payment/{payment}', [DashboardPaymentController::class, 'destroy']);
 
+// Vendor (Order Matter)
 Route::get('/dashboard/vendor/getCategorizedVendor', [DashboardVendorController::class, 'getCategorizedVendor'])->middleware('auth');
-Route::post('/dashboard/wedding/storeChoosedVendor', [DashboardWeddingController::class, 'storeChoosedVendor'])->middleware('auth');
+Route::resource('/dashboard/vendor', DashboardVendorController::class)->middleware('auth');
+
+// Theme (Order Matter)
+Route::get('/dashboard/theme/getCategorizedTheme', [DashboardThemeController::class, 'getCategorizedTheme'])->middleware('auth');
+Route::resource('/dashboard/theme', DashboardThemeController::class)->middleware('auth');
+
+
+Route::post('/dashboard/wedding/storeChoosedThemeAndVendor', [DashboardWeddingController::class, 'storeChoosedThemeAndVendor'])->middleware('auth');
 
 Route::post('/dashboard/mail/send', [MailerController::class, 'composeEmail']);
 // Admin
-Route::resource('/dashboard/employee', DashboardEmployeeController::class);
-Route::resource('/dashboard/client', DashboardClientController::class);
-Route::resource('/dashboard/vendor-type', DashboardVendorTypeController::class);
-Route::resource('/dashboard/vendor', DashboardVendorController::class)->middleware('auth');
-Route::resource('/dashboard/newlywed', DashboardNewlywedController::class);
-Route::resource('/dashboard/wedding', DashboardWeddingController::class);
-Route::resource('/dashboard/theme', DashboardThemeController::class);
+Route::resource('/dashboard/employee', DashboardEmployeeController::class)->middleware('auth');
+Route::resource('/dashboard/client', DashboardClientController::class)->middleware('auth');;
+Route::resource('/dashboard/vendor-type', DashboardVendorTypeController::class)->middleware('auth');;
+Route::resource('/dashboard/newlywed', DashboardNewlywedController::class)->middleware('auth');;
+Route::resource('/dashboard/wedding', DashboardWeddingController::class)->middleware('auth');;

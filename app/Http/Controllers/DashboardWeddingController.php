@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wedding;
+use App\Models\WeddingTheme;
 use App\Models\WeddingVendor;
 use Carbon\Carbon;
 use Illuminate\Contracts\Session\Session;
@@ -66,39 +67,35 @@ class DashboardWeddingController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Wedding  $wedding
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Wedding $wedding)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Wedding  $wedding
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Wedding $wedding)
     {
         //
     }
 
-    public function storeChoosedVendor(Request $request)
+    public function storeChoosedThemeAndVendor(Request $request)
     {
-        $data = $request->get('choosed_vendor');
-        $choosedVendor = explode(',', $data);
+        $validatedData = $request->validate([
+            'choosed_vendor' => 'required',
+            'choosed_theme' => 'required',
+        ]);
+
+        $choosedVendor = explode(',', $validatedData['choosed_vendor']);
         foreach ($choosedVendor as $vendor) {
             WeddingVendor::create([
                 'wedding_id' => Auth::user()->client->wedding->id,
                 'vendor_id' => $vendor
             ]);
         }
+
+        WeddingTheme::create([
+            'wedding_id' => Auth::user()->client->wedding->id,
+            'theme_id' => $validatedData['choosed_theme']
+        ]);
 
         return redirect('/dashboard/payment');
     }

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Client;
 use App\Models\Newlywed;
+use App\Models\Theme;
 use App\Models\User;
 use App\Models\Vendor;
 use App\Models\VendorType;
@@ -59,6 +60,17 @@ class DatabaseSeeder extends Seeder
             'father_name' => 'Putra 2',
             'mother_name' => 'Putri 2',
             'photo' => '',
+        ]);
+
+        // Konsep
+        Theme::create([
+            'name' => 'Modern',
+            'description' => '',
+        ]);
+
+        Theme::create([
+            'name' => 'Tradisional',
+            'description' => '',
         ]);
 
         $dekorasi = VendorType::create([

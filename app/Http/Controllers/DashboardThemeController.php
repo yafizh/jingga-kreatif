@@ -81,4 +81,10 @@ class DashboardThemeController extends Controller
         Theme::where('id', $theme->id)->update(['is_deleted' => true]);
         return redirect('/dashboard/theme')->with('deleted', $theme->name);
     }
+
+    public function getCategorizedTheme()
+    {
+        $themes = Theme::where('is_deleted', false)->get();
+        return response()->json($themes);
+    }
 }

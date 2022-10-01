@@ -23,12 +23,12 @@ class Wedding extends Model
 
     public function theme()
     {
-        return $this->hasOne(Theme::class);
+        return $this->hasOne(WeddingTheme::class);
     }
 
     public function vendors()
     {
-        return $this->hasMany(Vendor::class);
+        return $this->hasMany(WeddingVendor::class);
     }
 
     public function meetings()

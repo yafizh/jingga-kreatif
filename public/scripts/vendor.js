@@ -1,10 +1,7 @@
 let choosedVendor = [];
+let total_price = 0;
 
-const toastGenerator = (
-    choose = 1,
-    vendor_name = "Galathia Decor",
-    jenis_vendor = "Dekorasi"
-) => {
+const toastGenerator = (choose = 1, name, type) => {
     const toast = document.createElement("div");
     toast.classList.add("toast");
     toast.classList.add("align-items-center");
@@ -28,8 +25,8 @@ const toastGenerator = (
     const toastBody = document.createElement("div");
     toastBody.classList.add("toast-body");
     toastBody.innerHTML = choose
-        ? `Berhasil memilih <strong>${vendor_name}</strong> sebagai vendor <strong>${jenis_vendor}</strong>`
-        : `Berhasil membatalkan <strong>${vendor_name}</strong> sebagai vendor <strong>${jenis_vendor}</strong>`;
+        ? `Berhasil memilih <strong>${name}</strong> sebagai <strong>${type}</strong>`
+        : `Berhasil membatalkan <strong>${name}</strong> sebagai <strong>${type}</strong>`;
 
     const toastButton = document.createElement("button");
     toastButton.classList.add("btn-close");
@@ -111,17 +108,19 @@ const vendorGenerator = (vendors) => {
                 this.innerHTML = "Pilih Vendor";
                 toastGenerator(
                     (choose = 0),
-                    (vendor_name = vendor.name),
-                    (jenis_vendor = vendor.vendor_type_name)
+                    (name = vendor.name),
+                    (type = `Vendor ${vendor.vendor_type_name}`)
                 );
+                total_price -= vendor.price;
             } else {
                 choosedVendor.push(vendor.id);
                 toastGenerator(
                     (choose = 1),
-                    (vendor_name = vendor.name),
-                    (jenis_vendor = vendor.vendor_type_name)
+                    (name = vendor.name),
+                    (type = `Vendor ${vendor.vendor_type_name}`)
                 );
                 this.innerHTML = "Vendor Terpilih";
+                total_price += vendor.price;
             }
             this.classList.toggle("btn-outline-primary");
             this.classList.toggle("btn-primary");
@@ -129,6 +128,10 @@ const vendorGenerator = (vendors) => {
 
             document.querySelector("#choosed_vendor").value =
                 choosedVendor.toString();
+
+            document.getElementById(
+                "total_price"
+            ).innerText = `Total: Rp. ${rupiahFormat(total_price)}`;
         });
 
         const detail_button = document.createElement("button");
@@ -155,13 +158,124 @@ const vendorGenerator = (vendors) => {
 
     document.querySelector("#grid-container").append(container);
 };
+
+const themeGenerator = (themes) => {
+    const choose_button_collection = [];
+
+    const container = document.createElement("div");
+    container.classList.add("mb-3");
+
+    const title = document.createElement("h4");
+    title.classList.add("mb-3");
+    title.innerText = "Konsep";
+
+    const card_container = document.createElement("div");
+    card_container.classList.add("d-flex");
+    card_container.classList.add("gap-3");
+    card_container.classList.add("flex-wrap");
+    card_container.classList.add("justify-content-start");
+
+    themes.forEach((theme) => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+
+        const card_image = document.createElement("div");
+        card_image.classList.add("card-image");
+
+        const img = document.createElement("img");
+        // img.setAttribute(
+        //     "src",
+        //     `${window.location.origin}/storage/${theme.thumbnail}`
+        // );
+        img.setAttribute(
+            "src",
+            "https://1hq6f244nzqssy4d8fp6y7re-wpengine.netdna-ssl.com/wp-content/uploads/2018/01/elegant-wedding-modern-black-white-wedding20.jpg"
+        );
+
+        const overplay = document.createElement("div");
+        overplay.classList.add("overplay");
+
+        const theme_name = document.createElement("h5");
+        theme_name.innerText = theme.name;
+
+        overplay.append(theme_name);
+
+        const card_body = document.createElement("div");
+        card_body.classList.add("card-body");
+        card_body.classList.add("pt-0");
+
+        const choose_button = document.createElement("button");
+        choose_button.classList.add("choose");
+        choose_button.classList.add("btn");
+        choose_button.classList.add("btn-outline-primary");
+        choose_button.classList.add("btn-sm");
+        choose_button.classList.add("w-100");
+        choose_button.classList.add("my-2");
+        choose_button.innerText = "Pilih Konsep";
+
+        choose_button_collection.push(choose_button);
+
+        const detail_button = document.createElement("button");
+        detail_button.classList.add("btn");
+        detail_button.classList.add("btn-outline-primary");
+        detail_button.classList.add("btn-sm");
+        detail_button.classList.add("w-100");
+        detail_button.innerText = "Lihat Detail";
+
+        card_body.append(choose_button);
+        card_body.append(detail_button);
+
+        card_image.append(img);
+        card_image.append(overplay);
+
+        card.append(card_image);
+        card.append(card_body);
+
+        card_container.append(card);
+    });
+
+    container.append(title);
+    container.append(card_container);
+
+    choose_button_collection.forEach((choose_button, index) => {
+        choose_button.addEventListener("click", function () {
+            choose_button_collection.forEach(function (value) {
+                value.innerHTML = "Pilih Konsep";
+                value.classList.remove("btn-primary");
+                value.classList.add("btn-outline-primary");
+            });
+            this.innerHTML = "Konsep Terpilih";
+            this.classList.remove("btn-outline-primary");
+            this.classList.add("btn-primary");
+            document.querySelector("#choosed_theme").value = themes[index].id;
+            toastGenerator(
+                (choose = 1),
+                (name = themes[index].name),
+                (type = "Konsep")
+            );
+        });
+    });
+
+    document.querySelector("#grid-container").append(container);
+};
+
+$.ajax({
+    url: `${window.location.origin}/dashboard/theme/getCategorizedTheme`,
+    method: "GET",
+    dataType: "json",
+})
+    .done((response) => themeGenerator(response))
+    .fail(function (e) {
+        console.log(e);
+        alert("error");
+    });
+
 $.ajax({
     url: `${window.location.origin}/dashboard/vendor/getCategorizedVendor`,
     method: "GET",
     dataType: "json",
 })
     .done(function (response) {
-        console.log(response);
         response.vendor_type_id.forEach((vendor_type_id) => {
             vendorGenerator(response.vendor[vendor_type_id]);
         });
