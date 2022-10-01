@@ -5,55 +5,36 @@
         <div class="col-12">
             <h3 class="my-4">Riwayat Meeting</h3>
         </div>
-        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3">
-            <div class="bg-white jingga-shadow rounded-2 w-100 h-100">
-                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1147&q=80"
-                    style="height: 192px; width: 100%; object-fit: cover;">
-                <div class="p-4">
-                    <h4>Pertemuan 1</h4>
-                    <h6 class="text-muted">Senin, 15 April 2022</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique maxime ex voluptate vel! Illo
-                        optio nam rerum sequi consectetur quidem praesentium aut error! Soluta ea cum dolor harum aliquid
-                        repellendus!</p>
+        @foreach ($meetings as $meeting)
+            <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3">
+                <div class="bg-white jingga-shadow rounded-2 w-100 h-100">
+                    <img src="{{ asset('storage/' . $meeting->photo) }}"
+                        style="height: 192px; width: 100%; object-fit: cover;">
+                    <div class="p-3">
+                        <h4 class="line-champ">{{ $meeting->topic }}</h4>
+                        <h6 class="text-muted">{{ $meeting->meeting_day }}, {{ $meeting->meeting_date }}</h6>
+                        <p class="line-champ">{{ $meeting->body }}</p>
+                        <div class="d-flex justify-content-end pt-3">
+                            <button class="btn-detail btn btn-primary rounded-0">Lihat Detail</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3">
-            <div class="bg-white jingga-shadow rounded-2 w-100 h-100">
-                <img src="https://images.unsplash.com/photo-1567880905822-56f8e06fe630?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
-                    style="height: 192px; width: 100%; object-fit: cover;">
-                <div class="p-4">
-                    <h4>Pertemuan 2</h4>
-                    <h6 class="text-muted">Selasa, 16 April 2022</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique maxime ex voluptate vel! Illo
-                        optio nam rerum sequi consectetur quidem praesentium aut error! Soluta ea cum dolor harum aliquid
-                        repellendus!</p>
+        @endforeach
+    </div>
+
+    {{-- Detail Modal --}}
+    <div class="modal fade" id="meetingDetailModal" tabindex="-1" aria-labelledby="meetingDetailModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="meetingDetailModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3">
-            <div class="bg-white jingga-shadow rounded-2 w-100 h-100">
-                <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
-                    style="height: 192px; width: 100%; object-fit: cover;">
-                <div class="p-4">
-                    <h4>Pertemuan 3</h4>
-                    <h6 class="text-muted">Rabu, 17 April 2022</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique maxime ex voluptate vel! Illo
-                        optio nam rerum sequi consectetur quidem praesentium aut error! Soluta ea cum dolor harum aliquid
-                        repellendus!</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3">
-            <div class="bg-white jingga-shadow rounded-2 w-100 h-100">
-                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-                    style="height: 192px; width: 100%; object-fit: cover;">
-                <div class="p-4">
-                    <h4>Pertemuan 4</h4>
-                    <h6 class="text-muted">Kamis, 18 April 2022</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique maxime ex voluptate vel! Illo
-                        optio nam rerum sequi consectetur quidem praesentium aut error! Soluta ea cum dolor harum aliquid
-                        repellendus!</p>
+                <div class="modal-body p-0">
+                    <img src="" style="height: 192px; width: 100%; object-fit: cover;">
+                    <p class="p-3"></p>
                 </div>
             </div>
         </div>

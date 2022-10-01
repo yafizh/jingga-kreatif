@@ -7,6 +7,8 @@
     <title>Jingga Kreatif</title>
     @if ($active == 'vendor')
         <link rel="stylesheet" href="/styles/vendor.css">
+    @elseif ($active == 'meeting')
+        <link rel="stylesheet" href="/styles/meeting.css">
     @endif
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/dashboard.css">
@@ -32,6 +34,8 @@
         <script src="/scripts/newlywed.js"></script>
     @elseif ($active == 'payment')
         <script src="/scripts/payment.js"></script>
+    @elseif ($active == 'meeting')
+        <script src="/scripts/meeting.js"></script>
     @endif
 </body>
 

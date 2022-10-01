@@ -4,13 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Meeting;
 use App\Models\Wedding;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardMeetingController extends Controller
 {
     public function index()
     {
-        //
+        $meetings = Meeting::where('wedding_id', Auth::user()->client->wedding->id)->where('is_deleted', false)->orderBy('id', 'DESC')->get();
+        $meetings = $meetings->map(function ($meeting) {
+            $meeting_date = new Carbon($meeting->meeting_date);
+            $meeting->meeting_date = $meeting_date->day . " " . $meeting_date->locale('ID')->getTranslatedMonthName() . " " . $meeting_date->year;
+            $meeting->meeting_day = $meeting_date->locale('ID')->getTranslatedDayName();
+            return $meeting;
+        });
+
+        return view('dashboard.client.page.meeting.index', [
+            "active" => "meeting",
+            "meetings" => $meetings
+        ]);
     }
 
     public function create(Wedding $wedding)

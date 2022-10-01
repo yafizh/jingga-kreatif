@@ -69,13 +69,8 @@ Route::get('/dashboard/bride', function () {
     ]);
 })->middleware('auth');
 
-Route::get('/dashboard/meeting', function () {
-    return view('dashboard.client.page.meeting.index', [
-        "active" => "meeting",
-    ]);
-});
-
 // Meeting
+Route::get('/dashboard/meeting', [DashboardMeetingController::class, 'index']);
 Route::get('/dashboard/meeting/create/{wedding}', [DashboardMeetingController::class, 'create']);
 Route::post('/dashboard/meeting/{wedding}', [DashboardMeetingController::class, 'store']);
 Route::get('/dashboard/meeting/{meeting}/edit', [DashboardMeetingController::class, 'edit']);
@@ -100,16 +95,18 @@ Route::resource('/dashboard/theme', DashboardThemeController::class)->middleware
 
 // Wedding
 Route::post('/dashboard/wedding/pay/{payment}', [DashboardWeddingController::class, 'pay']);
+Route::post('/dashboard/wedding/storeChoosedThemeAndVendor', [DashboardWeddingController::class, 'storeChoosedThemeAndVendor'])->middleware('auth');
 Route::resource('/dashboard/wedding', DashboardWeddingController::class)->middleware('auth');
 
 // Bank (Order Matter)
 Route::get('/dashboard/getAllBank', [DashboardBankController::class, 'getAllBank'])->middleware('auth');
 Route::resource('/dashboard/bank', DashboardBankController::class)->middleware('auth');
 
-Route::post('/dashboard/wedding/storeChoosedThemeAndVendor', [DashboardWeddingController::class, 'storeChoosedThemeAndVendor'])->middleware('auth');
 
+// Mail Sender
 Route::post('/dashboard/mail/send', [MailerController::class, 'composeEmail']);
-// Admin
+
+// Master Data
 Route::resource('/dashboard/employee', DashboardEmployeeController::class)->middleware('auth');
 Route::resource('/dashboard/client', DashboardClientController::class)->middleware('auth');
 Route::resource('/dashboard/vendor-type', DashboardVendorTypeController::class)->middleware('auth');

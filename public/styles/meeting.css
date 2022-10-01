@@ -1,0 +1,13 @@
+.line-champ {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.jingga-shadow p {
+    -webkit-line-clamp: 5;
+}
+
+.jingga-shadow h4 {
+    -webkit-line-clamp: 1;
+}
