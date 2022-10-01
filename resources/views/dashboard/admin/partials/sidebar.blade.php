@@ -20,9 +20,10 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                <li class="nav-item {{ in_array($active, ['vendor_type', 'vendor', 'theme']) ? 'menu-open' : '' }}">
+                <li
+                    class="nav-item {{ in_array($active, ['vendor_type', 'vendor', 'theme', 'bank']) ? 'menu-open' : '' }}">
                     <a href="#"
-                        class="nav-link {{ in_array($active, ['vendor_type', 'vendor', 'theme']) ? 'active' : '' }}">
+                        class="nav-link {{ in_array($active, ['vendor_type', 'vendor', 'theme', 'bank']) ? 'active' : '' }}">
                         <i class="nav-icon far fa-folder"></i>
                         <p>
                             Master Data
@@ -47,6 +48,12 @@
                             <a href="/dashboard/theme" class="nav-link {{ $active == 'theme' ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Konsep</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dashboard/bank" class="nav-link {{ $active == 'bank' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Bank</p>
                             </a>
                         </li>
                     </ul>

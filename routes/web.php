@@ -83,12 +83,12 @@ Route::put('/dashboard/meeting/{meeting}', [DashboardMeetingController::class, '
 Route::delete('/dashboard/meeting/{meeting}', [DashboardMeetingController::class, 'destroy']);
 
 // Payment
-Route::get('/dashboard/payment', [DashboardPaymentController::class, 'index']);
-Route::get('/dashboard/payment/create/{wedding}', [DashboardPaymentController::class, 'create']);
-Route::post('/dashboard/payment/{wedding}', [DashboardPaymentController::class, 'store']);
-Route::get('/dashboard/payment/{payment}/edit', [DashboardPaymentController::class, 'edit']);
-Route::put('/dashboard/payment/{payment}', [DashboardPaymentController::class, 'update']);
-Route::delete('/dashboard/payment/{payment}', [DashboardPaymentController::class, 'destroy']);
+Route::get('/dashboard/payment', [DashboardPaymentController::class, 'index'])->middleware('auth');
+Route::get('/dashboard/payment/create/{wedding}', [DashboardPaymentController::class, 'create'])->middleware('auth');
+Route::post('/dashboard/payment/{wedding}', [DashboardPaymentController::class, 'store'])->middleware('auth');
+Route::get('/dashboard/payment/{payment}/edit', [DashboardPaymentController::class, 'edit'])->middleware('auth');
+Route::put('/dashboard/payment/{payment}', [DashboardPaymentController::class, 'update'])->middleware('auth');
+Route::delete('/dashboard/payment/{payment}', [DashboardPaymentController::class, 'destroy'])->middleware('auth');
 
 // Vendor (Order Matter)
 Route::get('/dashboard/vendor/getCategorizedVendor', [DashboardVendorController::class, 'getCategorizedVendor'])->middleware('auth');
