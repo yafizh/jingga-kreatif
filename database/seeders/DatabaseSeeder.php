@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Bank;
 use App\Models\Client;
 use App\Models\Newlywed;
+use App\Models\Payment;
 use App\Models\Theme;
 use App\Models\User;
 use App\Models\Vendor;
@@ -60,6 +62,12 @@ class DatabaseSeeder extends Seeder
             'father_name' => 'Putra 2',
             'mother_name' => 'Putri 2',
             'photo' => '',
+        ]);
+
+        Payment::create([
+            'wedding_id' => 1,
+            'name' => 'Pembayaran Vendor',
+            'nominal' => 75000000
         ]);
 
         // Konsep
@@ -192,6 +200,19 @@ class DatabaseSeeder extends Seeder
             "price" => 25000000,
             "logo" => "vendor-logo/lasika.png",
             "description" => "",
+        ]);
+
+        // Bank
+        Bank::create([
+            'bank_name' => 'BCA',
+            'owner_name' => 'Nurcholis',
+            'pin' => '123212233221',
+        ]);
+
+        Bank::create([
+            'bank_name' => 'Mandiri',
+            'owner_name' => 'Gusti',
+            'pin' => '71263861823',
         ]);
     }
 }

@@ -30,6 +30,8 @@
         <script src="/scripts/registration.js"></script>
     @elseif ($active == 'groom' || $active == 'bride')
         <script src="/scripts/newlywed.js"></script>
+    @elseif ($active == 'payment')
+        <script src="/scripts/payment.js"></script>
     @endif
 </body>
 

@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('payment_histories', function (Blueprint $table) {
+        Schema::create('banks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('payment_id');
-            $table->string('photo');
-            $table->string('comments')->nullable()->default(null);
-            $table->boolean('status')->nullable()->default(null);
+            $table->string('bank_name');
+            $table->string('owner_name');
+            $table->string('pin');
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_histories');
+        Schema::dropIfExists('banks');
     }
 };

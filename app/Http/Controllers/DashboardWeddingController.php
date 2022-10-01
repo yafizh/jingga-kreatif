@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
+use App\Models\PaymentHistory;
 use App\Models\Wedding;
 use App\Models\WeddingTheme;
 use App\Models\WeddingVendor;
@@ -95,6 +97,23 @@ class DashboardWeddingController extends Controller
         WeddingTheme::create([
             'wedding_id' => Auth::user()->client->wedding->id,
             'theme_id' => $validatedData['choosed_theme']
+        ]);
+
+        return redirect('/dashboard/payment');
+    }
+
+    public function pay(Request $request, Payment $payment)
+    {
+        $validatedData = $request->validate([
+            'photo' => 'required'
+        ]);
+
+        if ($request->file('photo'))
+            $validatedData['photo'] = $request->file('photo')->store('payment-photo');
+
+        PaymentHistory::create([
+            'payment_id' => $payment->id,
+            'photo' => $validatedData['photo']
         ]);
 
         return redirect('/dashboard/payment');
