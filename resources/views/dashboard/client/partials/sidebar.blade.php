@@ -10,12 +10,14 @@
     </div>
     <hr>
     <div class="menu w-100">
-        <div class="sidebar-item my-3 {{ $active != 'meeting' ? 'sidebar-active' : '' }}">
-            <div class="mb-2">
-                <i class="sidebar-icon fa-solid fa-house"></i>
+        <a href="/dashboard/client" class="text-reset text-decoration-none">
+            <div class="sidebar-item my-3 {{ $active != 'meeting' ? 'sidebar-active' : '' }}">
+                <div class="mb-2">
+                    <i class="sidebar-icon fa-solid fa-house"></i>
+                </div>
+                <h6 class="m-0">Utama</h6>
             </div>
-            <h6 class="m-0">Utama</h6>
-        </div>
+        </a>
         @if (auth()->user())
             <div class="sidebar-item my-3">
                 <div class="mb-2">

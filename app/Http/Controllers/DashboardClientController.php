@@ -4,11 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardClientController extends Controller
 {
     public function index()
     {
+        if (Auth::user()->client) {
+            if (!count(Auth::user()->client->wedding->newlyweds))
+                return redirect()->intended('/dashboard/groom');
+
+            if (count(Auth::user()->client->wedding->newlyweds) === 1)
+                return redirect()->intended('/dashboard/bride');
+
+            if (count(Auth::user()->client->wedding->newlyweds) === 2)
+                return redirect()->intended('/dashboard/vendor');
+
+            return redirect()->intended('/dashboard/payment');
+        }
+
         return view('dashboard.admin.page.client.index', [
             "active" => "client",
             "clients" => Client::where('is_deleted', false)->get()
