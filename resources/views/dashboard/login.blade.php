@@ -67,8 +67,11 @@
                 <img src="/images/logo.png" style="width: 100%;">
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Login</p>
-
+                @if (session()->has('auth'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session()->get('auth') }}
+                    </div>
+                @endif
                 <form action="/login" method="POST">
                     @csrf
                     <div class="input-group mb-3">

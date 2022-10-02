@@ -12,12 +12,6 @@
                                 <h4 class="flex-grow-1 m-0 font-weight-bold">Data Vendor</h4>
                                 <a href="/dashboard/vendor/create" class="btn btn-primary">Tambah</a>
                             </div>
-                            <style>
-                                .small-td {
-                                    width: 1%;
-                                    white-space: nowrap;
-                                }
-                            </style>
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-striped">
                                     <thead>
@@ -35,20 +29,24 @@
                                             @foreach ($vendors as $vendor)
                                                 <tr>
                                                     <td class="text-center align-middle">{{ $loop->iteration }}</td>
-                                                    <td class="text-center align-middle" style="width: 100px; height: 100px;">
+                                                    <td class="text-center align-middle"
+                                                        style="width: 100px; height: 100px;">
                                                         <img src="{{ asset('storage/' . $vendor->logo) }}"
                                                             style="width: 100px;  height: 100px; object-fit: contain;">
                                                     </td>
                                                     <td class="text-center align-middle">{{ $vendor->name }}</td>
-                                                    <td class="text-center align-middle">{{ $vendor->vendorType->name }}</td>
+                                                    <td class="text-center align-middle">{{ $vendor->vendorType->name }}
+                                                    </td>
                                                     <td class="text-center align-middle">
                                                         Rp. {{ number_format($vendor->price, 0, ',', '.') }}
                                                     </td>
                                                     <td class="text-center align-middle small-td">
+                                                        <a href="/dashboard/vendor/{{ $vendor->id }}"
+                                                            class="btn btn-sm btn-info">Lihat</a>
                                                         <a href="/dashboard/vendor/{{ $vendor->id }}/edit"
                                                             class="btn btn-sm btn-warning">Edit</a>
-                                                        <form action="/dashboard/vendor/{{ $vendor->id }}"
-                                                            method="POST" class="d-inline">
+                                                        <form action="/dashboard/vendor/{{ $vendor->id }}" method="POST"
+                                                            class="d-inline">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-sm btn-danger"

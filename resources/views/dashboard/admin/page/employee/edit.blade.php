@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2 justify-content-center">
@@ -10,10 +9,9 @@
                         <h1>Edit Data Karyawan</h1>
                     </div>
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
 
-        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="row justify-content-center">
@@ -33,7 +31,7 @@
                                     <div class="form-group">
                                         <label for="position">Posisi</label>
                                         <input type="text" class="form-control" id="position"
-                                            placeholder="Masukkan Nama Lengkap" name="position" autocomplete="off"
+                                            placeholder="Masukkan Posisi" name="position" autocomplete="off"
                                             value="{{ old('position', $employee->position) }}">
                                     </div>
                                     <div class="form-group">
@@ -54,14 +52,15 @@
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="photo"
                                                     name="photo">
-                                                <label class="custom-file-label" for="photo">Pilih foto bila ingin memperbaharui foto lama</label>
+                                                <label class="custom-file-label" for="photo">Pilih foto bila ingin
+                                                    memperbaharui foto lama</label>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="card-footer d-flex justify-content-end">
-                                    <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                                    <div class="mt-4 d-flex justify-content-between">
+                                        <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
+                                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>

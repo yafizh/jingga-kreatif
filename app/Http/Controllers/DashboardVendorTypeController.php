@@ -33,12 +33,6 @@ class DashboardVendorTypeController extends Controller
         return redirect('/dashboard/vendor-type')->with('created', $vendor_type_id);
     }
 
-    public function show(VendorType $vendorType)
-    {
-        //
-    }
-
-
     public function edit(VendorType $vendorType)
     {
         return view('dashboard.admin.page.vendor_type.edit', [

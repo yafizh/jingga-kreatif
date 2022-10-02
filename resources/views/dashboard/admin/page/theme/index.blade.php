@@ -12,12 +12,6 @@
                                 <h4 class="flex-grow-1 m-0 font-weight-bold">Data Konsep</h4>
                                 <a href="/dashboard/theme/create" class="btn btn-primary">Tambah</a>
                             </div>
-                            <style>
-                                .small-td {
-                                    width: 1%;
-                                    white-space: nowrap;
-                                }
-                            </style>
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-striped">
                                     <thead>

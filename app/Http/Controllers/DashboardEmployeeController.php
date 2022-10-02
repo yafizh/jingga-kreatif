@@ -41,7 +41,10 @@ class DashboardEmployeeController extends Controller
 
     public function show(Employee $employee)
     {
-        //
+        return view('dashboard.admin.page.employee.show', [
+            "active" => "employee",
+            "employee" => $employee
+        ]);
     }
 
     public function edit(Employee $employee)

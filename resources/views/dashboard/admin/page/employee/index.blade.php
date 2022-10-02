@@ -2,9 +2,6 @@
 
 @section('content')
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-
-        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -15,13 +12,6 @@
                                 <h4 class="flex-grow-1 m-0 font-weight-bold">Data Karyawan</h4>
                                 <a href="/dashboard/employee/create" class="btn btn-primary">Tambah</a>
                             </div>
-                            <!-- /.card-header -->
-                            <style>
-                                .small-td {
-                                    width: 1%;
-                                    white-space: nowrap;
-                                }
-                            </style>
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-striped">
                                     <thead>
@@ -44,6 +34,8 @@
                                                     <td class="text-center align-middle">{{ $employee->phone_number }}</td>
                                                     <td class="text-center align-middle">{{ $employee->email }}</td>
                                                     <td class="text-center align-middle small-td">
+                                                        <a href="/dashboard/employee/{{ $employee->id }}"
+                                                            class="btn btn-sm btn-info">Lihat</a>
                                                         <a href="/dashboard/employee/{{ $employee->id }}/edit"
                                                             class="btn btn-sm btn-warning">Edit</a>
                                                         <form action="/dashboard/employee/{{ $employee->id }}"

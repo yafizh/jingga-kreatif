@@ -92,7 +92,7 @@ Route::resource('/dashboard/vendor', DashboardVendorController::class)->middlewa
 
 // Theme (Order Matter)
 Route::get('/dashboard/theme/getCategorizedTheme', [DashboardThemeController::class, 'getCategorizedTheme'])->middleware('auth');
-Route::resource('/dashboard/theme', DashboardThemeController::class)->middleware('auth');
+Route::resource('/dashboard/theme', DashboardThemeController::class)->except('show')->middleware('auth');
 
 // Wedding
 Route::post('/dashboard/wedding/pay/{payment}', [DashboardWeddingController::class, 'pay']);
@@ -101,7 +101,7 @@ Route::resource('/dashboard/wedding', DashboardWeddingController::class)->middle
 
 // Bank (Order Matter)
 Route::get('/dashboard/getAllBank', [DashboardBankController::class, 'getAllBank'])->middleware('auth');
-Route::resource('/dashboard/bank', DashboardBankController::class)->middleware('auth');
+Route::resource('/dashboard/bank', DashboardBankController::class)->except('show')->middleware('auth');
 
 
 // Mail Sender
@@ -110,7 +110,7 @@ Route::post('/dashboard/mail/send', [MailerController::class, 'composeEmail']);
 // Master Data
 Route::resource('/dashboard/employee', DashboardEmployeeController::class)->middleware('auth');
 Route::resource('/dashboard/client', DashboardClientController::class)->middleware('auth');
-Route::resource('/dashboard/vendor-type', DashboardVendorTypeController::class)->middleware('auth');
+Route::resource('/dashboard/vendor-type', DashboardVendorTypeController::class)->except('show')->middleware('auth');
 Route::resource('/dashboard/newlywed', DashboardNewlywedController::class)->middleware('auth');
 
 // Admin Dashboard

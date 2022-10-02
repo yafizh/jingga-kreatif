@@ -37,13 +37,13 @@
                                     <div class="form-group">
                                         <label for="email">Email</label>
                                         <input type="email" class="form-control" id="email"
-                                            placeholder="Masukkan Nama Lengkap" name="email" autocomplete="off"
+                                            placeholder="Masukkan Email" name="email" autocomplete="off"
                                             value="{{ old('email', $client->email) }}">
                                     </div>
-                                </div>
-
-                                <div class="card-footer d-flex justify-content-end">
-                                    <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                                    <div class="mt-4 d-flex justify-content-between">
+                                        <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
+                                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>

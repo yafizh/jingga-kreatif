@@ -62,7 +62,8 @@
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="images"
                                                     name="images[]" multiple>
-                                                <label class="custom-file-label" for="images">Pilih beberapa gambar</label>
+                                                <label class="custom-file-label" for="images">Pilih beberapa
+                                                    gambar</label>
                                             </div>
                                         </div>
                                     </div>
@@ -71,7 +72,8 @@
                                         <input id="description" type="hidden" name="description">
                                         <trix-editor input="description"></trix-editor>
                                     </div>
-                                    <div class="d-flex justify-content-end mt-4">
+                                    <div class="d-flex justify-content-between mt-4">
+                                        <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
                                         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>

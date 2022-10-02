@@ -6,18 +6,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-
                         <div class="card mt-3">
                             <div class="card-header d-flex align-items-center">
                                 <h4 class="flex-grow-1 m-0 font-weight-bold">Data Jenis Vendor</h4>
                                 <a href="/dashboard/vendor-type/create" class="btn btn-primary">Tambah</a>
                             </div>
-                            <style>
-                                .small-td {
-                                    width: 1%;
-                                    white-space: nowrap;
-                                }
-                            </style>
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-striped">
                                     <thead>

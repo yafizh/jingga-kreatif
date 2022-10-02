@@ -59,7 +59,10 @@ class DashboardVendorController extends Controller
 
     public function show(Vendor $vendor)
     {
-        //
+        return view('dashboard.admin.page.vendor.show', [
+            "active" => "vendor",
+            "vendor" => $vendor,
+        ]);
     }
 
     public function edit(Vendor $vendor)
