@@ -141,6 +141,31 @@ const vendorGenerator = (vendors) => {
         detail_button.classList.add("w-100");
         detail_button.innerText = "Lihat Detail";
 
+        detail_button.addEventListener("click", function () {
+            vendor.vendorImages.forEach(function (image, index) {
+                if (!index)
+                    $(
+                        "#detailModal #carouselDetailModalControls .carousel-inner"
+                    ).append(`
+                    <div class="carousel-item active">
+                        <img src="${window.location.origin}/storage/${image.image}" style="height:320px; object-fit: cover;" class="d-block w-100">
+                    </div>
+                    `);
+                else
+                    $(
+                        "#detailModal #carouselDetailModalControls .carousel-inner"
+                    ).append(`
+                    <div class="carousel-item">
+                        <img src="${window.location.origin}/storage/${image.image}" style="height:320px; object-fit: cover;" class="d-block w-100">
+                    </div>
+                    `);
+            });
+            $("#detailModal .modal-title").text(vendor.name);
+            $("#detailModal .modal-body .description").text(vendor.description);
+
+            $("#detailModal").modal("show");
+        });
+
         card_body.append(choose_button);
         card_body.append(detail_button);
 
@@ -218,6 +243,31 @@ const themeGenerator = (themes) => {
         detail_button.classList.add("w-100");
         detail_button.innerText = "Lihat Detail";
 
+        detail_button.addEventListener("click", function () {
+            theme.theme_images.forEach(function (image, index) {
+                if (!index)
+                    $(
+                        "#detailModal #carouselDetailModalControls .carousel-inner"
+                    ).append(`
+                    <div class="carousel-item active">
+                        <img src="${window.location.origin}/storage/${image.image}" style="height:320px; object-fit: cover;" class="d-block w-100">
+                    </div>
+                    `);
+                else
+                    $(
+                        "#detailModal #carouselDetailModalControls .carousel-inner"
+                    ).append(`
+                    <div class="carousel-item">
+                        <img src="${window.location.origin}/storage/${image.image}" style="height:320px; object-fit: cover;" class="d-block w-100">
+                    </div>
+                    `);
+            });
+            $("#detailModal .modal-title").text(theme.name);
+            $("#detailModal .modal-body .description").text(theme.description);
+
+            $("#detailModal").modal("show");
+        });
+
         card_body.append(choose_button);
         card_body.append(detail_button);
 
@@ -280,3 +330,9 @@ $.ajax({
         console.log(e);
         alert("error");
     });
+
+$("#detailModal").on("hidden.bs.modal", () => {
+    $("#detailModal #carouselDetailModalControls .carousel-inner").text("");
+    $("#detailModal .modal-title").text("");
+    $("#detailModal .modal-body .description").text("");
+});

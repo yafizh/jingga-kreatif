@@ -91,7 +91,11 @@ class DashboardThemeController extends Controller
 
     public function getCategorizedTheme()
     {
-        $themes = Theme::where('is_deleted', false)->get();
+        $themes = [];
+        foreach (Theme::where('is_deleted', false)->get() as $theme) {
+            $theme->themeImages;
+            $themes[] = $theme;
+        }
         return response()->json($themes);
     }
 }

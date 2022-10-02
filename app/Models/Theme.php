@@ -10,4 +10,9 @@ class Theme extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function themeImages()
+    {
+        return $this->hasMany(ThemeImage::class);
+    }
 }

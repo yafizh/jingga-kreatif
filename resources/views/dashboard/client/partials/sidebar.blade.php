@@ -19,12 +19,12 @@
             </div>
         </a>
         @if (auth()->user())
-            <div class="sidebar-item my-3">
+            {{-- <div class="sidebar-item my-3">
                 <div class="mb-2">
                     <i class="sidebar-icon fa-solid fa-user"></i>
                 </div>
                 <h6 class="m-0 text-center">Perbaharui Data</h6>
-            </div>
+            </div> --}}
             <a href="/dashboard/meeting" class="text-reset text-decoration-none">
                 <div class="sidebar-item my-3 {{ $active == 'meeting' ? 'sidebar-active' : '' }}">
                     <div class="mb-2">

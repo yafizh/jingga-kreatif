@@ -10,8 +10,10 @@ use App\Models\Meeting;
 use App\Models\Newlywed;
 use App\Models\Payment;
 use App\Models\Theme;
+use App\Models\ThemeImage;
 use App\Models\User;
 use App\Models\Vendor;
+use App\Models\VendorImage;
 use App\Models\VendorType;
 use App\Models\Wedding;
 use Carbon\Carbon;
@@ -106,6 +108,19 @@ class DatabaseSeeder extends Seeder
             'description' => '',
         ]);
 
+        ThemeImage::create([
+            'theme_id' => 1,
+            'image' => 'theme-images/1.png'
+        ]);
+        ThemeImage::create([
+            'theme_id' => 1,
+            'image' => 'theme-images/2.jpg'
+        ]);
+        ThemeImage::create([
+            'theme_id' => 1,
+            'image' => 'theme-images/3.png'
+        ]);
+
         Theme::create([
             'name' => 'Tradisional',
             'thumbnail' => 'theme-thumbnail/traditional.avif',
@@ -148,6 +163,19 @@ class DatabaseSeeder extends Seeder
             "price" => 45000000,
             "logo" => "vendor-logo/clover.jpg",
             "description" => "",
+        ]);
+
+        VendorImage::create([
+            'vendor_id' => 1,
+            'image' => 'vendor-images/1.png'
+        ]);
+        VendorImage::create([
+            'vendor_id' => 1,
+            'image' => 'vendor-images/2.png'
+        ]);
+        VendorImage::create([
+            'vendor_id' => 1,
+            'image' => 'vendor-images/3.png'
         ]);
         Vendor::create([
             "vendor_type_id" => $dekorasi,

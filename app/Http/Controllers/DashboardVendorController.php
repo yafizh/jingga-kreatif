@@ -111,10 +111,12 @@ class DashboardVendorController extends Controller
         foreach (Vendor::where('is_deleted', false)->get() as $vendor) {
             if (in_array($vendor->vendor_type_id, $vendors["vendor_type_id"])) {
                 $vendor->vendor_type_name = $vendor->vendorType->name;
+                $vendor->vendorImages = $vendor->vendorImages;
                 $vendors["vendor"][$vendor->vendor_type_id][] = $vendor;
             } else {
                 $vendors["vendor_type_id"][] = $vendor->vendor_type_id;
                 $vendor->vendor_type_name = $vendor->vendorType->name;
+                $vendor->vendorImages = $vendor->vendorImages;
                 $vendors["vendor"][$vendor->vendor_type_id][] = $vendor;
             }
         }
