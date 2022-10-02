@@ -23,6 +23,7 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center small-td">No</th>
+                                            <th class="text-center">Thumbnail</th>
                                             <th class="text-center">Nama Konsep</th>
                                             <th class="text-center small-td">Aksi</th>
                                         </tr>
@@ -32,6 +33,11 @@
                                             @foreach ($themes as $theme)
                                                 <tr>
                                                     <td class="text-center align-middle">{{ $loop->iteration }}</td>
+                                                    <td class="text-center align-middle"
+                                                        style="width: 100px; height: 100px;">
+                                                        <img src="{{ asset('storage/' . $theme->thumbnail) }}"
+                                                            style="width: 100px;  height: 100px; object-fit: contain;">
+                                                    </td>
                                                     <td class="text-center align-middle">{{ $theme->name }}</td>
                                                     <td class="text-center align-middle small-td">
                                                         <a href="/dashboard/theme/{{ $theme->id }}/edit"

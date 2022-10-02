@@ -183,13 +183,9 @@ const themeGenerator = (themes) => {
         card_image.classList.add("card-image");
 
         const img = document.createElement("img");
-        // img.setAttribute(
-        //     "src",
-        //     `${window.location.origin}/storage/${theme.thumbnail}`
-        // );
         img.setAttribute(
             "src",
-            "https://1hq6f244nzqssy4d8fp6y7re-wpengine.netdna-ssl.com/wp-content/uploads/2018/01/elegant-wedding-modern-black-white-wedding20.jpg"
+            `${window.location.origin}/storage/${theme.thumbnail}`
         );
 
         const overplay = document.createElement("div");

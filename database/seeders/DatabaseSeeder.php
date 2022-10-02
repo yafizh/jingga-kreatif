@@ -102,11 +102,13 @@ class DatabaseSeeder extends Seeder
         // Konsep
         Theme::create([
             'name' => 'Modern',
+            'thumbnail' => 'theme-thumbnail/modern.avif',
             'description' => '',
         ]);
 
         Theme::create([
             'name' => 'Tradisional',
+            'thumbnail' => 'theme-thumbnail/traditional.avif',
             'description' => '',
         ]);
 

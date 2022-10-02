@@ -26,7 +26,17 @@
                                         <label for="name">Nama Konsep</label>
                                         <input type="text" class="form-control" id="name"
                                             placeholder="Masukkan Nama Konsep" name="name" autocomplete="off"
-                                            value="{{ old('name', $theme->name) }}">
+                                            value="{{ old('name', $theme->name) }}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="thumbnail">Thumbnail</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="thumbnail"
+                                                    name="thumbnail">
+                                                <label class="custom-file-label" for="thumbnail">Pilih Thumbnail</label>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="images">Detail Gambar</label>

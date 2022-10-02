@@ -79,9 +79,8 @@ class DashboardVendorController extends Controller
             "description" => "required",
         ]);
 
-        if ($request->file('logo')) {
+        if ($request->file('logo'))
             $validatedData['logo'] = $request->file('logo')->store('vendor-logo');
-        }
 
         if ($request->file('images')) {
             VendorImage::where('vendor_id', $vendor->id)->delete();

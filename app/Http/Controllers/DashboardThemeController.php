@@ -27,8 +27,12 @@ class DashboardThemeController extends Controller
     {
         $validatedData = $request->validate([
             "name" => "required",
+            "thumbnail" => "required",
             "description" => "required",
         ]);
+
+        if ($request->file('thumbnail'))
+            $validatedData['thumbnail'] = $request->file('thumbnail')->store('theme-thumbnail');
 
         $theme_id = Theme::create($validatedData)->id;
         if ($request->file('images')) {
@@ -61,6 +65,9 @@ class DashboardThemeController extends Controller
             "name" => "required",
             "description" => "required",
         ]);
+
+        if ($request->file('thumbnail'))
+            $validatedData['thumbnail'] = $request->file('thumbnail')->store('theme-thumbnail');
 
         if ($request->file('images')) {
             ThemeImage::where('theme_id', $theme->id)->delete();

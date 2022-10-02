@@ -73,7 +73,7 @@
                     @csrf
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Email" name="email" autocomplete="off"
-                            required>
+                            required autofocus>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
