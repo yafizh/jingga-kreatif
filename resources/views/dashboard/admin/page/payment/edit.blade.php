@@ -34,7 +34,8 @@
                                             placeholder="Masukkan Nominal Pembayaran" name="nominal" autocomplete="off"
                                             value="{{ old('nominal', $payment->nominal) }}">
                                     </div>
-                                    <div class="d-flex justify-content-end mt-4">
+                                    <div class="d-flex justify-content-between mt-4">
+                                        <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
                                         <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
                                     </div>
                                 </div>

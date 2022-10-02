@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,6 +64,14 @@ class DashboardClientController extends Controller
             "email" => "required",
         ]);
 
+        $userData = [
+            "email" => $validatedData["email"],
+        ];
+
+        if ($request->get('password'))
+            $userData["password"] = bcrypt($request->get('password'));
+
+        User::where('id', $client->user_id)->update($userData);
         Client::where('id', $client->id)->update($validatedData);
         return redirect('/dashboard/client')->with('updated', $client->id);
     }

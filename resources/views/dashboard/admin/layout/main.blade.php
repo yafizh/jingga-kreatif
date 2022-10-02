@@ -21,45 +21,49 @@
     <script type="text/javascript" src="/scripts/trix.js"></script>
 
     <style>
+        :root {
+            --primary-color: #f15a24;
+        }
+
         .small-td {
             width: 1%;
             white-space: nowrap;
         }
 
         .bg-primary {
-            background-color: #ff5100 !important;
+            background-color: var(--primary-color) !important;
         }
 
         aside .active {
-            background-color: #ff5100 !important;
+            background-color: var(--primary-color) !important;
             color: white !important;
         }
 
         .card-primary .card-header {
-            background-color: #ff5100 !important;
+            background-color: var(--primary-color) !important;
         }
 
         .page-item.active .page-link {
             color: #fff !important;
-            background-color: #ff5100 !important;
-            border-color: #ff5100 !important;
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
         }
 
         .page-link {
-            color: #ff5100 !important;
+            color: var(--primary-color) !important;
             background-color: #fff !important;
             border: 1px solid #dee2e6 !important;
         }
 
         .page-link:hover {
             color: #fff !important;
-            background-color: #ff5100 !important;
-            border-color: #ff5100 !important;
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
         }
 
         .btn-primary {
-            border-color: #ff5100;
-            background-color: #ff5100 !important;
+            border-color: var(--primary-color);
+            background-color: var(--primary-color) !important;
         }
 
         .btn-primary:hover {
@@ -69,7 +73,7 @@
 
         .navbar-brand:hover,
         .navbar-nav .nav-item a:hover {
-            color: #ff5100 !important;
+            color: var(--primary-color) !important;
         }
     </style>
 </head>

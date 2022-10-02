@@ -6,9 +6,15 @@ use App\Models\Payment;
 use App\Models\Wedding;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class DashboardPaymentController extends Controller
 {
+    public function __construct()
+    {
+        Session::flash('section', 'payment');
+    }
+
     public function index()
     {
         $payments = Payment::where('wedding_id', Auth::user()->client->wedding->id)->where('is_deleted', false)->orderBy('id', 'DESC')->get();
@@ -56,7 +62,7 @@ class DashboardPaymentController extends Controller
             'nominal' => $validatedData['nominal'],
         ]);
 
-        return redirect('/dashboard/wedding/' . $wedding->id)->with('section', 'payment');
+        return redirect('/dashboard/wedding/' . $wedding->id);
     }
 
     public function show(Payment $payment)
@@ -84,12 +90,12 @@ class DashboardPaymentController extends Controller
             'nominal' => $validatedData['nominal'],
         ]);
 
-        return redirect('/dashboard/wedding/' . $payment->wedding_id)->with('section', 'payment');
+        return redirect('/dashboard/wedding/' . $payment->wedding_id);
     }
 
     public function destroy(Payment $payment)
     {
         Payment::where('id', $payment->id)->update(['is_deleted' => true]);
-        return redirect('/dashboard/wedding/' . $payment->wedding_id)->with('section', 'payment');
+        return redirect('/dashboard/wedding/' . $payment->wedding_id);
     }
 }

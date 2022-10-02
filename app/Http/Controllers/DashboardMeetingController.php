@@ -7,9 +7,15 @@ use App\Models\Wedding;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class DashboardMeetingController extends Controller
 {
+    public function __construct()
+    {
+        Session::flash('section', 'meeting');
+    }
+
     public function index()
     {
         $meetings = Meeting::where('wedding_id', Auth::user()->client->wedding->id)->where('is_deleted', false)->orderBy('id', 'DESC')->get();
@@ -56,7 +62,7 @@ class DashboardMeetingController extends Controller
             'photo' => $validatedData['photo']
         ]);
 
-        return redirect('/dashboard/wedding/' . $wedding->id)->with('section', 'meeting');
+        return redirect('/dashboard/wedding/' . $wedding->id);
     }
 
     public function show(Meeting $meeting)
@@ -94,12 +100,12 @@ class DashboardMeetingController extends Controller
             'photo' => $validatedData['photo']
         ]);
 
-        return redirect('/dashboard/wedding/' . $meeting->wedding_id)->with('section', 'meeting');
+        return redirect('/dashboard/wedding/' . $meeting->wedding_id);
     }
 
     public function destroy(Meeting $meeting)
     {
         Meeting::where('id', $meeting->id)->update(['is_deleted' => true]);
-        return redirect('/dashboard/wedding/' . $meeting->wedding_id)->with('section', 'meeting');
+        return redirect('/dashboard/wedding/' . $meeting->wedding_id);
     }
 }

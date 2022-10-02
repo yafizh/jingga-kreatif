@@ -1,6 +1,12 @@
 @extends('dashboard.admin.layout.main')
 
 @section('content')
+    <style>
+        .bg-dark:hover i,
+        .bg-dark:hover h5 {
+            color: var(--primary-color);
+        }
+    </style>
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
@@ -64,40 +70,35 @@
                             <div class="card-body">
                                 <div class="tab-content">
                                     <div class="tab-pane {{ $section == 'profile' ? 'active' : '' }}" id="profile">
-                                        <form action="" method="POST" class="form-horizontal">
-                                            @csrf
-                                            <div class="form-group row">
-                                                <label for="name" class="col-sm-2 col-form-label">Nama</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="name" name="name"
-                                                        value="{{ $client->name }}" required>
-                                                </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Nama</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" value="{{ $client->name }}"
+                                                    disabled>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="email" class="col-sm-2 col-form-label">Email</label>
-                                                <div class="col-sm-10">
-                                                    <input type="email" class="form-control" id="email" name="email"
-                                                        value="{{ $client->email }}" required>
-                                                </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Nomor
+                                                Telepon</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control"
+                                                    value="{{ $client->phone_number }}" disabled>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="password" class="col-sm-2 col-form-label">Password</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="password"
-                                                        name="password">
-                                                </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" value="{{ $client->email }}"
+                                                    disabled>
                                             </div>
-                                            <div class="form-group row">
-                                                <div class="offset-sm-2 col-sm-10">
-                                                    <button type="submit" class="btn btn-primary">Perbaharui</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        </div>
                                     </div>
                                     @if ($groom)
                                         <div class="tab-pane {{ $section == 'groom' ? 'active' : '' }}" id="groom">
-                                            <form action="" method="POST" class="form-horizontal">
+                                            <form action="/dashboard/newlywed/{{ $groom->id }}" method="POST"
+                                                class="form-horizontal">
                                                 @csrf
+                                                @method('PUT')
                                                 <div class="form-group row">
                                                     <label for="nik" class="col-sm-2 col-form-label">
                                                         NIK
@@ -153,6 +154,21 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
+                                                    <label for="mother_name" class="col-sm-2 col-form-label">
+                                                        Foto Mempelai
+                                                        |
+                                                        <a href="{{ asset('storage/' . $groom->photo) }}">Lihat</a>
+                                                    </label>
+                                                    <div class="input-group col-sm-10">
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input"
+                                                                id="photo" name="photo">
+                                                            <label class="custom-file-label" for="photo">Pilih
+                                                                Foto</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
                                                     <div class="offset-sm-2 col-sm-10">
                                                         <button type="submit" class="btn btn-primary">Perbaharui</button>
                                                     </div>
@@ -162,7 +178,8 @@
                                     @endif
                                     @if ($bride)
                                         <div class="tab-pane {{ $section == 'bride' ? 'active' : '' }}" id="bride">
-                                            <form action="" method="POST" class="form-horizontal">
+                                            <form action="/dashboard/newlywed/{{ $bride->id }}" method="POST"
+                                                class="form-horizontal">
                                                 @csrf
                                                 <div class="form-group row">
                                                     <label for="nik" class="col-sm-2 col-form-label">
@@ -219,6 +236,21 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
+                                                    <label for="mother_name" class="col-sm-2 col-form-label">
+                                                        Foto Mempelai
+                                                        |
+                                                        <a href="{{ asset('storage/' . $bride->photo) }}">Lihat</a>
+                                                    </label>
+                                                    <div class="input-group col-sm-10">
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input"
+                                                                id="photo" name="photo">
+                                                            <label class="custom-file-label" for="photo">Pilih
+                                                                Foto</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
                                                     <div class="offset-sm-2 col-sm-10">
                                                         <button type="submit" class="btn btn-primary">Perbaharui</button>
                                                     </div>
@@ -228,20 +260,6 @@
                                     @endif
                                     <div class="tab-pane {{ $section == 'meeting' ? 'active' : '' }}" id="meeting">
                                         <div class="row">
-                                            <div class="col-12 col-md-4 mb-3">
-                                                <a href="/dashboard/meeting/create/{{ $wedding->id }}">
-                                                    <div class="border rounded mb-3 p-3 h-100 bg-gray">
-                                                        <div
-                                                            class="row h-100 justify-content-center align-items-center text-center">
-                                                            <div class="col-12">
-                                                                <i class="fas fa-plus" style="font-size: 32px;"></i>
-                                                                <br>
-                                                                <h5>Tambah Riwayat Meeting Baru</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
                                             @if ($meetings->count())
                                                 @foreach ($meetings as $meeting)
                                                     <div class="col-12 col-md-4">
@@ -269,24 +287,24 @@
                                                     </div>
                                                 @endforeach
                                             @endif
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane {{ $section == 'payment' ? 'active' : '' }}" id="payment">
-                                        <div class="row">
                                             <div class="col-12 col-md-4 mb-3">
-                                                <a href="/dashboard/payment/create/{{ $wedding->id }}">
-                                                    <div class="border rounded mb-3 p-3 h-100 bg-gray">
+                                                <a href="/dashboard/meeting/create/{{ $wedding->id }}">
+                                                    <div class="border rounded mb-3 p-3 h-100 bg-dark">
                                                         <div
                                                             class="row h-100 justify-content-center align-items-center text-center">
                                                             <div class="col-12">
                                                                 <i class="fas fa-plus" style="font-size: 32px;"></i>
                                                                 <br>
-                                                                <h5>Tambah Pembayaran Baru</h5>
+                                                                <h5>Tambah</h5>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </a>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane {{ $section == 'payment' ? 'active' : '' }}" id="payment">
+                                        <div class="row">
                                             @if ($payments->count())
                                                 @foreach ($payments as $payment)
                                                     <div class="col-12 col-md-4">
@@ -294,7 +312,9 @@
                                                             <div class="row">
                                                                 <div class="col-12 mb-3">
                                                                     <h5 class="mb-0">{{ $payment->name }}</h5>
-                                                                    <h6 class="text-muted">Rp. {{ number_format($payment->nominal,0,",",".") }}</h6>
+                                                                    <h6 class="text-muted">Rp.
+                                                                        {{ number_format($payment->nominal, 0, ',', '.') }}
+                                                                    </h6>
                                                                 </div>
                                                                 <div class="col-12">
                                                                     <a href="/dashboard/payment/{{ $payment->id }}/edit"
@@ -312,6 +332,20 @@
                                                     </div>
                                                 @endforeach
                                             @endif
+                                            <div class="col-12 col-md-4 mb-3">
+                                                <a href="/dashboard/payment/create/{{ $wedding->id }}">
+                                                    <div class="border rounded mb-3 p-3 h-100 bg-dark">
+                                                        <div
+                                                            class="row h-100 justify-content-center align-items-center text-center">
+                                                            <div class="col-12">
+                                                                <i class="fas fa-plus" style="font-size: 32px;"></i>
+                                                                <br>
+                                                                <h5>Tambah</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

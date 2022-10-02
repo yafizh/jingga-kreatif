@@ -8,9 +8,9 @@ use App\Models\Wedding;
 use App\Models\WeddingTheme;
 use App\Models\WeddingVendor;
 use Carbon\Carbon;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class DashboardWeddingController extends Controller
 {
@@ -52,6 +52,9 @@ class DashboardWeddingController extends Controller
             return !$payment->is_deleted;
         })->reverse();
 
+
+        $section = session('section', 'profile');
+        Session::forget('section');
         return view('dashboard.admin.page.wedding.show', [
             "active" => "wedding",
             "wedding" => $wedding,
@@ -60,7 +63,7 @@ class DashboardWeddingController extends Controller
             "bride" => $bride,
             "meetings" => $meetings,
             "payments" => $payments,
-            "section" => session('section', 'profile')
+            "section" => $section
         ]);
     }
 
