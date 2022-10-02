@@ -8,23 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardNewlywedController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
+        //
     }
 
     public function store(Request $request)
@@ -46,6 +37,7 @@ class DashboardNewlywedController extends Controller
         Newlywed::create([
             'wedding_id' => Auth::user()->client->wedding->id,
             'nik' => $validatedData['nik'],
+            'name' => $validatedData['name'],
             'birthplace' => $validatedData['birthplace'],
             'birthdate' => $validatedData['birthdate'],
             'sex' => $validatedData['sex'],
@@ -54,53 +46,27 @@ class DashboardNewlywedController extends Controller
             'photo' => $validatedData['photo'],
         ]);
 
-        if (count(Auth::user()->client->wedding->newlyweds) === 1) {
+        if (count(Auth::user()->client->wedding->newlyweds) === 1)
             return redirect('/dashboard/bride');
-        } else if (count(Auth::user()->client->wedding->newlyweds) === 2) {
-            return redirect('/dashboard/vendor');
-        }
+
+        return redirect('/dashboard/vendor');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Newlywed  $newlywed
-     * @return \Illuminate\Http\Response
-     */
     public function show(Newlywed $newlywed)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Newlywed  $newlywed
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Newlywed $newlywed)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Newlywed  $newlywed
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Newlywed $newlywed)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Newlywed  $newlywed
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Newlywed $newlywed)
     {
         //

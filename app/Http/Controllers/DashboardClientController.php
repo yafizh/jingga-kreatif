@@ -11,16 +11,17 @@ class DashboardClientController extends Controller
     public function index()
     {
         if (Auth::user()->client) {
-            if (!count(Auth::user()->client->wedding->newlyweds))
-                return redirect()->intended('/dashboard/groom');
-
-            if (count(Auth::user()->client->wedding->newlyweds) === 1)
-                return redirect()->intended('/dashboard/bride');
+            if (Auth::user()->client->wedding->vendors)
+                return redirect('/dashboard/payment');
 
             if (count(Auth::user()->client->wedding->newlyweds) === 2)
-                return redirect()->intended('/dashboard/vendor');
+                return redirect('/dashboard/vendor');
 
-            return redirect()->intended('/dashboard/payment');
+            if (count(Auth::user()->client->wedding->newlyweds) === 1)
+                return redirect('/dashboard/bride');
+
+            if (!count(Auth::user()->client->wedding->newlyweds))
+                return redirect('/dashboard/groom');
         }
 
         return view('dashboard.admin.page.client.index', [

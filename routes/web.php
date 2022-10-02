@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardBankController;
 use App\Http\Controllers\DashboardClientController;
 use App\Http\Controllers\DashboardEmployeeController;
@@ -111,3 +112,6 @@ Route::resource('/dashboard/employee', DashboardEmployeeController::class)->midd
 Route::resource('/dashboard/client', DashboardClientController::class)->middleware('auth');
 Route::resource('/dashboard/vendor-type', DashboardVendorTypeController::class)->middleware('auth');
 Route::resource('/dashboard/newlywed', DashboardNewlywedController::class)->middleware('auth');
+
+// Admin Dashboard
+Route::get('/dashboard/admin', [DashboardAdminController::class, 'index']);

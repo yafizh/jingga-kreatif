@@ -22,8 +22,7 @@
             </ul>
         </div>
         <div>
-            <a href="#" class="me-3 btn btn-outline-primary text-white">Login</a>
-            <a class="me-3 btn btn-primary text-white" href="#">Daftar</a>
+            <a href="/login" class="me-3 btn btn-outline-primary text-white">Login</a>
         </div>
     </div>
 </nav>
