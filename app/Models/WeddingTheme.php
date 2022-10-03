@@ -10,4 +10,9 @@ class WeddingTheme extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function theme()
+    {
+        return $this->belongsTo(Theme::class);
+    }
 }

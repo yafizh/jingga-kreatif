@@ -48,7 +48,7 @@
                                         </li>
                                     @endif
                                     <li class="nav-item">
-                                        <a class="nav-link {{ $section == 'vendor' ? 'active' : '' }}" href="#settings"
+                                        <a class="nav-link {{ $section == 'vendor' ? 'active' : '' }}" href="#vendor"
                                             data-toggle="tab">
                                             Vendor & Konsep
                                         </a>
@@ -258,6 +258,109 @@
                                             </form>
                                         </div>
                                     @endif
+                                    <style>
+                                        #vendor .card {
+                                            width: 12rem;
+                                            /* height: 360px; */
+                                        }
+
+                                        #vendor .card-image {
+                                            position: relative;
+                                            height: 176px;
+                                        }
+
+                                        #vendor .card-image img {
+                                            object-fit: cover;
+                                            height: 100%;
+                                            width: 100%;
+                                        }
+
+                                        #vendor .overplay {
+                                            position: absolute;
+                                            top: 0;
+                                            left: 0;
+                                            right: 0;
+                                            bottom: 0;
+                                            width: 100%;
+                                            opacity: 0;
+                                            visibility: none;
+                                            transition: 0.5s ease;
+                                            background-color: #393839;
+
+                                            text-align: center;
+                                            color: #fff;
+
+                                            /* Flex Box */
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: center;
+                                            align-items: center;
+                                        }
+
+                                        #vendor .card:hover .overplay {
+                                            opacity: 1;
+                                        }
+                                    </style>
+                                    <div class="tab-pane {{ $section == 'vendor' ? 'active' : '' }}" id="vendor">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h3>Total Harga: Rp {{ number_format($vendors['total_price'],0,",",".") }}</h3>
+                                            </div>
+                                        </div>
+                                        @if ($theme)
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h3>Konsep</h3>
+                                                </div>
+                                                <div class="col-6 col-sm-3 col-xl-2 mb-3">
+                                                    <div class="card border-1 w-100">
+                                                        <div class="card-image">
+                                                            <img src="{{ asset('storage/' . $theme->thumbnail) }}">
+                                                            <div class="overplay">
+                                                                <h5 class="text-center text-white">{{ $theme->name }}
+                                                                </h5>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body pt-3">
+                                                            <button
+                                                                class="btn btn-outline-danger btn-sm w-100">Hapus</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if (count($vendors['vendor_type_id']))
+                                            @foreach ($vendors['vendor_type_id'] as $vendor_type_id)
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h3>{{ $vendors['vendor'][$vendor_type_id][0]->vendorType->name }}
+                                                        </h3>
+                                                    </div>
+                                                    @foreach ($vendors['vendor'][$vendor_type_id] as $vendor)
+                                                        <div class="col-6 col-sm-3 col-xl-2 mb-3">
+                                                            <div class="card border-1 w-100">
+                                                                <div class="card-image">
+                                                                    <img src="{{ asset('storage/' . $vendor->logo) }}">
+                                                                    <div class="overplay">
+                                                                        <h5 class="text-center text-white">
+                                                                            {{ $vendor->name }}
+                                                                        </h5>
+                                                                        <h6 class="text-white">Rp.
+                                                                            {{ number_format($vendor->price, 0, ',', '.') }}
+                                                                        </h6>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-body pt-3">
+                                                                    <button
+                                                                        class="btn btn-outline-danger btn-sm w-100">Hapus</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                    </div>
                                     <div class="tab-pane {{ $section == 'meeting' ? 'active' : '' }}" id="meeting">
                                         <div class="row">
                                             @if ($meetings->count())

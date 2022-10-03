@@ -52,6 +52,26 @@ class DashboardWeddingController extends Controller
             return !$payment->is_deleted;
         })->reverse();
 
+        $theme = $wedding->theme->theme;
+
+        $vendors = [
+            "vendor_type_id" => [],
+            "vendor" => [],
+            "total_price" => 0
+        ];
+        foreach ($wedding->vendors as $wedding_vendor) {
+            if (in_array($wedding_vendor->vendor_type_id, $vendors["vendor_type_id"])) {
+                $wedding_vendor->vendor_type_name = $wedding_vendor->vendor->vendorType->name;
+                $wedding_vendor->vendorImages = $wedding_vendor->vendor->vendorImages;
+                $vendors["vendor"][$wedding_vendor->vendor_type_id][] = $wedding_vendor->vendor;
+            } else {
+                $vendors["vendor_type_id"][] = $wedding_vendor->vendor->vendor_type_id;
+                $wedding_vendor->vendor_type_name = $wedding_vendor->vendor->vendorType->name;
+                $wedding_vendor->vendorImages = $wedding_vendor->vendor->vendorImages;
+                $vendors["vendor"][$wedding_vendor->vendor->vendor_type_id][] = $wedding_vendor->vendor;
+            }
+            $vendors["total_price"] += $wedding_vendor->vendor->price;
+        }
 
         $section = session('section', 'profile');
         Session::forget('section');
@@ -61,6 +81,8 @@ class DashboardWeddingController extends Controller
             "client" => $client,
             "groom" => $groom,
             "bride" => $bride,
+            "vendors" => $vendors,
+            "theme" => $theme,
             "meetings" => $meetings,
             "payments" => $payments,
             "section" => $section
