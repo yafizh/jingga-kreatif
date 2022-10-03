@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #010101">
     <div class="container">
         <a class="navbar-brand" href="portfolio.php">
             <img src="/images/logo.png" width="150" alt="">
@@ -23,7 +23,7 @@
             </ul>
         </div>
         <div>
-            <a href="/login" class="me-3 btn btn-outline-primary text-white">Login</a>
+            <a href="/login" class="me-3 btn btn-outline-primary rounded-1 text-white">Login</a>
             <a style="visibility: hidden;" href="/login" class="me-3 btn btn-outline-primary text-white">Login</a>
         </div>
     </div>

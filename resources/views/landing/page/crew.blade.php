@@ -34,7 +34,7 @@
 
         {{-- The Vendors Section --}}
         <div class="row justify-content-center py-5">
-            <h3 style="font-weight: 600;" class="text-center mb-5">MEET THE TEAM</h3>
+            <h3 style="font-weight: 600;" class="text-center mb-5">Meet The Team</h3>
             <div class="col-10 col-sm-10 col-xl-9 col-xxl-8">
                 <div class="row justify-content-center">
                     @foreach ($employees as $employee)
@@ -54,33 +54,73 @@
         {{-- End The Vendors Section --}}
 
         {{-- Logo Section --}}
-        <div class="row justify-content-center py-5" style="background-color: #E7EAED;">
-            <div class="col-10 col-md-6">
-                <img src="/images/logo.png" width="100%" alt="">
+        <div class="row justify-content-center py-5">
+            <h3 style="font-weight: 600;" class="text-center mb-5">Frequently Asked Questions</h3>
+            <div class="col-12 col-md-8">
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseOne">
+                                Bagaimana Cara Memesan WO Jingga Kreatif?
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
+                            aria-labelledby="panelsStayOpen-headingOne">
+                            <div class="accordion-body">
+                                <strong>This is the first item's accordion body.</strong> It is shown by default, until the
+                                collapse plugin adds the appropriate classes that we use to style each element. These
+                                classes control the overall appearance, as well as the showing and hiding via CSS
+                                transitions. You can modify any of this with custom CSS or overriding our default variables.
+                                It's also worth noting that just about any HTML can go within the
+                                <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseTwo">
+                                Bagaimana Cara Memilih Konsep dan Vendor?
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                            aria-labelledby="panelsStayOpen-headingTwo">
+                            <div class="accordion-body">
+                                <strong>This is the second item's accordion body.</strong> It is hidden by default, until
+                                the collapse plugin adds the appropriate classes that we use to style each element. These
+                                classes control the overall appearance, as well as the showing and hiding via CSS
+                                transitions. You can modify any of this with custom CSS or overriding our default variables.
+                                It's also worth noting that just about any HTML can go within the
+                                <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseThree">
+                                Bagaimana Cara Menghubungi Crew Jingga Kreatif?
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                            aria-labelledby="panelsStayOpen-headingThree">
+                            <div class="accordion-body">
+                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                                collapse plugin adds the appropriate classes that we use to style each element. These
+                                classes control the overall appearance, as well as the showing and hiding via CSS
+                                transitions. You can modify any of this with custom CSS or overriding our default variables.
+                                It's also worth noting that just about any HTML can go within the
+                                <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         {{-- End Logo Section --}}
-
-        {{-- Address Section --}}
-        <div class="row text-center py-5" style="background-color: #E7EAED;">
-            <div class="col-12 mb-3">
-                <i class="fa-solid fa-location-dot fa-2xl" style="color: #ff5100;"></i>
-            </div>
-            <div class="col-12">
-                <h5>Jl. Ir. PM. Noor Kel. Sungai Ulin Kecamatan Banjarbaru utara Kota Banjarbaru - 70714</h5>
-            </div>
-        </div>
-        {{-- End Address Section --}}
-
-        {{-- Email Section --}}
-        <div class="row text-center py-5" style="background-color: #E7EAED;">
-            <div class="col-12 mb-3">
-                <i class="fa-solid fa-envelope fa-2xl" style="color: #ff5100;"></i>
-            </div>
-            <div class="col-12">
-                <h5>jinggakreatif@gmail.com</h5>
-            </div>
-        </div>
-        {{-- End Email Section --}}
     </div>
 @endsection
