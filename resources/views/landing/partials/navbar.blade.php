@@ -14,7 +14,8 @@
                         href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active == 'vendor' ? 'text-primary' : 'text-white' }}" href="/vendor">Vendor</a>
+                    <a class="nav-link {{ $active == 'vendor' ? 'text-primary' : 'text-white' }}"
+                        href="/vendor">Vendor</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ $active == 'crew' ? 'text-primary' : 'text-white' }}" href="/crew">Crew</a>
@@ -23,6 +24,7 @@
         </div>
         <div>
             <a href="/login" class="me-3 btn btn-outline-primary text-white">Login</a>
+            <a style="visibility: hidden;" href="/login" class="me-3 btn btn-outline-primary text-white">Login</a>
         </div>
     </div>
 </nav>

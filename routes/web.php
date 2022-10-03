@@ -12,6 +12,8 @@ use App\Http\Controllers\DashboardThemeController;
 use App\Http\Controllers\DashboardVendorController;
 use App\Http\Controllers\DashboardVendorTypeController;
 use App\Http\Controllers\DashboardWeddingController;
+use App\Http\Controllers\LandingVendorController;
+use App\Http\Controllers\LandingCrewController;
 use App\Http\Controllers\MailerController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,17 +29,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/vendor', function () {
-    return view('landing.page.vendor', [
-        "active" => "vendor"
-    ]);
-});
-
-Route::get('/crew', function () {
-    return view('landing.page.crew', [
-        "active" => "crew"
-    ]);
-});
+Route::get('/vendor', [LandingVendorController::class, 'index']);
+Route::get('/crew', [LandingCrewController::class, 'index']);
 
 Route::get('/dashboard/introduction', function () {
     return view('dashboard.client.page.introduction.index', [

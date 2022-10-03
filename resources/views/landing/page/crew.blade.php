@@ -37,95 +37,16 @@
             <h3 style="font-weight: 600;" class="text-center mb-5">MEET THE TEAM</h3>
             <div class="col-10 col-sm-10 col-xl-9 col-xxl-8">
                 <div class="row justify-content-center">
-                    <div class="col-auto">
-                        <div class="mb-5 d-flex flex-column align-items-center">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                                class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
-                            <div class="text-white mb-2 crew-name">
-                                Galih Arum Denny</div>
-                            <div class="crew-position">Director</div>
+                    @foreach ($employees as $employee)
+                        <div class="col-auto">
+                            <div class="mb-5 d-flex flex-column align-items-center">
+                                <img src="{{ asset('storage/' . $employee->photo) }}" class="rounded-circle mb-3"
+                                    style="width: 150px; height: 150px; object-fit: cover;">
+                                <div class="text-white mb-2 crew-name">{{ $employee->name }}</div>
+                                <div class="crew-position">{{ $employee->position }}</div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-auto">
-                        <div class="mb-5 d-flex flex-column align-items-center">
-                            <img src="https://images.unsplash.com/photo-1514626585111-9aa86183ac98?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-                                class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
-                            <div class="text-white mb-2 crew-name">
-                                Abdul Basit Maisur</div>
-                            <div class="crew-position">Wedding Management</div>
-                        </div>
-                    </div>
-
-                    <div class="col-auto">
-                        <div class="mb-5 d-flex flex-column align-items-center">
-                            <img src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=466&q=80"
-                                class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
-                            <div class="text-white mb-2 crew-name">
-                                Younk</div>
-                            <div class="crew-position">Co Director</div>
-                        </div>
-                    </div>
-
-                    <div class="col-auto">
-                        <div class="mb-5 d-flex flex-column align-items-center">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                                class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
-                            <div class="text-white mb-2 crew-name">
-                                Muhammad Syafiq</div>
-                            <div class="crew-position">Designer</div>
-                        </div>
-                    </div>
-
-                    <div class="col-auto">
-                        <div class="mb-5 d-flex flex-column align-items-center">
-                            <img src="https://images.unsplash.com/photo-1514626585111-9aa86183ac98?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-                                class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
-                            <div class="text-white mb-2 crew-name">
-                                Obladi</div>
-                            <div class="crew-position">Director</div>
-                        </div>
-                    </div>
-
-                    <div class="col-auto">
-                        <div class="mb-5 d-flex flex-column align-items-center">
-                            <img src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=466&q=80"
-                                class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
-                            <div class="text-white mb-2 crew-name">
-                                Younk</div>
-                            <div class="crew-position">Co Director</div>
-                        </div>
-                    </div>
-
-                    <div class="col-auto">
-                        <div class="mb-5 d-flex flex-column align-items-center">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                                class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
-                            <div class="text-white mb-2 crew-name">
-                                Muhammad Syafiq</div>
-                            <div class="crew-position">Designer</div>
-                        </div>
-                    </div>
-
-                    <div class="col-auto">
-                        <div class="mb-5 d-flex flex-column align-items-center">
-                            <img src="https://images.unsplash.com/photo-1514626585111-9aa86183ac98?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-                                class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
-                            <div class="text-white mb-2 crew-name">
-                                Obladi</div>
-                            <div class="crew-position">Director</div>
-                        </div>
-                    </div>
-
-                    <div class="col-auto">
-                        <div class="mb-5 d-flex flex-column align-items-center">
-                            <img src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=466&q=80"
-                                class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
-                            <div class="text-white mb-2 crew-name">
-                                Younk</div>
-                            <div class="crew-position">Co Director</div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
 
