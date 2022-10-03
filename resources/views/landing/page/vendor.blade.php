@@ -1,6 +1,48 @@
 @extends('landing.layout.main')
 
 @section('content')
+    <style>
+        .card {
+            max-width: 12rem;
+        }
+
+        .card-image {
+            position: relative;
+            height: 176px;
+        }
+
+        .card-image img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+
+        .overplay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            opacity: 0;
+            visibility: none;
+            transition: 0.5s ease;
+            background-color: #393839;
+
+            text-align: center;
+            color: #fff;
+
+            /* Flex Box */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card:hover .overplay {
+            opacity: 1;
+        }
+    </style>
     <div class="container-fluid">
         {{-- Vendor Section --}}
         <div class="row justify-content-center py-5">
@@ -23,50 +65,88 @@
         </div>
         {{-- End Our Best Vendor Section --}}
 
+
+
+
+        <style>
+            .card-title {
+                height: 48px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+
+            .card-title h5 {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .btn-outline-primary:hover {
+                color: white !important;
+            }
+        </style>
         {{-- The Vendors Section --}}
         <div class="row justify-content-evenly py-5">
             <div class="col-12 mb-5">
-                <h3 style="font-weight: 600;" class="text-center mb-3">Konsep</h3>
-                <div class="d-flex gap-3 flex-wrap justify-content-center">
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center mb-3">
+                        <h3>Konsep</h3>
+                    </div>
                     @foreach ($themes as $theme)
-                        <div class="card" style="width: 12rem; height: 330px;">
-                            <img src="{{ asset('storage/' . $theme->thumbnail) }}" class="card-img-top" alt="..."
-                                style="object-fit: contain; padding: 20px; min-height: 190px;">
-                            <div class="card-body d-flex justify-content-center align-items-center">
-                                <h5 class="card-title text-center">{{ $theme->name }}</h5>
+                        <div class="col-6 col-sm-4 col-xl-2 mb-3">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="{{ asset('storage/' . $theme->thumbnail) }}">
+                                    <div class="overplay">
+                                        <h5 class="text-center text-white">{{ $theme->name }}
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="card-title mb-3">
+                                        <h5 class="m-0">{{ $theme->name }}</h5>
+                                    </div>
+                                    <button class="btn btn-outline-primary btn-sm w-100">Lihat Detail</button>
+                                </div>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item text-center"><a href="">Lihat Detail</a></li>
-                            </ul>
                         </div>
                     @endforeach
                 </div>
             </div>
+
             @foreach ($vendors['vendor_type_id'] as $vendor_type_id)
-                <div class="col-12 col-md-6 col-xl-5 mb-5">
-                    <h3 style="font-weight: 600;" class="text-center mb-3">
-                        {{ $vendors['vendor'][$vendor_type_id][0]->vendorType->name }}</h3>
-                    <div class="d-flex gap-3 flex-wrap justify-content-center">
+                <div class="col-12 col-lg-5 mb-5">
+                    <div class="row justify-content-center">
+                        <div class="col-12 text-center mb-3">
+                            <h3>{{ $vendors['vendor'][$vendor_type_id][0]->vendorType->name }}</h3>
+                        </div>
                         @foreach ($vendors['vendor'][$vendor_type_id] as $vendor)
-                            <div class="card" style="width: 12rem; height: 330px;">
-                                <img src="{{ asset('storage/' . $vendor->logo) }}" class="card-img-top" alt="..."
-                                    style="object-fit: contain; padding: 20px; min-height: 190px;">
-                                <div class="card-body d-flex justify-content-center align-items-center">
-                                    <h5 class="card-title text-center">{{ $vendor->name }}</h5>
+                            <div class="col-6 col-sm-4 col-md-3 col-lg-5 col-xxl-4 mb-3">
+                                <div class="card" style="margin: auto;">
+                                    <div class="card-image">
+                                        <img src="{{ asset('storage/' . $vendor->logo) }}">
+                                        <div class="overplay">
+                                            <h5 class="text-center text-white">{{ $vendor->name }}</h5>
+                                            <h5 class="text-center text-white">
+                                                Rp {{ number_format($vendor->price, 0, ',', '.') }}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="card-title mb-3">
+                                            <h5 class="m-0">{{ $vendor->name }}</h5>
+                                        </div>
+                                        <button class="btn btn-outline-primary btn-sm w-100">Lihat Detail</button>
+                                    </div>
                                 </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item text-center"><a href="">Lihat Detail</a></li>
-                                </ul>
                             </div>
                         @endforeach
                     </div>
-                    {{-- <div class="text-center py-4">
-                        <a href="">Lihat Selengkapnya...</a>
-                    </div> --}}
                 </div>
             @endforeach
-
-
         </div>
         {{-- End The Vendors Section --}}
     </div>

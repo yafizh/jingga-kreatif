@@ -28,10 +28,10 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('admin'),
         ]);
 
-        // User::create([
-        //     'email' => 'jinggakreatif93@gmail.com',
-        //     'password' => bcrypt('jinggakreatif93@gmail.com'),
-        // ]);
+        User::create([
+            'email' => 'jinggakreatif93@gmail.com',
+            'password' => bcrypt('jinggakreatif93@gmail.com'),
+        ]);
 
         Client::create([
             'user_id' => 2,
