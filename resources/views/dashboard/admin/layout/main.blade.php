@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
-    <link rel="icon" type="image/png" href="/images/favicon.png" />
 
     {{-- Trix Editor --}}
     <link rel="stylesheet" type="text/css" href="/styles/trix.css">
