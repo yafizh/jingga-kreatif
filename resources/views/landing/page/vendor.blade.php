@@ -109,7 +109,64 @@
                                     <div class="card-title mb-3">
                                         <h5 class="m-0">{{ $theme->name }}</h5>
                                     </div>
-                                    <button class="btn btn-outline-primary btn-sm w-100">Lihat Detail</button>
+                                    <button class="btn btn-outline-primary btn-sm w-100" data-bs-toggle="modal"
+                                    data-bs-target="#detailThemeModal{{ $theme->id }}">Lihat Detail</button>
+
+                                    {{-- Detail Modal --}}
+                                    <div class="modal fade" id="detailThemeModal{{ $theme->id }}" tabindex="-1"
+                                        aria-labelledby="detailModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="detailModalLabel">{{ $theme->name }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body p-0">
+                                                    <div id="carouselDetailModalControls" class="carousel slide"
+                                                        data-bs-ride="carousel">
+                                                        <div class="carousel-inner">
+                                                            @foreach ($theme->themeImages as $i => $themeImage)
+                                                                @if (!$i)
+                                                                    <div class="carousel-item active">
+                                                                        <img src="{{ asset('storage/' . $themeImage->image) }}"
+                                                                            style="height:320px; object-fit: cover;"
+                                                                            class="d-block w-100">
+                                                                    </div>
+                                                                @else
+                                                                    <div class="carousel-item">
+                                                                        <img src="{{ asset('storage/' . $themeImage->image) }}"
+                                                                            style="height:320px; object-fit: cover;"
+                                                                            class="d-block w-100">
+                                                                    </div>
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
+                                                        <button class="carousel-control-prev" type="button"
+                                                            data-bs-target="#carouselDetailModalControls"
+                                                            data-bs-slide="prev">
+                                                            <span class="carousel-control-prev-icon"
+                                                                aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Previous</span>
+                                                        </button>
+                                                        <button class="carousel-control-next" type="button"
+                                                            data-bs-target="#carouselDetailModalControls"
+                                                            data-bs-slide="next">
+                                                            <span class="carousel-control-next-icon"
+                                                                aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Next</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="description p-3">
+                                                        {{ $theme->description }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -139,7 +196,65 @@
                                         <div class="card-title mb-3">
                                             <h5 class="m-0">{{ $vendor->name }}</h5>
                                         </div>
-                                        <button class="btn btn-outline-primary btn-sm w-100">Lihat Detail</button>
+                                        <button class="btn btn-outline-primary btn-sm w-100" data-bs-toggle="modal"
+                                            data-bs-target="#detailModal{{ $vendor->id }}">Lihat Detail</button>
+
+
+                                        {{-- Detail Modal --}}
+                                        <div class="modal fade" id="detailModal{{ $vendor->id }}" tabindex="-1"
+                                            aria-labelledby="detailModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="detailModalLabel">{{ $vendor->name }} |
+                                                            Rp {{ number_format($vendor->price, 0, ',', '.') }}</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body p-0">
+                                                        <div id="carouselDetailModalControls" class="carousel slide"
+                                                            data-bs-ride="carousel">
+                                                            <div class="carousel-inner">
+                                                                @foreach ($vendor->vendorImages as $i => $vendorImage)
+                                                                    @if (!$i)
+                                                                        <div class="carousel-item active">
+                                                                            <img src="{{ asset('storage/' . $vendorImage->image) }}"
+                                                                                style="height:320px; object-fit: cover;"
+                                                                                class="d-block w-100">
+                                                                        </div>
+                                                                    @else
+                                                                        <div class="carousel-item">
+                                                                            <img src="{{ asset('storage/' . $vendorImage->image) }}"
+                                                                                style="height:320px; object-fit: cover;"
+                                                                                class="d-block w-100">
+                                                                        </div>
+                                                                    @endif
+                                                                @endforeach
+                                                            </div>
+                                                            <button class="carousel-control-prev" type="button"
+                                                                data-bs-target="#carouselDetailModalControls"
+                                                                data-bs-slide="prev">
+                                                                <span class="carousel-control-prev-icon"
+                                                                    aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Previous</span>
+                                                            </button>
+                                                            <button class="carousel-control-next" type="button"
+                                                                data-bs-target="#carouselDetailModalControls"
+                                                                data-bs-slide="next">
+                                                                <span class="carousel-control-next-icon"
+                                                                    aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Next</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="description p-3">
+                                                            {{ $vendor->description }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                 </div>
                             </div>
