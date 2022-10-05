@@ -52,7 +52,7 @@ class DashboardWeddingController extends Controller
             return !$payment->is_deleted;
         })->reverse();
 
-        $theme = $wedding->theme->theme;
+        $wedding_theme = $wedding->theme;
 
         $vendors = [
             "vendor_type_id" => [],
@@ -82,7 +82,7 @@ class DashboardWeddingController extends Controller
             "groom" => $groom,
             "bride" => $bride,
             "vendors" => $vendors,
-            "theme" => $theme,
+            "wedding_theme" => $wedding_theme,
             "meetings" => $meetings,
             "payments" => $payments,
             "section" => $section

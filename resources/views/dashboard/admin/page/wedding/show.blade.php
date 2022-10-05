@@ -307,7 +307,7 @@
                                                 <h3>Total Harga: Rp {{ number_format($vendors['total_price'],0,",",".") }}</h3>
                                             </div>
                                         </div>
-                                        @if ($theme)
+                                        @if ($wedding_theme)
                                             <div class="row">
                                                 <div class="col-12">
                                                     <h3>Konsep</h3>
@@ -315,9 +315,9 @@
                                                 <div class="col-6 col-sm-3 col-xl-2 mb-3">
                                                     <div class="card border-1 w-100">
                                                         <div class="card-image">
-                                                            <img src="{{ asset('storage/' . $theme->thumbnail) }}">
+                                                            <img src="{{ asset('storage/' . $wedding_theme->theme->thumbnail) }}">
                                                             <div class="overplay">
-                                                                <h5 class="text-center text-white">{{ $theme->name }}
+                                                                <h5 class="text-center text-white">{{ $wedding_theme->theme->name }}
                                                                 </h5>
                                                             </div>
                                                         </div>
