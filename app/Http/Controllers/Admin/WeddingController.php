@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Payment;
-use App\Models\PaymentHistory;
+use App\Http\Controllers\Controller;
 use App\Models\Wedding;
 use App\Models\WeddingTheme;
 use App\Models\WeddingVendor;
@@ -12,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class DashboardWeddingController extends Controller
+class WeddingController extends Controller
 {
     public function index()
     {
@@ -20,15 +19,6 @@ class DashboardWeddingController extends Controller
             "active" => "wedding",
             "weddings" => Wedding::where('wedding_status', null)->orderBy('id', 'DESC')->get()
         ]);
-    }
-
-    public function create()
-    {
-    }
-
-    public function store(Request $request)
-    {
-        //
     }
 
     public function show(Wedding $wedding)
@@ -40,7 +30,7 @@ class DashboardWeddingController extends Controller
         $bride = $wedding->newlyweds->filter(function ($newlywed) {
             return !$newlywed->sex;
         })->first();
-        $meetings = $wedding->meetings->filter(function ($meeting) {
+        $meetingHistory = $wedding->meetingHistory->filter(function ($meeting) {
             return !$meeting->is_deleted;
         })->map(function ($meeting) {
             $meeting_date = new Carbon($meeting->meeting_date);
@@ -83,7 +73,7 @@ class DashboardWeddingController extends Controller
             "bride" => $bride,
             "vendors" => $vendors,
             "wedding_theme" => $wedding_theme,
-            "meetings" => $meetings,
+            "meetingHistory" => $meetingHistory,
             "payments" => $payments,
             "section" => $section
         ]);
@@ -122,23 +112,6 @@ class DashboardWeddingController extends Controller
         WeddingTheme::create([
             'wedding_id' => Auth::user()->client->wedding->id,
             'theme_id' => $validatedData['choosed_theme']
-        ]);
-
-        return redirect('/dashboard/payment');
-    }
-
-    public function pay(Request $request, Payment $payment)
-    {
-        $validatedData = $request->validate([
-            'photo' => 'required'
-        ]);
-
-        if ($request->file('photo'))
-            $validatedData['photo'] = $request->file('photo')->store('payment-photo');
-
-        PaymentHistory::create([
-            'payment_id' => $payment->id,
-            'photo' => $validatedData['photo']
         ]);
 
         return redirect('/dashboard/payment');

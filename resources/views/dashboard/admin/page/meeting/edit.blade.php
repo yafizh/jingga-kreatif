@@ -17,7 +17,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <div class="card card-primary shadow">
-                            <form action="/dashboard/meeting/{{ $meeting->id }}" method="POST"
+                            <form action="/dashboard/meeting-history/{{ $meeting->id }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')

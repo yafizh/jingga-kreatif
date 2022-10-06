@@ -1,44 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use App\Models\Wedding;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class DashboardPaymentController extends Controller
+class PaymentController extends Controller
 {
     public function __construct()
     {
         Session::flash('section', 'payment');
-    }
-
-    public function index()
-    {
-        $payments = Payment::where('wedding_id', Auth::user()->client->wedding->id)->where('is_deleted', false)->orderBy('id', 'DESC')->get();
-        $need_to_pay = $payments->filter(function ($payment) {
-            return !$payment->paymentHistory->count() || !$payment->paymentHistory->first()->status;
-        })->map(function ($payment) {
-            return $payment->nominal;
-        })->sum();
-
-        $already_pay = $payments->filter(function ($payment) {
-            return $payment->paymentHistory->count();
-        })->filter(function ($payment) {
-            return $payment->paymentHistory->first()->status;
-        })->map(function ($payment) {
-            return $payment->nominal;
-        })->sum();
-
-        return view('dashboard.client.page.payment.index', [
-            "active" => "payment",
-            "active_navigation" => 6,
-            "payments" => $payments,
-            "need_to_pay" => $need_to_pay ?? 0,
-            "already_pay" => $already_pay ?? 0,
-        ]);
     }
 
     public function create(Wedding $wedding)
@@ -63,11 +38,6 @@ class DashboardPaymentController extends Controller
         ]);
 
         return redirect('/dashboard/wedding/' . $wedding->id);
-    }
-
-    public function show(Payment $payment)
-    {
-        //
     }
 
     public function edit(Payment $payment)

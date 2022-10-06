@@ -8,7 +8,7 @@
         </div>
         <div class="col-12 col-lg-8 col-xl-6 mb-3">
             <div class="p-4 bg-white jingga-shadow rounded-2 w-100">
-                <form action="/dashboard/newlywed" method="POST" enctype="multipart/form-data">
+                <form action="/newlywed" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control border-0 jingga-shadow" id="nik"
@@ -51,7 +51,7 @@
                     <input type="file" name="documents[]" hidden>
                     <div class="d-flex justify-content-center w-100 mt-4">
                         <button type="submit" class="btn btn-primary text-white"
-                            onclick="return confirm('Yakin dengan identitas mempelai pria yang dimasukan?')">Kirim</button>
+                            onclick="return confirm('Yakin dengan identitas mempelai {{ $newlywed ? 'pria' : 'wanita' }} yang dimasukan?')">Kirim</button>
                     </div>
                 </form>
             </div>

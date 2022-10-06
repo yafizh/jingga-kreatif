@@ -47,8 +47,8 @@
                                 <div class="p-4">
                                     <h5>{{ $vendor->name }}</h5>
                                     <h6 class="text-muted">Vendor {{ $vendor->vendorType->name }}</h6>
-                                    {{ $vendor->description }}
-                                    <div class="mt-t d-flex justify-content-between">
+                                    {!! $vendor->description !!}
+                                    <div class="mt-4 d-flex justify-content-between">
                                         <a href="/dashboard/vendor" class="btn btn-secondary">Kembali</a>
                                         <div class="d-flex">
                                             <a href="/dashboard/vendor/{{ $vendor->id }}/edit"

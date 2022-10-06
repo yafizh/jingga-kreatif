@@ -31,9 +31,9 @@ class Wedding extends Model
         return $this->hasMany(WeddingVendor::class);
     }
 
-    public function meetings()
+    public function meetingHistory()
     {
-        return $this->hasMany(Meeting::class);
+        return $this->hasMany(MeetingHistory::class);
     }
 
     public function payments()

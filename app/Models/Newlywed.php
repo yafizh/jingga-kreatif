@@ -10,4 +10,9 @@ class Newlywed extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function wedding()
+    {
+        return $this->belongsTo(Wedding::class);
+    }
 }

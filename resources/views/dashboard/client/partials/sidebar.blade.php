@@ -10,7 +10,7 @@
     </div>
     <hr>
     <div class="menu w-100">
-        <a href="/dashboard/client" class="text-reset text-decoration-none">
+        <a href="/wedding" class="text-reset text-decoration-none">
             <div class="sidebar-item my-3 {{ $active != 'meeting' ? 'sidebar-active' : '' }}">
                 <div class="mb-2">
                     <i class="sidebar-icon fa-solid fa-house"></i>
@@ -25,7 +25,7 @@
                 </div>
                 <h6 class="m-0 text-center">Perbaharui Data</h6>
             </div> --}}
-            <a href="/dashboard/meeting" class="text-reset text-decoration-none">
+            <a href="/meeting-history" class="text-reset text-decoration-none">
                 <div class="sidebar-item my-3 {{ $active == 'meeting' ? 'sidebar-active' : '' }}">
                     <div class="mb-2">
                         <i class="sidebar-icon fa-solid fa-calendar-days"></i>

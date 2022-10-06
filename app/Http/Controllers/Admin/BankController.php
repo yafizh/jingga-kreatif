@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Bank;
 use Illuminate\Http\Request;
 
-class DashboardBankController extends Controller
+class BankController extends Controller
 {
     public function index()
     {
@@ -34,11 +35,6 @@ class DashboardBankController extends Controller
         return redirect('/dashboard/bank')->with('created', $bank_id);
     }
 
-    public function show(Bank $bank)
-    {
-        //
-    }
-
     public function edit(Bank $bank)
     {
         return view('dashboard.admin.page.bank.edit', [
@@ -63,11 +59,5 @@ class DashboardBankController extends Controller
     {
         Bank::where('id', $bank->id)->update(['is_deleted' => true]);
         return redirect('/dashboard/bank')->with('deleted', $bank->bank_name);
-    }
-
-    public function getAllBank()
-    {
-        $banks = Bank::where('is_deleted', false)->get();
-        return response()->json($banks);
     }
 }

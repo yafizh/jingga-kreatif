@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Theme;
 use App\Models\ThemeImage;
 use Illuminate\Http\Request;
 
-class DashboardThemeController extends Controller
+class ThemeController extends Controller
 {
     public function index()
     {
@@ -46,11 +47,6 @@ class DashboardThemeController extends Controller
         return redirect('/dashboard/theme')->with('created', $theme_id);
     }
 
-    public function show(Theme $theme)
-    {
-        //
-    }
-
     public function edit(Theme $theme)
     {
         return view('dashboard.admin.page.theme.edit', [
@@ -87,15 +83,5 @@ class DashboardThemeController extends Controller
     {
         Theme::where('id', $theme->id)->update(['is_deleted' => true]);
         return redirect('/dashboard/theme')->with('deleted', $theme->name);
-    }
-
-    public function getCategorizedTheme()
-    {
-        $themes = [];
-        foreach (Theme::where('is_deleted', false)->get() as $theme) {
-            $theme->themeImages;
-            $themes[] = $theme;
-        }
-        return response()->json($themes);
     }
 }

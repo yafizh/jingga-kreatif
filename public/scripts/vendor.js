@@ -306,7 +306,7 @@ const themeGenerator = (themes) => {
 };
 
 $.ajax({
-    url: `${window.location.origin}/dashboard/theme/getCategorizedTheme`,
+    url: `${window.location.origin}/theme/getCategorizedTheme`,
     method: "GET",
     dataType: "json",
 })
@@ -317,7 +317,7 @@ $.ajax({
     });
 
 $.ajax({
-    url: `${window.location.origin}/dashboard/vendor/getCategorizedVendor`,
+    url: `${window.location.origin}/vendor/getCategorizedVendor`,
     method: "GET",
     dataType: "json",
 })

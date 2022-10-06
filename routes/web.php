@@ -1,20 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardAdminController;
-use App\Http\Controllers\DashboardBankController;
-use App\Http\Controllers\DashboardClientController;
-use App\Http\Controllers\DashboardEmployeeController;
-use App\Http\Controllers\DashboardMeetingController;
-use App\Http\Controllers\DashboardNewlywedController;
-use App\Http\Controllers\DashboardPaymentController;
-use App\Http\Controllers\DashboardThemeController;
-use App\Http\Controllers\DashboardVendorController;
-use App\Http\Controllers\DashboardVendorTypeController;
-use App\Http\Controllers\DashboardWeddingController;
-use App\Http\Controllers\LandingVendorController;
-use App\Http\Controllers\LandingCrewController;
-use App\Http\Controllers\MailerController;
+use App\Http\Controllers\Admin as Admin;
+use App\Http\Controllers\Client as Client;
+use App\Http\Controllers\Landing as Landing;
+use App\Http\Controllers\Helper as Helper;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,15 +12,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::get('/logout', [AuthController::class, 'logout']);
-
-Route::get('/', function () {
-    return view('landing.page.portfolio', [
-        "active" => "home"
-    ]);
-});
-
-Route::get('/vendor', [LandingVendorController::class, 'index']);
-Route::get('/crew', [LandingCrewController::class, 'index']);
 
 Route::get('/dashboard/introduction', function () {
     return view('dashboard.client.page.introduction.index', [
@@ -47,64 +28,57 @@ Route::get('/dashboard/registration', function () {
 });
 Route::post('/dashboard/registration', [AuthController::class, 'registration']);
 
-Route::get('/dashboard/groom', function () {
-    return view('dashboard.client.page.newlywed.create', [
-        "active" => "groom",
-        "newlywed" => true,
-        "active_navigation" => 3
-    ]);
-})->middleware('auth');
-
-Route::get('/dashboard/bride', function () {
-    return view('dashboard.client.page.newlywed.create', [
-        "active" => "bride",
-        "newlywed" => false,
-        "active_navigation" => 4
-    ]);
-})->middleware('auth');
-
-// Meeting
-Route::get('/dashboard/meeting', [DashboardMeetingController::class, 'index']);
-Route::get('/dashboard/meeting/create/{wedding}', [DashboardMeetingController::class, 'create']);
-Route::post('/dashboard/meeting/{wedding}', [DashboardMeetingController::class, 'store']);
-Route::get('/dashboard/meeting/{meeting}/edit', [DashboardMeetingController::class, 'edit']);
-Route::put('/dashboard/meeting/{meeting}', [DashboardMeetingController::class, 'update']);
-Route::delete('/dashboard/meeting/{meeting}', [DashboardMeetingController::class, 'destroy']);
-
-// Payment
-Route::get('/dashboard/payment', [DashboardPaymentController::class, 'index'])->middleware('auth');
-Route::get('/dashboard/payment/create/{wedding}', [DashboardPaymentController::class, 'create'])->middleware('auth');
-Route::post('/dashboard/payment/{wedding}', [DashboardPaymentController::class, 'store'])->middleware('auth');
-Route::get('/dashboard/payment/{payment}/edit', [DashboardPaymentController::class, 'edit'])->middleware('auth');
-Route::put('/dashboard/payment/{payment}', [DashboardPaymentController::class, 'update'])->middleware('auth');
-Route::delete('/dashboard/payment/{payment}', [DashboardPaymentController::class, 'destroy'])->middleware('auth');
-
-// Vendor (Order Matter)
-Route::get('/dashboard/vendor/getCategorizedVendor', [DashboardVendorController::class, 'getCategorizedVendor'])->middleware('auth');
-Route::resource('/dashboard/vendor', DashboardVendorController::class)->middleware('auth');
-
-// Theme (Order Matter)
-Route::get('/dashboard/theme/getCategorizedTheme', [DashboardThemeController::class, 'getCategorizedTheme'])->middleware('auth');
-Route::resource('/dashboard/theme', DashboardThemeController::class)->except('show')->middleware('auth');
-
-// Wedding
-Route::post('/dashboard/wedding/pay/{payment}', [DashboardWeddingController::class, 'pay']);
-Route::post('/dashboard/wedding/storeChoosedThemeAndVendor', [DashboardWeddingController::class, 'storeChoosedThemeAndVendor'])->middleware('auth');
-Route::resource('/dashboard/wedding', DashboardWeddingController::class)->middleware('auth');
-
-// Bank (Order Matter)
-Route::get('/dashboard/getAllBank', [DashboardBankController::class, 'getAllBank'])->middleware('auth');
-Route::resource('/dashboard/bank', DashboardBankController::class)->except('show')->middleware('auth');
-
-
 // Mail Sender
-Route::post('/dashboard/mail/send', [MailerController::class, 'composeEmail']);
+Route::post('/dashboard/mail/send', [Helper\MailerController::class, 'composeEmail']);
 
-// Master Data
-Route::resource('/dashboard/employee', DashboardEmployeeController::class)->middleware('auth');
-Route::resource('/dashboard/client', DashboardClientController::class)->middleware('auth');
-Route::resource('/dashboard/vendor-type', DashboardVendorTypeController::class)->except('show')->middleware('auth');
-Route::resource('/dashboard/newlywed', DashboardNewlywedController::class)->middleware('auth');
+// Admin Route
+Route::get('/dashboard/admin', [Admin\DashboardController::class, 'index'])->middleware(['auth', 'is_admin']);
+// --- Master Data ---
+Route::resource('/dashboard/employee', Admin\EmployeeController::class)->middleware('is_admin');
+Route::resource('/dashboard/bank', Admin\BankController::class)->except('show')->middleware('is_admin');
+Route::resource('/dashboard/client', Admin\ClientController::class)->middleware('is_admin');
+Route::resource('/dashboard/vendor-type', Admin\VendorTypeController::class)->except('show')->middleware('is_admin');
+Route::resource('/dashboard/theme', Admin\ThemeController::class)->except('show')->middleware(['auth', 'is_admin']);
+Route::resource('/dashboard/vendor', Admin\VendorController::class)->middleware(['auth', 'is_admin']);
 
-// Admin Dashboard
-Route::get('/dashboard/admin', [DashboardAdminController::class, 'index']);
+// --- Wedding ---
+Route::resource('/dashboard/wedding', Admin\WeddingController::class)->middleware(['auth', 'is_admin']);
+Route::put('/dashboard/newlywed/{newlywed}', [Admin\NewlywedController::class, 'update'])->middleware(['auth', 'is_admin']);
+
+// --- Meeting History ---
+Route::get('/dashboard/meeting-history/create/{wedding}', [Admin\MeetingHistoryController::class, 'create'])->middleware(['auth', 'is_admin']);
+Route::post('/dashboard/meeting-history/{wedding}', [Admin\MeetingHistoryController::class, 'store'])->middleware(['auth', 'is_admin']);;
+Route::get('/dashboard/meeting-history/{meetingHistory}/edit', [Admin\MeetingHistoryController::class, 'edit'])->middleware(['auth', 'is_admin']);;
+Route::put('/dashboard/meeting-history/{meetingHistory}', [Admin\MeetingHistoryController::class, 'update'])->middleware(['auth', 'is_admin']);;
+Route::delete('/dashboard/meeting-history/{meetingHistory}', [Admin\MeetingHistoryController::class, 'destroy'])->middleware(['auth', 'is_admin']);;
+
+// --- Payment ---
+Route::get('/dashboard/payment/create/{wedding}', [Admin\PaymentController::class, 'create'])->middleware(['auth', 'is_admin']);
+Route::post('/dashboard/payment/{wedding}', [Admin\PaymentController::class, 'store'])->middleware(['auth', 'is_admin']);
+Route::get('/dashboard/payment/{payment}/edit', [Admin\PaymentController::class, 'edit'])->middleware(['auth', 'is_admin']);
+Route::put('/dashboard/payment/{payment}', [Admin\PaymentController::class, 'update'])->middleware(['auth', 'is_admin']);
+Route::delete('/dashboard/payment/{payment}', [Admin\PaymentController::class, 'destroy'])->middleware(['auth', 'is_admin']);
+
+// ----------------------------------------------------------------------------------
+
+// Client Route
+Route::resource('/wedding', Client\ClientController::class)->middleware(['auth', 'is_client']);
+Route::get('/groom', [Client\NewlywedController::class, 'create'])->name('groom')->middleware(['auth', 'is_client']);
+Route::get('/bride', [Client\NewlywedController::class, 'create'])->name('bride')->middleware(['auth', 'is_client']);
+Route::post('/newlywed', [Client\NewlywedController::class, 'store'])->middleware(['auth', 'is_client']);
+Route::get('/theme-vendor', [Client\VendorController::class, 'index'])->middleware(['auth', 'is_client']);
+Route::resource('/payment', Client\PaymentController::class)->only(['index', 'store'])->middleware(['auth', 'is_client']);
+Route::get('/meeting-history', [Client\MeetingHistoryController::class, 'index'])->middleware(['auth', 'is_client']);
+
+// --- AJAX Route ---
+Route::get('/theme/getCategorizedTheme', [Client\ThemeController::class, 'getCategorizedTheme'])->middleware(['auth', 'is_client']);
+Route::get('/vendor/getCategorizedVendor', [Client\VendorController::class, 'getCategorizedVendor'])->middleware(['auth', 'is_client']);
+Route::post('/wedding/storeChoosedThemeAndVendor', [Client\WeddingController::class, 'storeChoosedThemeAndVendor'])->middleware(['auth', 'is_client']);
+Route::get('/bank/getAllBank', [Client\BankController::class, 'getAllBank'])->middleware(['auth', 'is_client']);
+
+// ----------------------------------------------------------------------------------
+
+// Landing Page Route
+Route::get('/', [Landing\HomeController::class, 'index']);
+Route::get('/vendor', [Landing\VendorController::class, 'index']);
+Route::get('/crew', [Landing\CrewController::class, 'index']);

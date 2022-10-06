@@ -1,5 +1,5 @@
 $.ajax({
-    url: `${window.location.origin}/dashboard/getAllBank`,
+    url: `${window.location.origin}/bank/getAllBank`,
     method: "GET",
     dataType: "json",
 })
@@ -27,7 +27,7 @@ $.ajax({
 $(".pay-btn").on("click", function () {
     $("#formPaymentModal form").attr(
         "action",
-        `${window.location.origin}/dashboard/wedding/pay/${$(this).data("id")}`
+        `${window.location.origin}/payment/${$(this).data("id")}`
     );
     $("#formPaymentModal").modal('show');
 });

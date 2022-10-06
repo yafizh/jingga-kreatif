@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\VendorType;
 use Illuminate\Http\Request;
 
-class DashboardVendorTypeController extends Controller
+class VendorTypeController extends Controller
 {
     public function index()
     {

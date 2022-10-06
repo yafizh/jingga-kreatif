@@ -11,6 +11,11 @@ class Payment extends Model
 
     protected $guarded = ['id'];
 
+    public function wedding()
+    {
+        return $this->belongsTo(Wedding::class);
+    }
+
     public function paymentHistory()
     {
         return $this->hasMany(PaymentHistory::class)->orderBy('id', 'DESC');

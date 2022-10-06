@@ -25,7 +25,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             if (Auth::user()->client)
-                return redirect()->intended('/dashboard/client');
+                return redirect()->intended('/wedding');
 
             return redirect()->intended('/dashboard/admin');
         }
@@ -63,7 +63,7 @@ class AuthController extends Controller
             'client_id' => $client_id
         ]);
 
-        return redirect('/dashboard/groom');
+        return redirect('/groom');
     }
 
     public function logout()
@@ -72,7 +72,6 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
-    // Helper Functions
     public function isPasswordSame($password1, $password2)
     {
         if ($password1 == $password2) return true;

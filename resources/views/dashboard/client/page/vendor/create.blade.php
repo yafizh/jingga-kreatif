@@ -36,7 +36,7 @@
         </div>
         <div class="col-12">
             <div class="d-flex justify-content-center w-100 mt-4">
-                <form action="/dashboard/wedding/storeChoosedThemeAndVendor" method="POST">
+                <form action="/wedding/storeChoosedThemeAndVendor" method="POST">
                     @csrf
                     <input type="text" name="choosed_vendor" id="choosed_vendor" hidden>
                     <input type="text" name="choosed_theme" id="choosed_theme" hidden>

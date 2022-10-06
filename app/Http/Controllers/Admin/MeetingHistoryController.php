@@ -1,35 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Meeting;
+use App\Http\Controllers\Controller;
+use App\Models\MeetingHistory;
 use App\Models\Wedding;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class DashboardMeetingController extends Controller
+class MeetingHistoryController extends Controller
 {
     public function __construct()
     {
-        Session::flash('section', 'meeting');
-    }
-
-    public function index()
-    {
-        $meetings = Meeting::where('wedding_id', Auth::user()->client->wedding->id)->where('is_deleted', false)->orderBy('id', 'DESC')->get();
-        $meetings = $meetings->map(function ($meeting) {
-            $meeting_date = new Carbon($meeting->meeting_date);
-            $meeting->meeting_date = $meeting_date->day . " " . $meeting_date->locale('ID')->getTranslatedMonthName() . " " . $meeting_date->year;
-            $meeting->meeting_day = $meeting_date->locale('ID')->getTranslatedDayName();
-            return $meeting;
-        });
-
-        return view('dashboard.client.page.meeting.index', [
-            "active" => "meeting",
-            "meetings" => $meetings
-        ]);
+        Session::flash('section', 'meeting_history');
     }
 
     public function create(Wedding $wedding)
@@ -53,7 +36,7 @@ class DashboardMeetingController extends Controller
         if ($request->file('photo'))
             $validatedData['photo'] = $request->file('photo')->store('meeting-photo');
 
-        Meeting::create([
+        MeetingHistory::create([
             'wedding_id' => $wedding->id,
             'topic' => $validatedData['topic'],
             'meeting_date' => $validatedData['meeting_date'],
@@ -65,20 +48,15 @@ class DashboardMeetingController extends Controller
         return redirect('/dashboard/wedding/' . $wedding->id);
     }
 
-    public function show(Meeting $meeting)
-    {
-        //
-    }
-
-    public function edit(Meeting $meeting)
+    public function edit(MeetingHistory $meetingHistory)
     {
         return view('dashboard.admin.page.meeting.edit', [
-            'meeting' => $meeting,
+            'meeting' => $meetingHistory,
             'active' => 'wedding'
         ]);
     }
 
-    public function update(Request $request, Meeting $meeting)
+    public function update(Request $request, MeetingHistory $meetingHistory)
     {
         $validatedData = $request->validate([
             'topic' => 'required',
@@ -90,9 +68,9 @@ class DashboardMeetingController extends Controller
         if ($request->file('photo'))
             $validatedData['photo'] = $request->file('photo')->store('meeting-photo');
         else
-            $validatedData['photo'] = $meeting->photo;
+            $validatedData['photo'] = $meetingHistory->photo;
 
-        Meeting::where('id', $meeting->id)->update([
+            MeetingHistory::where('id', $meetingHistory->id)->update([
             'topic' => $validatedData['topic'],
             'meeting_date' => $validatedData['meeting_date'],
             'meeting_time' => $validatedData['meeting_time'],
@@ -100,12 +78,12 @@ class DashboardMeetingController extends Controller
             'photo' => $validatedData['photo']
         ]);
 
-        return redirect('/dashboard/wedding/' . $meeting->wedding_id);
+        return redirect('/dashboard/wedding/' . $meetingHistory->wedding_id);
     }
 
-    public function destroy(Meeting $meeting)
+    public function destroy(MeetingHistory $meetingHistory)
     {
-        Meeting::where('id', $meeting->id)->update(['is_deleted' => true]);
-        return redirect('/dashboard/wedding/' . $meeting->wedding_id);
+        MeetingHistory::where('id', $meetingHistory->id)->update(['is_deleted' => true]);
+        return redirect('/dashboard/wedding/' . $meetingHistory->wedding_id);
     }
 }

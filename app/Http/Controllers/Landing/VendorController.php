@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Landing;
 
+use App\Http\Controllers\Controller;
 use App\Models\Theme;
 use App\Models\Vendor;
-use Illuminate\Http\Request;
 
-class LandingVendorController extends Controller
+class VendorController extends Controller
 {
     public function index()
     {

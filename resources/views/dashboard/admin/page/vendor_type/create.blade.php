@@ -32,10 +32,11 @@
                                             placeholder="Masukkan Keterangan" name="description" autocomplete="off"
                                             value="{{ old('description') }}">
                                     </div>
-                                </div>
 
-                                <div class="card-footer d-flex justify-content-end">
-                                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                    <div class="d-flex justify-content-between mt-4">
+                                        <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
+                                        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>

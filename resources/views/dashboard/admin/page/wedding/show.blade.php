@@ -54,7 +54,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link {{ $section == 'meeting' ? 'active' : '' }}" href="#meeting"
+                                        <a class="nav-link {{ $section == 'meeting_history' ? 'active' : '' }}" href="#meeting_history"
                                             data-toggle="tab">
                                             Riwayat Pertemuan
                                         </a>
@@ -154,7 +154,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="mother_name" class="col-sm-2 col-form-label">
+                                                    <label for="photo" class="col-sm-2 col-form-label">
                                                         Foto Mempelai
                                                         |
                                                         <a href="{{ asset('storage/' . $groom->photo) }}">Lihat</a>
@@ -181,6 +181,7 @@
                                             <form action="/dashboard/newlywed/{{ $bride->id }}" method="POST"
                                                 class="form-horizontal">
                                                 @csrf
+                                                @method('PUT')
                                                 <div class="form-group row">
                                                     <label for="nik" class="col-sm-2 col-form-label">
                                                         NIK
@@ -236,7 +237,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="mother_name" class="col-sm-2 col-form-label">
+                                                    <label for="photo" class="col-sm-2 col-form-label">
                                                         Foto Mempelai
                                                         |
                                                         <a href="{{ asset('storage/' . $bride->photo) }}">Lihat</a>
@@ -361,10 +362,10 @@
                                             @endforeach
                                         @endif
                                     </div>
-                                    <div class="tab-pane {{ $section == 'meeting' ? 'active' : '' }}" id="meeting">
+                                    <div class="tab-pane {{ $section == 'meeting_history' ? 'active' : '' }}" id="meeting_history">
                                         <div class="row">
-                                            @if ($meetings->count())
-                                                @foreach ($meetings as $meeting)
+                                            @if ($meetingHistory->count())
+                                                @foreach ($meetingHistory as $meeting)
                                                     <div class="col-12 col-md-4">
                                                         <div class="border rounded mb-3 p-3">
                                                             <div class="row">
@@ -375,9 +376,9 @@
                                                                 </div>
                                                                 <div class="col-12">
                                                                     <button class="btn btn-outline-info">Lihat</button>
-                                                                    <a href="/dashboard/meeting/{{ $meeting->id }}/edit"
+                                                                    <a href="/dashboard/meeting-history/{{ $meeting->id }}/edit"
                                                                         class="btn btn-outline-warning">Edit</a>
-                                                                    <form action="/dashboard/meeting/{{ $meeting->id }}"
+                                                                    <form action="/dashboard/meeting-history/{{ $meeting->id }}"
                                                                         method="POST" class="d-inline">
                                                                         @csrf
                                                                         @method('DELETE')
@@ -391,7 +392,7 @@
                                                 @endforeach
                                             @endif
                                             <div class="col-12 col-md-4 mb-3">
-                                                <a href="/dashboard/meeting/create/{{ $wedding->id }}">
+                                                <a href="/dashboard/meeting-history/create/{{ $wedding->id }}">
                                                     <div class="border rounded mb-3 p-3 h-100 bg-dark">
                                                         <div
                                                             class="row h-100 justify-content-center align-items-center text-center">
