@@ -29,33 +29,35 @@
                                 Rp. {{ number_format($payment->nominal, 0, ',', '.') }}
                             </div>
                             <div class="col-12 text-center col-lg-3 my-1 align-self-center">
-                                @if (!$payment->paymentHistory->count())
+                                @if (!$payment->paymentHistories->count())
                                     <span class="rounded-pill text-white px-3 py-1 bg-warning">Menuggu Pembayaran</span>
-                                @elseif (is_null($payment->paymentHistory->first()->status))
+                                @elseif (is_null($payment->paymentHistories->first()->status))
                                     <span class="rounded-pill text-white px-3 py-1 bg-info">Menunggu Verifikasi</span>
-                                @elseif (!$payment->paymentHistory->first()->status)
+                                @elseif (!$payment->paymentHistories->first()->status)
                                     <span class="rounded-pill text-white px-3 py-1 bg-danger">Ditolak</span>
-                                @elseif ($payment->paymentHistory->first()->status)
+                                @elseif ($payment->paymentHistories->first()->status)
                                     <span class="rounded-pill text-white px-3 py-1 bg-success">Diterima</span>
                                 @endif
                             </div>
                             <div class="col-12 text-center col-lg-3 my-1 align-self-center">
-                                @if (!$payment->paymentHistory->count())
+                                @if (!$payment->paymentHistories->count())
                                     <button class="btn btn btn-primary pay-btn" data-id="{{ $payment->id }}">Lakukan
                                         Pembayaran</button>
-                                @elseif (!$payment->paymentHistory->first()->status)
+                                @elseif (is_null($payment->paymentHistories->first()->status))
+                                    <button class="btn btn btn-primary pay-btn" data-id="{{ $payment->id }}">Edit Bukti Pembayaran</button>
+                                @elseif (!$payment->paymentHistories->first()->status)
                                     <button class="btn btn btn-primary pay-btn" data-id="{{ $payment->id }}">Lakukan
                                         Pembayaran Ulang</button>
                                 @endif
                             </div>
                         </div>
+                        <hr>
                     @endforeach
                 @else
                     <div class="row align-items-center">
                         <h5 class="text-center text-muted mb-0">Tidak Ada Pembayaran</h5>
                     </div>
                 @endif
-                <hr>
             </div>
         </div>
     </div>

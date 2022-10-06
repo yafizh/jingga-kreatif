@@ -54,8 +54,8 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link {{ $section == 'meeting_history' ? 'active' : '' }}" href="#meeting_history"
-                                            data-toggle="tab">
+                                        <a class="nav-link {{ $section == 'meeting_history' ? 'active' : '' }}"
+                                            href="#meeting_history" data-toggle="tab">
                                             Riwayat Pertemuan
                                         </a>
                                     </li>
@@ -157,7 +157,8 @@
                                                     <label for="photo" class="col-sm-2 col-form-label">
                                                         Foto Mempelai
                                                         |
-                                                        <a href="{{ asset('storage/' . $groom->photo) }}">Lihat</a>
+                                                        <a href="{{ asset('storage/' . $groom->photo) }}"
+                                                            target="_blank">Lihat</a>
                                                     </label>
                                                     <div class="input-group col-sm-10">
                                                         <div class="custom-file">
@@ -240,7 +241,8 @@
                                                     <label for="photo" class="col-sm-2 col-form-label">
                                                         Foto Mempelai
                                                         |
-                                                        <a href="{{ asset('storage/' . $bride->photo) }}">Lihat</a>
+                                                        <a href="{{ asset('storage/' . $bride->photo) }}"
+                                                            target="_blank">Lihat</a>
                                                     </label>
                                                     <div class="input-group col-sm-10">
                                                         <div class="custom-file">
@@ -305,7 +307,9 @@
                                     <div class="tab-pane {{ $section == 'vendor' ? 'active' : '' }}" id="vendor">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h3>Total Harga: Rp {{ number_format($vendors['total_price'],0,",",".") }}</h3>
+                                                <h3>Total Harga: Rp
+                                                    {{ number_format($vendors['total_price'], 0, ',', '.') }}
+                                                </h3>
                                             </div>
                                         </div>
                                         @if ($wedding_theme)
@@ -316,9 +320,11 @@
                                                 <div class="col-6 col-sm-3 col-xl-2 mb-3">
                                                     <div class="card border-1 w-100">
                                                         <div class="card-image">
-                                                            <img src="{{ asset('storage/' . $wedding_theme->theme->thumbnail) }}">
+                                                            <img
+                                                                src="{{ asset('storage/' . $wedding_theme->theme->thumbnail) }}">
                                                             <div class="overplay">
-                                                                <h5 class="text-center text-white">{{ $wedding_theme->theme->name }}
+                                                                <h5 class="text-center text-white">
+                                                                    {{ $wedding_theme->theme->name }}
                                                                 </h5>
                                                             </div>
                                                         </div>
@@ -362,7 +368,8 @@
                                             @endforeach
                                         @endif
                                     </div>
-                                    <div class="tab-pane {{ $section == 'meeting_history' ? 'active' : '' }}" id="meeting_history">
+                                    <div class="tab-pane {{ $section == 'meeting_history' ? 'active' : '' }}"
+                                        id="meeting_history">
                                         <div class="row">
                                             @if ($meetingHistory->count())
                                                 @foreach ($meetingHistory as $meeting)
@@ -375,10 +382,12 @@
                                                                         {{ $meeting->meeting_date }}</h6>
                                                                 </div>
                                                                 <div class="col-12">
-                                                                    <button class="btn btn-outline-info">Lihat</button>
+                                                                    <a href="/dashboard/meeting-history/{{ $meeting->id }}"
+                                                                        class="btn btn-outline-info">Lihat</a>
                                                                     <a href="/dashboard/meeting-history/{{ $meeting->id }}/edit"
                                                                         class="btn btn-outline-warning">Edit</a>
-                                                                    <form action="/dashboard/meeting-history/{{ $meeting->id }}"
+                                                                    <form
+                                                                        action="/dashboard/meeting-history/{{ $meeting->id }}"
                                                                         method="POST" class="d-inline">
                                                                         @csrf
                                                                         @method('DELETE')
@@ -419,17 +428,37 @@
                                                                     <h6 class="text-muted">Rp.
                                                                         {{ number_format($payment->nominal, 0, ',', '.') }}
                                                                     </h6>
+                                                                    @if (!$payment->paymentHistories->count())
+                                                                        <span
+                                                                            class="rounded rounded-2 px-3 py-1 bg-warning">Menuggu
+                                                                            Pembayaran</span>
+                                                                    @elseif (is_null($payment->paymentHistories->first()->status))
+                                                                        <span
+                                                                            class="rounded rounded-2 px-3 py-1 bg-info">Menunggu
+                                                                            Verifikasi</span>
+                                                                    @elseif (!$payment->paymentHistories->first()->status)
+                                                                        <span
+                                                                            class="rounded rounded-2 px-3 py-1 bg-danger">Ditolak</span>
+                                                                    @elseif ($payment->paymentHistories->first()->status)
+                                                                        <span
+                                                                            class="rounded rounded-2 px-3 py-1 bg-success">Diterima</span>
+                                                                    @endif
                                                                 </div>
                                                                 <div class="col-12">
-                                                                    <a href="/dashboard/payment/{{ $payment->id }}/edit"
-                                                                        class="btn btn-outline-warning">Edit</a>
-                                                                    <form action="/dashboard/payment/{{ $payment->id }}"
-                                                                        method="POST" class="d-inline">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="submit"
-                                                                            class="btn btn-outline-danger">Hapus</button>
-                                                                    </form>
+                                                                    <a href="/dashboard/payment/{{ $payment->id }}"
+                                                                        class="btn btn-outline-info">Lihat</a>
+                                                                    @if (!$payment->paymentHistories->count() || $payment->paymentHistories->first()->status === 0)
+                                                                        <a href="/dashboard/payment/{{ $payment->id }}/edit"
+                                                                            class="btn btn-outline-warning">Edit</a>
+                                                                        <form
+                                                                            action="/dashboard/payment/{{ $payment->id }}"
+                                                                            method="POST" class="d-inline">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="submit"
+                                                                                class="btn btn-outline-danger">Hapus</button>
+                                                                        </form>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>

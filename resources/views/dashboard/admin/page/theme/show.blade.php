@@ -24,12 +24,12 @@
                                             @if (!$i)
                                                 <div class="carousel-item active">
                                                     <img src="{{ asset('storage/' . $theme_image->image) }}"
-                                                        class="d-block w-100" style="height: 320px;">
+                                                        class="d-block w-100" style="height: 320px; object-fit: cover;">
                                                 </div>
                                             @endif
                                             <div class="carousel-item">
                                                 <img src="{{ asset('storage/' . $theme_image->image) }}"
-                                                    class="d-block w-100" style="height: 320px;">
+                                                    class="d-block w-100" style="height: 320px; object-fit: cover;">
                                             </div>
                                         @endforeach
                                     </div>

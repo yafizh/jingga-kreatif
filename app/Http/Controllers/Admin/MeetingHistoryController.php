@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\MeetingHistory;
 use App\Models\Wedding;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -48,6 +49,19 @@ class MeetingHistoryController extends Controller
         return redirect('/dashboard/wedding/' . $wedding->id);
     }
 
+    public function show(MeetingHistory $meetingHistory)
+    {
+        $meeting_date = new Carbon($meetingHistory->meeting_date);
+        $meeting_history = $meetingHistory;
+        $meeting_history->meeting_date = $meeting_date->day . " " . $meeting_date->locale('ID')->getTranslatedMonthName() . " " . $meeting_date->year;
+        $meeting_history->meeting_day = $meeting_date->locale('ID')->getTranslatedDayName();
+
+        return view('dashboard.admin.page.meeting.show', [
+            "active" => "wedding",
+            "meeting_history" => $meeting_history,
+        ]);
+    }
+
     public function edit(MeetingHistory $meetingHistory)
     {
         return view('dashboard.admin.page.meeting.edit', [
@@ -70,7 +84,7 @@ class MeetingHistoryController extends Controller
         else
             $validatedData['photo'] = $meetingHistory->photo;
 
-            MeetingHistory::where('id', $meetingHistory->id)->update([
+        MeetingHistory::where('id', $meetingHistory->id)->update([
             'topic' => $validatedData['topic'],
             'meeting_date' => $validatedData['meeting_date'],
             'meeting_time' => $validatedData['meeting_time'],

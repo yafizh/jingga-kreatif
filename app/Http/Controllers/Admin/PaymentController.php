@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use App\Models\PaymentHistory;
 use App\Models\Wedding;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class PaymentController extends Controller
@@ -40,6 +40,17 @@ class PaymentController extends Controller
         return redirect('/dashboard/wedding/' . $wedding->id);
     }
 
+    public function show(Payment $payment)
+    {
+        $payment_date = $payment->paymentHistories->first();
+        $payment->payment_date = $payment_date->created_at->day . " " . $payment_date->created_at->locale('ID')->getTranslatedMonthName() . " " . $payment_date->created_at->year;
+
+        return view('dashboard.admin.page.payment.show', [
+            "active" => "wedding",
+            "payment" => $payment,
+        ]);
+    }
+
     public function edit(Payment $payment)
     {
         return view('dashboard.admin.page.payment.edit', [
@@ -68,4 +79,25 @@ class PaymentController extends Controller
         Payment::where('id', $payment->id)->update(['is_deleted' => true]);
         return redirect('/dashboard/wedding/' . $payment->wedding_id);
     }
+
+    public function verification(Request $request, Payment $payment)
+    {
+        $validatedData = $request->validate([
+            'verification-btn' => 'required'
+        ]);
+
+        if($validatedData['verification-btn'] === 'approve'){
+            PaymentHistory::where('id', $payment->paymentHistories->first()->id)->update([
+                'status' => true
+            ]);
+
+            return redirect('/dashboard/wedding/' . $payment->wedding_id);
+        }
+
+        PaymentHistory::where('id', $payment->paymentHistories->first()->id)->update([
+            'status' => false
+        ]);
+        return redirect('/dashboard/wedding/' . $payment->wedding_id);
+    }
+
 }

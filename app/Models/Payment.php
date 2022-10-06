@@ -16,7 +16,7 @@ class Payment extends Model
         return $this->belongsTo(Wedding::class);
     }
 
-    public function paymentHistory()
+    public function paymentHistories()
     {
         return $this->hasMany(PaymentHistory::class)->orderBy('id', 'DESC');
     }

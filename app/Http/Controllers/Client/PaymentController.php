@@ -14,15 +14,15 @@ class PaymentController extends Controller
     {
         $payments = Payment::where('wedding_id', Auth::user()->client->wedding->id)->where('is_deleted', false)->orderBy('id', 'DESC')->get();
         $need_to_pay = $payments->filter(function ($payment) {
-            return !$payment->paymentHistory->count() || !$payment->paymentHistory->first()->status;
+            return !$payment->paymentHistories->count() || !$payment->paymentHistories->first()->status;
         })->map(function ($payment) {
             return $payment->nominal;
         })->sum();
 
         $already_pay = $payments->filter(function ($payment) {
-            return $payment->paymentHistory->count();
+            return $payment->paymentHistories->count();
         })->filter(function ($payment) {
-            return $payment->paymentHistory->first()->status;
+            return $payment->paymentHistories->first()->status;
         })->map(function ($payment) {
             return $payment->nominal;
         })->sum();

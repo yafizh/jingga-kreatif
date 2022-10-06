@@ -33,11 +33,12 @@ Route::post('/dashboard/mail/send', [Helper\MailerController::class, 'composeEma
 
 // Admin Route
 Route::get('/dashboard/admin', [Admin\DashboardController::class, 'index'])->middleware(['auth', 'is_admin']);
+
 // --- Master Data ---
-Route::resource('/dashboard/employee', Admin\EmployeeController::class)->middleware('is_admin');
-Route::resource('/dashboard/bank', Admin\BankController::class)->except('show')->middleware('is_admin');
-Route::resource('/dashboard/client', Admin\ClientController::class)->middleware('is_admin');
-Route::resource('/dashboard/vendor-type', Admin\VendorTypeController::class)->except('show')->middleware('is_admin');
+Route::resource('/dashboard/employee', Admin\EmployeeController::class)->middleware(['auth', 'is_admin']);
+Route::resource('/dashboard/bank', Admin\BankController::class)->except('show')->middleware(['auth', 'is_admin']);
+Route::resource('/dashboard/client', Admin\ClientController::class)->middleware(['auth', 'is_admin']);
+Route::resource('/dashboard/vendor-type', Admin\VendorTypeController::class)->except('show')->middleware(['auth', 'is_admin']);
 Route::resource('/dashboard/theme', Admin\ThemeController::class)->middleware(['auth', 'is_admin']);
 Route::resource('/dashboard/vendor', Admin\VendorController::class)->middleware(['auth', 'is_admin']);
 
@@ -46,6 +47,7 @@ Route::resource('/dashboard/wedding', Admin\WeddingController::class)->middlewar
 Route::put('/dashboard/newlywed/{newlywed}', [Admin\NewlywedController::class, 'update'])->middleware(['auth', 'is_admin']);
 
 // --- Meeting History ---
+Route::get('/dashboard/meeting-history/{meetingHistory}', [Admin\MeetingHistoryController::class, 'show'])->middleware(['auth', 'is_admin']);
 Route::get('/dashboard/meeting-history/create/{wedding}', [Admin\MeetingHistoryController::class, 'create'])->middleware(['auth', 'is_admin']);
 Route::post('/dashboard/meeting-history/{wedding}', [Admin\MeetingHistoryController::class, 'store'])->middleware(['auth', 'is_admin']);;
 Route::get('/dashboard/meeting-history/{meetingHistory}/edit', [Admin\MeetingHistoryController::class, 'edit'])->middleware(['auth', 'is_admin']);;
@@ -53,11 +55,13 @@ Route::put('/dashboard/meeting-history/{meetingHistory}', [Admin\MeetingHistoryC
 Route::delete('/dashboard/meeting-history/{meetingHistory}', [Admin\MeetingHistoryController::class, 'destroy'])->middleware(['auth', 'is_admin']);;
 
 // --- Payment ---
+Route::get('/dashboard/payment/{payment}', [Admin\PaymentController::class, 'show'])->middleware(['auth', 'is_admin']);
 Route::get('/dashboard/payment/create/{wedding}', [Admin\PaymentController::class, 'create'])->middleware(['auth', 'is_admin']);
 Route::post('/dashboard/payment/{wedding}', [Admin\PaymentController::class, 'store'])->middleware(['auth', 'is_admin']);
 Route::get('/dashboard/payment/{payment}/edit', [Admin\PaymentController::class, 'edit'])->middleware(['auth', 'is_admin']);
 Route::put('/dashboard/payment/{payment}', [Admin\PaymentController::class, 'update'])->middleware(['auth', 'is_admin']);
 Route::delete('/dashboard/payment/{payment}', [Admin\PaymentController::class, 'destroy'])->middleware(['auth', 'is_admin']);
+Route::put('dashboard/payment/verification/{payment}', [Admin\PaymentController::class, 'verification'])->middleware(['auth', 'is_admin']);
 
 // ----------------------------------------------------------------------------------
 
@@ -67,7 +71,7 @@ Route::get('/groom', [Client\NewlywedController::class, 'create'])->name('groom'
 Route::get('/bride', [Client\NewlywedController::class, 'create'])->name('bride')->middleware(['auth', 'is_client']);
 Route::post('/newlywed', [Client\NewlywedController::class, 'store'])->middleware(['auth', 'is_client']);
 Route::get('/theme-vendor', [Client\VendorController::class, 'index'])->middleware(['auth', 'is_client']);
-Route::resource('/payment', Client\PaymentController::class)->only(['index', 'store'])->middleware(['auth', 'is_client']);
+Route::get('/payment', [Client\PaymentController::class, 'index'])->middleware(['auth', 'is_client']);
 Route::get('/meeting-history', [Client\MeetingHistoryController::class, 'index'])->middleware(['auth', 'is_client']);
 
 // --- AJAX Route ---
@@ -75,6 +79,7 @@ Route::get('/theme/getCategorizedTheme', [Client\ThemeController::class, 'getCat
 Route::get('/vendor/getCategorizedVendor', [Client\VendorController::class, 'getCategorizedVendor'])->middleware(['auth', 'is_client']);
 Route::post('/wedding/storeChoosedThemeAndVendor', [Client\WeddingController::class, 'storeChoosedThemeAndVendor'])->middleware(['auth', 'is_client']);
 Route::get('/bank/getAllBank', [Client\BankController::class, 'getAllBank'])->middleware(['auth', 'is_client']);
+Route::post('/payment/{payment}', [Client\PaymentController::class, 'store'])->middleware(['auth', 'is_client']);
 
 // ----------------------------------------------------------------------------------
 
