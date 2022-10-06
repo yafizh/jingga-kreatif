@@ -47,6 +47,14 @@ class ThemeController extends Controller
         return redirect('/dashboard/theme')->with('created', $theme_id);
     }
 
+    public function show(Theme $theme)
+    {
+        return view('dashboard.admin.page.theme.show', [
+            "active" => "theme",
+            "theme" => $theme,
+        ]);
+    }
+
     public function edit(Theme $theme)
     {
         return view('dashboard.admin.page.theme.edit', [

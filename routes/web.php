@@ -38,7 +38,7 @@ Route::resource('/dashboard/employee', Admin\EmployeeController::class)->middlew
 Route::resource('/dashboard/bank', Admin\BankController::class)->except('show')->middleware('is_admin');
 Route::resource('/dashboard/client', Admin\ClientController::class)->middleware('is_admin');
 Route::resource('/dashboard/vendor-type', Admin\VendorTypeController::class)->except('show')->middleware('is_admin');
-Route::resource('/dashboard/theme', Admin\ThemeController::class)->except('show')->middleware(['auth', 'is_admin']);
+Route::resource('/dashboard/theme', Admin\ThemeController::class)->middleware(['auth', 'is_admin']);
 Route::resource('/dashboard/vendor', Admin\VendorController::class)->middleware(['auth', 'is_admin']);
 
 // --- Wedding ---

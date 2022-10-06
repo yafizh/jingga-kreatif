@@ -34,6 +34,8 @@
                                                     </td>
                                                     <td class="text-center align-middle">{{ $theme->name }}</td>
                                                     <td class="text-center align-middle small-td">
+                                                        <a href="/dashboard/theme/{{ $theme->id }}"
+                                                            class="btn btn-sm btn-info">Lihat</a>
                                                         <a href="/dashboard/theme/{{ $theme->id }}/edit"
                                                             class="btn btn-sm btn-warning">Edit</a>
                                                         <form action="/dashboard/theme/{{ $theme->id }}" method="POST"
@@ -48,7 +50,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="6" class="text-center align-middle">Data Tidak Ada</td>
+                                                <td colspan="4" class="text-center align-middle">Data Tidak Ada</td>
                                             </tr>
                                         @endif
                                     </tbody>
