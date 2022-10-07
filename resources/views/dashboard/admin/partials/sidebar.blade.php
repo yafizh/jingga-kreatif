@@ -67,13 +67,38 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/dashboard/wedding" class="nav-link {{ $active == 'wedding' ? 'active' : '' }}">
-                        <i class="nav-icon far fa-file-alt" aria-hidden="true"></i>
+                <li class="nav-item {{ in_array($active, ['wedding', 'finish', 'cancel']) ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ in_array($active, ['wedding', 'finish', 'cancel']) ? 'active' : '' }}">
+                        <i class="nav-icon far fa-file-alt"></i>
                         <p>
-                            Data Pengajuan Wedding
+                            Data wedding
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/dashboard/wedding?q=a"
+                                class="nav-link {{ $active == 'wedding' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pengajuan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dashboard/wedding?q=finish"
+                                class="nav-link {{ $active == 'finish' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Selesai</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dashboard/wedding?q=cancel"
+                                class="nav-link {{ $active == 'cancel' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Batal</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>

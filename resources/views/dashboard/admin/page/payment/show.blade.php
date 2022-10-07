@@ -42,7 +42,7 @@
                                             <span class="rounded rounded-2 px-3 py-1 bg-success">Diterima</span>
                                         @endif
                                     </div>
-                                    @if (!$payment->paymentHistories->count())
+                                    @if ($payment->paymentHistories->count())
                                         <div class="form-group">
                                             <label>Tanggal Pembayaran</label>
                                             <input type="text" class="form-control" value="">
@@ -51,26 +51,27 @@
                                     <div class="d-flex justify-content-between mt-4">
                                         <a href="/dashboard/wedding/{{ $payment->wedding_id }}"
                                             class="btn btn-secondary">Kembali</a>
-                                        <div class="d-flex">
-                                            @if (!$payment->paymentHistories->count() || $payment->paymentHistories->first()->status === 0)
-                                                <a href="/dashboard/payment/{{ $payment->id }}/edit"
-                                                    class="btn btn-warning mr-1">Edit</a>
-                                                <form action="/dashboard/payment/{{ $payment->id }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger"
-                                                        onclick="return confirm('Are you sure?')">Hapus </button>
-                                                </form>
-                                            @elseif (!$payment->paymentHistories->count() || is_null($payment->paymentHistories->first()->status))
-                                                <button type="submit" name="verification-btn" value="reject"
-                                                    class="btn btn-danger mr-1"
-                                                    onclick="return confirm('Yakin menolak pembayaran ini?')">Tolak</button>
-                                                <button type="submit" name="verification-btn" value="approve"
-                                                    class="btn btn-success"
-                                                    onclick="return confirm('Yakin menerima pembayaran ini?')">Terima</button>
-                                            @endif
-                                        </div>
+                                        @if (is_null($payment->wedding->status))
+                                            <div class="d-flex">
+                                                @if (!$payment->paymentHistories->count() || $payment->paymentHistories->first()->status === 0)
+                                                    <a href="/dashboard/payment/{{ $payment->id }}/edit"
+                                                        class="btn btn-warning mr-1">Edit</a>
+                                                    <form action="/dashboard/payment/{{ $payment->id }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger"
+                                                            onclick="return confirm('Are you sure?')">Hapus </button>
+                                                    </form>
+                                                @elseif (!$payment->paymentHistories->count() || is_null($payment->paymentHistories->first()->status))
+                                                    <button type="submit" name="verification-btn" value="reject"
+                                                        class="btn btn-danger mr-1"
+                                                        onclick="return confirm('Yakin menolak pembayaran ini?')">Tolak</button>
+                                                    <button type="submit" name="verification-btn" value="approve"
+                                                        class="btn btn-success"
+                                                        onclick="return confirm('Yakin menerima pembayaran ini?')">Terima</button>
+                                                @endif
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </form>

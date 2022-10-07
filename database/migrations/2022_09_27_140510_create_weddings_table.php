@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('client_id');
             $table->date('wedding_date')->nullable()->default(null);
-            $table->boolean('wedding_status')->nullable()->default(null);
+            $table->string('place')->nullable()->default(null);
+            $table->string('address')->nullable()->default(null);
+            $table->boolean('status')->nullable()->default(null);
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
     }

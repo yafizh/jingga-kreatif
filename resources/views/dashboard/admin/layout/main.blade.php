@@ -42,6 +42,14 @@
             background-color: var(--primary-color) !important;
         }
 
+        .card .nav .nav-link:not(.active):hover {
+            color: var(--primary-color) !important;
+        }
+
+        .card .nav .nav-link.active{
+            background-color: var(--primary-color) !important;
+        }
+
         .page-item.active .page-link {
             color: #fff !important;
             background-color: var(--primary-color) !important;
@@ -65,6 +73,17 @@
             background-color: var(--primary-color) !important;
         }
 
+        .btn-outline-primary {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline-primary:hover {
+            border-color: var(--primary-color);
+            background-color: var(--primary-color) !important;
+            color: #fff;
+        }
+
         .btn-primary:hover {
             border-color: #e64900;
             background-color: #e64900 !important;
@@ -84,14 +103,6 @@
         @include('dashboard.admin.partials.sidebar')
 
         @yield('content')
-
-        <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.2.0
-            </div>
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
-            reserved.
-        </footer>
 
         <aside class="control-sidebar control-sidebar-dark">
         </aside>

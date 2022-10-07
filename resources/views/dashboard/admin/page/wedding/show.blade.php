@@ -65,6 +65,12 @@
                                             Pembayaran
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ $section == 'finish' ? 'active' : '' }}" href="#finish"
+                                            data-toggle="tab">
+                                            Kelengkapan
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="card-body">
@@ -105,14 +111,16 @@
                                                     </label>
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control" id="nik"
-                                                            name="nik" value="{{ $groom->nik }}" required>
+                                                            name="nik" value="{{ $groom->nik }}" required
+                                                            {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="name" class="col-sm-2 col-form-label">Nama</label>
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control" id="name"
-                                                            name="name" value="{{ $groom->name }}" required>
+                                                            name="name" value="{{ $groom->name }}" required
+                                                            {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -121,7 +129,8 @@
                                                     </label>
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control" id="birthplace"
-                                                            name="birthplace" value="{{ $groom->birthplace }}" required>
+                                                            name="birthplace" value="{{ $groom->birthplace }}" required
+                                                            {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -130,7 +139,8 @@
                                                     </label>
                                                     <div class="col-sm-10">
                                                         <input type="date" class="form-control" id="birthdate"
-                                                            name="birthdate" value="{{ $groom->birthdate }}" required>
+                                                            name="birthdate" value="{{ $groom->birthdate }}" required
+                                                            {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -139,8 +149,8 @@
                                                     </label>
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control" id="father_name"
-                                                            name="father_name" value="{{ $groom->father_name }}"
-                                                            required>
+                                                            name="father_name" value="{{ $groom->father_name }}" required
+                                                            {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -149,8 +159,8 @@
                                                     </label>
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control" id="mother_name"
-                                                            name="mother_name" value="{{ $groom->mother_name }}"
-                                                            required>
+                                                            name="mother_name" value="{{ $groom->mother_name }}" required
+                                                            {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -163,17 +173,21 @@
                                                     <div class="input-group col-sm-10">
                                                         <div class="custom-file">
                                                             <input type="file" class="custom-file-input"
-                                                                id="photo" name="photo">
+                                                                id="photo" name="photo"
+                                                                {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                             <label class="custom-file-label" for="photo">Pilih
                                                                 Foto</label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <div class="offset-sm-2 col-sm-10">
-                                                        <button type="submit" class="btn btn-primary">Perbaharui</button>
+                                                @if (is_null($wedding->status))
+                                                    <div class="form-group row">
+                                                        <div class="offset-sm-2 col-sm-10">
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Perbaharui</button>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                @endif
                                             </form>
                                         </div>
                                     @endif
@@ -189,14 +203,16 @@
                                                     </label>
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control" id="nik"
-                                                            name="nik" value="{{ $bride->nik }}" required>
+                                                            name="nik" value="{{ $bride->nik }}" required
+                                                            {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="name" class="col-sm-2 col-form-label">Nama</label>
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control" id="name"
-                                                            name="name" value="{{ $bride->name }}" required>
+                                                            name="name" value="{{ $bride->name }}" required
+                                                            {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -205,7 +221,8 @@
                                                     </label>
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control" id="birthplace"
-                                                            name="birthplace" value="{{ $bride->birthplace }}" required>
+                                                            name="birthplace" value="{{ $bride->birthplace }}" required
+                                                            {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -214,7 +231,8 @@
                                                     </label>
                                                     <div class="col-sm-10">
                                                         <input type="date" class="form-control" id="birthdate"
-                                                            name="birthdate" value="{{ $bride->birthdate }}" required>
+                                                            name="birthdate" value="{{ $bride->birthdate }}" required
+                                                            {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -223,8 +241,8 @@
                                                     </label>
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control" id="father_name"
-                                                            name="father_name" value="{{ $bride->father_name }}"
-                                                            required>
+                                                            name="father_name" value="{{ $bride->father_name }}" required
+                                                            {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -233,8 +251,8 @@
                                                     </label>
                                                     <div class="col-sm-10">
                                                         <input type="text" class="form-control" id="mother_name"
-                                                            name="mother_name" value="{{ $bride->mother_name }}"
-                                                            required>
+                                                            name="mother_name" value="{{ $bride->mother_name }}" required
+                                                            {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -247,17 +265,21 @@
                                                     <div class="input-group col-sm-10">
                                                         <div class="custom-file">
                                                             <input type="file" class="custom-file-input"
-                                                                id="photo" name="photo">
+                                                                id="photo" name="photo"
+                                                                {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                             <label class="custom-file-label" for="photo">Pilih
                                                                 Foto</label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <div class="offset-sm-2 col-sm-10">
-                                                        <button type="submit" class="btn btn-primary">Perbaharui</button>
+                                                @if (is_null($wedding->status))
+                                                    <div class="form-group row">
+                                                        <div class="offset-sm-2 col-sm-10">
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Perbaharui</button>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                @endif
                                             </form>
                                         </div>
                                     @endif
@@ -384,16 +406,18 @@
                                                                 <div class="col-12">
                                                                     <a href="/dashboard/meeting-history/{{ $meeting->id }}"
                                                                         class="btn btn-outline-info">Lihat</a>
-                                                                    <a href="/dashboard/meeting-history/{{ $meeting->id }}/edit"
-                                                                        class="btn btn-outline-warning">Edit</a>
-                                                                    <form
-                                                                        action="/dashboard/meeting-history/{{ $meeting->id }}"
-                                                                        method="POST" class="d-inline">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="submit"
-                                                                            class="btn btn-outline-danger">Hapus</button>
-                                                                    </form>
+                                                                    @if (is_null($wedding->status))
+                                                                        <a href="/dashboard/meeting-history/{{ $meeting->id }}/edit"
+                                                                            class="btn btn-outline-warning">Edit</a>
+                                                                        <form
+                                                                            action="/dashboard/meeting-history/{{ $meeting->id }}"
+                                                                            method="POST" class="d-inline">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="submit"
+                                                                                class="btn btn-outline-danger">Hapus</button>
+                                                                        </form>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -447,17 +471,19 @@
                                                                 <div class="col-12">
                                                                     <a href="/dashboard/payment/{{ $payment->id }}"
                                                                         class="btn btn-outline-info">Lihat</a>
-                                                                    @if (!$payment->paymentHistories->count() || $payment->paymentHistories->first()->status === 0)
-                                                                        <a href="/dashboard/payment/{{ $payment->id }}/edit"
-                                                                            class="btn btn-outline-warning">Edit</a>
-                                                                        <form
-                                                                            action="/dashboard/payment/{{ $payment->id }}"
-                                                                            method="POST" class="d-inline">
-                                                                            @csrf
-                                                                            @method('DELETE')
-                                                                            <button type="submit"
-                                                                                class="btn btn-outline-danger">Hapus</button>
-                                                                        </form>
+                                                                    @if (is_null($payment->wedding->status))
+                                                                        @if (!$payment->paymentHistories->count() || $payment->paymentHistories->first()->status === 0)
+                                                                            <a href="/dashboard/payment/{{ $payment->id }}/edit"
+                                                                                class="btn btn-outline-warning">Edit</a>
+                                                                            <form
+                                                                                action="/dashboard/payment/{{ $payment->id }}"
+                                                                                method="POST" class="d-inline">
+                                                                                @csrf
+                                                                                @method('DELETE')
+                                                                                <button type="submit"
+                                                                                    class="btn btn-outline-danger">Hapus</button>
+                                                                            </form>
+                                                                        @endif
                                                                     @endif
                                                                 </div>
                                                             </div>
@@ -478,6 +504,102 @@
                                                         </div>
                                                     </div>
                                                 </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane {{ $section == 'finish' ? 'active' : '' }}" id="finish">
+                                        <form action="/dashboard/wedding/{{ $wedding->id }}" method="POST"
+                                            class="form-horizontal">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="form-group row">
+                                                <label for="wedding_date" class="col-sm-2 col-form-label">
+                                                    Tanggal Wedding
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input type="date" class="form-control" id="wedding_date"
+                                                        name="wedding_date" value="{{ $wedding->wedding_date }}"
+                                                        {{ is_null($wedding->status) ? '' : 'disabled' }}>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="place" class="col-sm-2 col-form-label">Tempat
+                                                    Wedding</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="place"
+                                                        name="place" value="{{ $wedding->place }}"
+                                                        {{ is_null($wedding->status) ? '' : 'disabled' }}>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="address" class="col-sm-2 col-form-label">
+                                                    Alamat
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <textarea name="address" id="address" class="form-control" {{ is_null($wedding->status) ? '' : 'disabled' }}>{{ $wedding->address }}</textarea>
+                                                </div>
+                                            </div>
+                                            @if (is_null($wedding->status))
+                                                <div class="form-group row">
+                                                    <div class="offset-sm-2 col-sm-10">
+                                                        <button type="submit" class="btn btn-primary">Perbaharui</button>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </form>
+                                        <hr>
+                                        @if (is_null($wedding->status))
+                                            <form action="/dashboard/wedding/{{ $wedding->id }}/finish" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <h6 class="mb-1"><strong>Kegiatan Wedding Telah Selesai</strong>
+                                                        </h6>
+                                                        <h6>Ketika kegiatan wedding telah selesai, semua data tidak dapat
+                                                            diubah
+                                                            lagi.
+                                                        </h6>
+                                                    </div>
+                                                    <div class="col-4 d-flex align-items-center justify-content-end">
+                                                        <button type="submit" class="btn btn-outline-success"
+                                                            onclick="return confirm('Are you sure?')">Wedding
+                                                            Selesai</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <hr>
+                                            <form action="/dashboard/wedding/{{ $wedding->id }}/cancel" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <h6 class="mb-1"><strong>Batalkan Kegiatan Wedding</strong></h6>
+                                                        <h6>Ketika kegiatan wedding telah dibatalkan, semua data tidak dapat
+                                                            diubah
+                                                            lagi.
+                                                        </h6>
+                                                    </div>
+                                                    <div class="col-4 d-flex align-items-center justify-content-end">
+                                                        <button type="submit" class="btn btn-outline-danger"
+                                                            onclick="return confirm('Are you sure?')">Batalkan
+                                                            Wedding</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <hr>
+                                        @endif
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <h6 class="mb-1"><strong>Laporan Data Wedding</strong></h6>
+                                                <h6>Rekap data wedding (identitas klien, identitas mempelai pria dan wanita,
+                                                    konsep dan vendor, riwayat meeting, dan riwayat pembayaran) dalam bentuk
+                                                    pdf.
+                                                </h6>
+                                            </div>
+                                            <div class="col-4 d-flex align-items-center justify-content-end">
+                                                <a href="/dashboard/wedding/print/{{ $wedding->id }}" target="_blank"
+                                                    class="btn btn-outline-primary">Laporan Wedding</a>
                                             </div>
                                         </div>
                                     </div>

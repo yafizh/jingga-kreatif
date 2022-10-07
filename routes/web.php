@@ -43,7 +43,10 @@ Route::resource('/dashboard/theme', Admin\ThemeController::class)->middleware(['
 Route::resource('/dashboard/vendor', Admin\VendorController::class)->middleware(['auth', 'is_admin']);
 
 // --- Wedding ---
-Route::resource('/dashboard/wedding', Admin\WeddingController::class)->middleware(['auth', 'is_admin']);
+Route::get('/dashboard/wedding/print/{wedding}', [Admin\WeddingController::class, 'print'])->middleware(['auth', 'is_admin']);
+Route::put('/dashboard/wedding/{wedding}/finish', [Admin\WeddingController::class, 'finish'])->middleware(['auth', 'is_admin']);
+Route::put('/dashboard/wedding/{wedding}/cancel', [Admin\WeddingController::class, 'cancel'])->middleware(['auth', 'is_admin']);
+Route::resource('/dashboard/wedding', Admin\WeddingController::class)->except('edit')->middleware(['auth', 'is_admin']);
 Route::put('/dashboard/newlywed/{newlywed}', [Admin\NewlywedController::class, 'update'])->middleware(['auth', 'is_admin']);
 
 // --- Meeting History ---
