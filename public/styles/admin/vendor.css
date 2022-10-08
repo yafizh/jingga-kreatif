@@ -1,0 +1,23 @@
+.card-theme,
+.card-vendor {
+    max-width: 12rem;
+}
+
+.card-theme .card-image,
+.card-vendor .card-image {
+    height: 176px;
+}
+
+.card-theme .card-image img,
+.card-vendor .card-image img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.card-theme .card-title h5,
+.card-vendor .card-title h5 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

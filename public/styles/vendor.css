@@ -19,29 +19,28 @@
     overflow: hidden;
 }
 
-.overplay {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    opacity: 0;
-    visibility: none;
-    transition: 0.5s ease;
-    background-color: #393839;
+/* .overplay {
+position: absolute;
+left: 0;
+right: 0;
+bottom: 0;
+width: 100%;
+opacity: 0;
+visibility: none;
+transition: 0.5s ease;
+background-color: #393839;
 
-    height: fit-content;
+height: fit-content;
 
-    text-align: center;
-    color: #fff;
+text-align: center;
+color: #fff;
 
-    /* Flex Box */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+} */
+/*
 .card:hover .overplay {
     opacity: 1;
-}
+} */

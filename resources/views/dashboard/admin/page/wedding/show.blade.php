@@ -283,49 +283,6 @@
                                             </form>
                                         </div>
                                     @endif
-                                    <style>
-                                        #vendor .card {
-                                            width: 12rem;
-                                            /* height: 360px; */
-                                        }
-
-                                        #vendor .card-image {
-                                            position: relative;
-                                            height: 176px;
-                                        }
-
-                                        #vendor .card-image img {
-                                            object-fit: cover;
-                                            height: 100%;
-                                            width: 100%;
-                                        }
-
-                                        #vendor .overplay {
-                                            position: absolute;
-                                            top: 0;
-                                            left: 0;
-                                            right: 0;
-                                            bottom: 0;
-                                            width: 100%;
-                                            opacity: 0;
-                                            visibility: none;
-                                            transition: 0.5s ease;
-                                            background-color: #393839;
-
-                                            text-align: center;
-                                            color: #fff;
-
-                                            /* Flex Box */
-                                            display: flex;
-                                            flex-direction: column;
-                                            justify-content: center;
-                                            align-items: center;
-                                        }
-
-                                        #vendor .card:hover .overplay {
-                                            opacity: 1;
-                                        }
-                                    </style>
                                     <div class="tab-pane {{ $section == 'vendor' ? 'active' : '' }}" id="vendor">
                                         <div class="row">
                                             <div class="col-12">
@@ -340,19 +297,15 @@
                                                     <h3>Konsep</h3>
                                                 </div>
                                                 <div class="col-6 col-sm-3 col-xl-2 mb-3">
-                                                    <div class="card border-1 w-100">
+                                                    <div class="card h-100 card-theme">
                                                         <div class="card-image">
                                                             <img
                                                                 src="{{ asset('storage/' . $wedding_theme->theme->thumbnail) }}">
-                                                            <div class="overplay">
-                                                                <h5 class="text-center text-white">
-                                                                    {{ $wedding_theme->theme->name }}
-                                                                </h5>
-                                                            </div>
                                                         </div>
-                                                        <div class="card-body pt-3">
-                                                            <button
-                                                                class="btn btn-outline-danger btn-sm w-100">Hapus</button>
+                                                        <div class="card-body d-flex justify-content-center">
+                                                            <div class="card-title text-center">
+                                                                <h5>{{ $wedding_theme->theme->name }}</h5>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -367,21 +320,19 @@
                                                     </div>
                                                     @foreach ($vendors['vendor'][$vendor_type_id] as $vendor)
                                                         <div class="col-6 col-sm-3 col-xl-2 mb-3">
-                                                            <div class="card border-1 w-100">
+
+                                                            <div class="card h-100 card-theme">
                                                                 <div class="card-image">
                                                                     <img src="{{ asset('storage/' . $vendor->logo) }}">
-                                                                    <div class="overplay">
-                                                                        <h5 class="text-center text-white">
-                                                                            {{ $vendor->name }}
-                                                                        </h5>
-                                                                        <h6 class="text-white">Rp.
+                                                                </div>
+                                                                <div
+                                                                    class="card-body d-flex justify-content-between flex-column">
+                                                                    <div class="card-title text-center">
+                                                                        <h5>{{ $vendor->name }}</h5>
+                                                                        <h6 class="text-muted">Rp.
                                                                             {{ number_format($vendor->price, 0, ',', '.') }}
                                                                         </h6>
                                                                     </div>
-                                                                </div>
-                                                                <div class="card-body pt-3">
-                                                                    <button
-                                                                        class="btn btn-outline-danger btn-sm w-100">Hapus</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -519,6 +470,7 @@
                                                 <div class="col-sm-10">
                                                     <input type="date" class="form-control" id="wedding_date"
                                                         name="wedding_date" value="{{ $wedding->wedding_date }}"
+                                                        autocomplete="off"
                                                         {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                 </div>
                                             </div>
@@ -527,7 +479,7 @@
                                                     Wedding</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control" id="place"
-                                                        name="place" value="{{ $wedding->place }}"
+                                                        name="place" value="{{ $wedding->place }}" autocomplete="off"
                                                         {{ is_null($wedding->status) ? '' : 'disabled' }}>
                                                 </div>
                                             </div>
@@ -536,7 +488,8 @@
                                                     Alamat
                                                 </label>
                                                 <div class="col-sm-10">
-                                                    <textarea name="address" id="address" class="form-control" {{ is_null($wedding->status) ? '' : 'disabled' }}>{{ $wedding->address }}</textarea>
+                                                    <textarea name="address" id="address" autocomplete="off" class="form-control"
+                                                        {{ is_null($wedding->status) ? '' : 'disabled' }}>{{ $wedding->address }}</textarea>
                                                 </div>
                                             </div>
                                             @if (is_null($wedding->status))

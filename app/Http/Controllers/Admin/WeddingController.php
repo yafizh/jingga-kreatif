@@ -77,8 +77,21 @@ class WeddingController extends Controller
 
         $section = session('section', 'profile');
         Session::forget('section');
+
+        if(is_null($wedding->status)){
+            $active = "wedding";
+        }
+
+        if($wedding->status){
+            $active = "finish";
+        }
+
+        if(!$wedding->status){
+            $active = "cancel";
+        }
+
         return view('dashboard.admin.page.wedding.show', [
-            "active" => "wedding",
+            "active" => $active,
             "wedding" => $wedding,
             "client" => $client,
             "groom" => $groom,
@@ -140,7 +153,7 @@ class WeddingController extends Controller
             'status' => 0
         ]);
 
-        return redirect('/dashboard/wedding');
+        return redirect('/dashboard/wedding/' . $wedding->id);
     }
 
     public function finish(Wedding $wedding)
@@ -149,7 +162,7 @@ class WeddingController extends Controller
             'status' => 1
         ]);
 
-        return redirect('/dashboard/wedding');
+        return redirect('/dashboard/wedding/' . $wedding->id);
     }
 
     public function print(Wedding $wedding)

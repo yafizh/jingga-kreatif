@@ -214,7 +214,7 @@
                         <td class="small-td">Total Pembayaran</td>
                         <td class="text-end" colspan="2">
                             <strong>
-                                Rp {{ number_format($payment->sum('nominal'), 0, ',', '.') }}
+                                Rp {{ number_format($payments->sum('nominal'), 0, ',', '.') }}
                             </strong>
                         </td>
                     </tr>

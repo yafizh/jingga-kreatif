@@ -40,7 +40,7 @@
                     @csrf
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control border-0 jingga-shadow" id="name" name="name"
-                            placeholder="your name" autocomplete="off" required>
+                            placeholder="your name" autocomplete="off" required autofocus>
                         <label for="name">Nama Lengkap</label>
                     </div>
                     <div class="form-floating mb-3">

@@ -19,6 +19,10 @@
     <link rel="stylesheet" type="text/css" href="/styles/trix.css">
     <script type="text/javascript" src="/scripts/trix.js"></script>
 
+    @if (in_array($active, ['finish', 'wedding', 'cancel']))
+        <link rel="stylesheet" href="/styles/admin/vendor.css">
+    @endif
+
     <style>
         :root {
             --primary-color: #f15a24;
@@ -46,7 +50,7 @@
             color: var(--primary-color) !important;
         }
 
-        .card .nav .nav-link.active{
+        .card .nav .nav-link.active {
             background-color: var(--primary-color) !important;
         }
 
