@@ -52,21 +52,26 @@ const toastGenerator = (choose = 1, name, type) => {
 
 const vendorGenerator = (vendors) => {
     const container = document.createElement("div");
-    container.classList.add("mb-3");
+    container.classList.add("row", "mb-3");
 
     const title = document.createElement("h4");
-    title.classList.add("mb-3");
+    title.classList.add("col-12", "mb-3");
     title.innerText = vendors[0].vendor_type_name;
 
-    const card_container = document.createElement("div");
-    card_container.classList.add("d-flex");
-    card_container.classList.add("gap-3");
-    card_container.classList.add("flex-wrap");
-    card_container.classList.add("justify-content-start");
+    container.append(title);
 
     vendors.forEach((vendor) => {
+        const card_container = document.createElement("div");
+        card_container.classList.add(
+            "col-12",
+            "col-sm-4",
+            "col-md-3",
+            "col-xl-2",
+            "mb-3"
+        );
+
         const card = document.createElement("div");
-        card.classList.add("card");
+        card.classList.add("card", "h-100", "m-auto");
 
         const card_image = document.createElement("div");
         card_image.classList.add("card-image");
@@ -77,21 +82,26 @@ const vendorGenerator = (vendors) => {
             `${window.location.origin}/storage/${vendor.logo}`
         );
 
-        const overplay = document.createElement("div");
-        overplay.classList.add("overplay");
+        const card_body = document.createElement("div");
+        card_body.classList.add(
+            "card-body",
+            "d-flex",
+            "justify-content-between",
+            "flex-column"
+        );
+
+        const card_title = document.createElement("div");
+        card_title.classList.add("card-title", "text-center");
 
         const vendor_name = document.createElement("h5");
         vendor_name.innerText = vendor.name;
 
         const vendor_price = document.createElement("h6");
+        vendor_price.classList.add("text-muted");
         vendor_price.innerText = `Rp ${rupiahFormat(vendor.price)}`;
 
-        overplay.append(vendor_name);
-        overplay.append(vendor_price);
-
-        const card_body = document.createElement("div");
-        card_body.classList.add("card-body");
-        card_body.classList.add("pt-0");
+        card_title.append(vendor_name);
+        card_title.append(vendor_price);
 
         const choose_button = document.createElement("button");
         choose_button.classList.add("choose");
@@ -101,6 +111,8 @@ const vendorGenerator = (vendors) => {
         choose_button.classList.add("w-100");
         choose_button.classList.add("my-2");
         choose_button.innerText = "Pilih Vendor";
+
+        const button_container = document.createElement("div");
 
         choose_button.addEventListener("click", function () {
             if (this.classList.contains("choosed")) {
@@ -166,21 +178,20 @@ const vendorGenerator = (vendors) => {
             $("#detailModal").modal("show");
         });
 
-        card_body.append(choose_button);
-        card_body.append(detail_button);
+        button_container.append(choose_button);
+        button_container.append(detail_button);
+
+        card_body.append(card_title);
+        card_body.append(button_container);
 
         card_image.append(img);
-        card_image.append(overplay);
 
         card.append(card_image);
         card.append(card_body);
-
         card_container.append(card);
+
+        container.append(card_container);
     });
-
-    container.append(title);
-    container.append(card_container);
-
     document.querySelector("#grid-container").append(container);
 };
 
@@ -188,21 +199,26 @@ const themeGenerator = (themes) => {
     const choose_button_collection = [];
 
     const container = document.createElement("div");
-    container.classList.add("mb-3");
+    container.classList.add("row", "mb-3");
 
     const title = document.createElement("h4");
-    title.classList.add("mb-3");
+    title.classList.add("col-12", "mb-3");
     title.innerText = "Konsep";
 
-    const card_container = document.createElement("div");
-    card_container.classList.add("d-flex");
-    card_container.classList.add("gap-3");
-    card_container.classList.add("flex-wrap");
-    card_container.classList.add("justify-content-start");
+    container.append(title);
 
     themes.forEach((theme) => {
+        const card_container = document.createElement("div");
+        card_container.classList.add(
+            "col-12",
+            "col-sm-4",
+            "col-md-3",
+            "col-xl-2",
+            "mb-3"
+        );
+
         const card = document.createElement("div");
-        card.classList.add("card");
+        card.classList.add("card", "h-100", "m-auto");
 
         const card_image = document.createElement("div");
         card_image.classList.add("card-image");
@@ -213,34 +229,44 @@ const themeGenerator = (themes) => {
             `${window.location.origin}/storage/${theme.thumbnail}`
         );
 
-        const overplay = document.createElement("div");
-        overplay.classList.add("overplay");
-
-        const theme_name = document.createElement("h5");
-        theme_name.innerText = theme.name;
-
-        overplay.append(theme_name);
-
         const card_body = document.createElement("div");
-        card_body.classList.add("card-body");
-        card_body.classList.add("pt-0");
+        card_body.classList.add(
+            "card-body",
+            "d-flex",
+            "justify-content-between",
+            "flex-column"
+        );
+
+        const card_title = document.createElement("div");
+        card_title.classList.add("card-title", "text-center");
+
+        const inner_title = document.createElement("h5");
+        inner_title.innerText = theme.name;
+
+        card_title.append(inner_title);
+
+        const button_container = document.createElement("div");
 
         const choose_button = document.createElement("button");
-        choose_button.classList.add("choose");
-        choose_button.classList.add("btn");
-        choose_button.classList.add("btn-outline-primary");
-        choose_button.classList.add("btn-sm");
-        choose_button.classList.add("w-100");
-        choose_button.classList.add("my-2");
+        choose_button.classList.add(
+            "choose",
+            "btn",
+            "btn-outline-primary",
+            "btn-sm",
+            "w-100",
+            "mb-2"
+        );
         choose_button.innerText = "Pilih Konsep";
 
         choose_button_collection.push(choose_button);
 
         const detail_button = document.createElement("button");
-        detail_button.classList.add("btn");
-        detail_button.classList.add("btn-outline-primary");
-        detail_button.classList.add("btn-sm");
-        detail_button.classList.add("w-100");
+        detail_button.classList.add(
+            "btn",
+            "btn-outline-primary",
+            "btn-sm",
+            "w-100"
+        );
         detail_button.innerText = "Lihat Detail";
 
         detail_button.addEventListener("click", function () {
@@ -268,20 +294,20 @@ const themeGenerator = (themes) => {
             $("#detailModal").modal("show");
         });
 
-        card_body.append(choose_button);
-        card_body.append(detail_button);
+        button_container.append(choose_button);
+        button_container.append(detail_button);
+
+        card_body.append(card_title);
+        card_body.append(button_container);
 
         card_image.append(img);
-        card_image.append(overplay);
 
         card.append(card_image);
         card.append(card_body);
-
         card_container.append(card);
-    });
 
-    container.append(title);
-    container.append(card_container);
+        container.append(card_container);
+    });
 
     choose_button_collection.forEach((choose_button, index) => {
         choose_button.addEventListener("click", function () {

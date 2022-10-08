@@ -15,20 +15,41 @@
             </div>
         </div>
         <div class="col-12" id="grid-container">
-            {{-- <div class="mb-3">
-                <h4 class="mb-3">Dekorasi</h4>
-                <div class="d-flex gap-3 flex-wrap justify-content-start">
-                    <div class="card" style="width: 12rem;">
+            {{-- <div class="row mb-3">
+                <div class="col-12 mb-3">
+                    <h4>Dekorasi</h4>
+                </div>
+                <div class="col-12 col-sm-4 col-md-3 col-xl-2 mb-3">
+                    <div class="card h-100">
                         <div class="card-image">
                             <img src="https://static.wixstatic.com/media/7b1dfb_1a74b1d718ca44219eb9a8a4ba1dab09~mv2.png">
-                            <div class="overplay">
-                                <h5 class="text-center text-white">Galathia Decor Decor</h5>
-                                <h6 class="text-white">Rp. 1.000.000</h6>
+                        </div>
+                        <div class="card-body d-flex justify-content-between flex-column">
+                            <div class="card-title text-center">
+                                <h5>Tradisional</h5>
+                                <h6 class="text-muted">Rp. 5.000.000</h6>
+                            </div>
+                            <div class="button-container">
+                                <button class="choose btn btn-outline-primary btn-sm w-100 mb-2">Pilih Vendor</button>
+                                <button class="btn btn-outline-primary btn-sm w-100">Lihat Detail</button>
                             </div>
                         </div>
-                        <div class="card-body pt-0">
-                            <button class="choose btn btn-outline-primary btn-sm w-100 my-2">Pilih Vendor</button>
-                            <button class="btn btn-outline-primary btn-sm w-100">Lihat Detail</button>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4 col-md-3 col-xl-2 mb-3">
+                    <div class="card h-100">
+                        <div class="card-image border">
+                            <img src="https://static.wixstatic.com/media/7b1dfb_1a74b1d718ca44219eb9a8a4ba1dab09~mv2.png">
+                        </div>
+                        <div class="card-body d-flex justify-content-between flex-column">
+                            <div class="card-title">
+                                <h5 class="text-start">Mega Sound Sytem</h5>
+                                <h6 class="text-center text-muted">Rp. 5.000.000</h6>
+                            </div>
+                            <div class="button-container">
+                                <button class="choose btn btn-outline-primary btn-sm w-100 mb-2">Pilih Vendor</button>
+                                <button class="btn btn-outline-primary btn-sm w-100">Lihat Detail</button>
+                            </div>
                         </div>
                     </div>
                 </div>

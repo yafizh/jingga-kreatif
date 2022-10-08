@@ -1,10 +1,9 @@
 .card {
-    width: 12rem;
+    max-width: 12rem;
     height: 360px;
 }
 
 .card-image {
-    position: relative;
     height: 176px;
 }
 
@@ -14,9 +13,14 @@
     width: 100%;
 }
 
+.card-title h5 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .overplay {
     position: absolute;
-    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -25,6 +29,8 @@
     visibility: none;
     transition: 0.5s ease;
     background-color: #393839;
+
+    height: fit-content;
 
     text-align: center;
     color: #fff;
