@@ -45,7 +45,12 @@
                                     @if ($payment->paymentHistories->count())
                                         <div class="form-group">
                                             <label>Tanggal Pembayaran</label>
-                                            <input type="text" class="form-control" value="">
+                                            <input type="text" class="form-control" value="{{ $payment->payment_date }}"
+                                                disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="d-block">Bukti Pembayaran</label>
+                                            <a href="{{ asset('storage/' . $payment->photo) }}" target="_blank">Lihat Foto</a>
                                         </div>
                                     @endif
                                     <div class="d-flex justify-content-between mt-4">

@@ -43,8 +43,9 @@ class PaymentController extends Controller
     public function show(Payment $payment)
     {
         if($payment->paymentHistories->count()){
-            $payment_date = $payment->paymentHistories->first();
-            $payment->payment_date = $payment_date->created_at->day . " " . $payment_date->created_at->locale('ID')->getTranslatedMonthName() . " " . $payment_date->created_at->year;
+            $paymentHistories = $payment->paymentHistories->first();
+            $payment->payment_date = $paymentHistories->created_at->day . " " . $paymentHistories->created_at->locale('ID')->getTranslatedMonthName() . " " . $paymentHistories->created_at->year;
+            $payment->photo = $paymentHistories->photo;
         }
 
         return view('dashboard.admin.page.payment.show', [

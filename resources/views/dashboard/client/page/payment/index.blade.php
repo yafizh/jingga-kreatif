@@ -44,7 +44,7 @@
                                     <button class="btn btn btn-primary pay-btn" data-id="{{ $payment->id }}">Lakukan
                                         Pembayaran</button>
                                 @elseif (is_null($payment->paymentHistories->first()->status))
-                                    <button class="btn btn btn-primary pay-btn" data-id="{{ $payment->id }}">Edit Bukti Pembayaran</button>
+                                    <button class="btn btn btn-primary pay-btn" data-id="{{ $payment->id }}">Perbaharui Bukti Pembayaran</button>
                                 @elseif (!$payment->paymentHistories->first()->status)
                                     <button class="btn btn btn-primary pay-btn" data-id="{{ $payment->id }}">Lakukan
                                         Pembayaran Ulang</button>
