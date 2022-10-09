@@ -15,4 +15,9 @@ class Client extends Model
     {
         return $this->hasOne(Wedding::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

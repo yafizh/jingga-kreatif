@@ -22,12 +22,12 @@ input_photo.addEventListener("change", function () {
 
 });
 
-document.querySelector('form').addEventListener('submit', function(e){
-    if(!input_photo.files.length) {
+// document.querySelector('form').addEventListener('submit', function(e){
+//     if(!input_photo.files.length) {
 
-    } else return;
-    e.preventDefault();
-    console.log('prevent')
-});
+//     } else return;
+//     e.preventDefault();
+//     console.log('prevent')
+// });
 
 

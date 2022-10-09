@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Vendor;
+use App\Models\Wedding;
 
 class VendorController extends Controller
 {
@@ -12,6 +13,23 @@ class VendorController extends Controller
         return view('dashboard.client.page.vendor.create', [
             "active" => "vendor",
             "active_navigation" => 5
+        ]);
+    }
+
+    public function edit(Wedding $wedding)
+    {
+        $vendors = [];
+        $total_price = 0;
+        foreach ($wedding->vendors as $vendor) {
+            $vendors[] = $vendor->vendor_id;
+            $total_price += $vendor->vendor->price;
+        }
+        return view('dashboard.client.page.vendor.edit', [
+            'active' => 'setting.theme-vendor',
+            'theme' => $wedding->theme->theme_id,
+            'vendors' => implode(',', $vendors),
+            'total_price' => $total_price,
+            'wedding' => $wedding
         ]);
     }
 

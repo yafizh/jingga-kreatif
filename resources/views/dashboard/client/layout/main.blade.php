@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Jingga Kreatif</title>
-    @if ($active == 'vendor')
+    @if ($active == 'vendor' || $active == 'setting.theme-vendor')
         <link rel="stylesheet" href="/styles/vendor.css">
     @elseif ($active == 'meeting')
         <link rel="stylesheet" href="/styles/meeting.css">
@@ -28,9 +28,13 @@
     <script src="/scripts/helper.js"></script>
     @if ($active == 'vendor')
         <script src="/scripts/vendor.js"></script>
+    @elseif ($active == 'setting.theme-vendor')
+        <script src="/scripts/client/edit_vendor.js"></script>
     @elseif ($active == 'registration')
         <script src="/scripts/registration.js"></script>
-    @elseif ($active == 'groom' || $active == 'bride')
+    @elseif ($active == 'setting.client')
+        <script src="/scripts/client/edit_client.js"></script>
+    @elseif ($active == 'groom' || $active == 'bride' || $active == 'setting.newlywed')
         <script src="/scripts/newlywed.js"></script>
     @elseif ($active == 'payment')
         <script src="/scripts/payment.js"></script>

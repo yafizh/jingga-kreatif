@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 class NewlywedController extends Controller
 {
-    public function create()
+    public function index()
     {
         if (Route::currentRouteName() === 'groom') {
             return view('dashboard.client.page.newlywed.create', [
@@ -72,11 +72,39 @@ class NewlywedController extends Controller
 
     public function edit(Newlywed $newlywed)
     {
-        //
+        return view('dashboard.client.page.newlywed.edit', [
+            'active' => 'setting.newlywed',
+            'newlywed' => $newlywed
+        ]);
     }
 
     public function update(Request $request, Newlywed $newlywed)
     {
+        $validatedData = $request->validate([
+            "nik" => "required",
+            "name" => "required",
+            "birthplace" => "required",
+            "birthdate" => "required",
+            "father_name" => "required",
+            "mother_name" => "required",
+        ]);
 
+        if ($request->file('photo'))
+            $validatedData['photo'] = $request->file('photo')->store('newlywed-photo');
+        else
+            $validatedData['photo'] = $newlywed->photo;
+
+
+        Newlywed::where('id', $newlywed->id)->update([
+            'nik' => $validatedData['nik'],
+            'name' => $validatedData['name'],
+            'birthplace' => $validatedData['birthplace'],
+            'birthdate' => $validatedData['birthdate'],
+            'father_name' => $validatedData['father_name'],
+            'mother_name' => $validatedData['mother_name'],
+            'photo' => $validatedData['photo'],
+        ]);
+
+        return redirect('/setting');
     }
 }

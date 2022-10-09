@@ -11,7 +11,7 @@
     <hr>
     <div class="menu w-100">
         <a href="/wedding" class="text-reset text-decoration-none">
-            <div class="sidebar-item my-3 {{ $active != 'meeting' ? 'sidebar-active' : '' }}">
+            <div class="sidebar-item my-3 {{ $active != 'meeting' && explode('.', $active)[0] != 'setting' ? 'sidebar-active' : '' }}">
                 <div class="mb-2">
                     <i class="sidebar-icon fa-solid fa-house"></i>
                 </div>
@@ -19,12 +19,14 @@
             </div>
         </a>
         @if (auth()->user())
-            {{-- <div class="sidebar-item my-3">
-                <div class="mb-2">
-                    <i class="sidebar-icon fa-solid fa-user"></i>
+            <a href="/setting" class="text-reset text-decoration-none">
+                <div class="sidebar-item my-3 {{ explode('.', $active)[0] == 'setting' ? 'sidebar-active' : '' }}">
+                    <div class="mb-2">
+                        <i class="sidebar-icon fa-solid fa-user"></i>
+                    </div>
+                    <h6 class="m-0 text-center">Perbaharui Data</h6>
                 </div>
-                <h6 class="m-0 text-center">Perbaharui Data</h6>
-            </div> --}}
+            </a>
             <a href="/meeting-history" class="text-reset text-decoration-none">
                 <div class="sidebar-item my-3 {{ $active == 'meeting' ? 'sidebar-active' : '' }}">
                     <div class="mb-2">
