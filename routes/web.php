@@ -13,23 +13,8 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
-Route::get('/dashboard/introduction', function () {
-    return view('dashboard.client.page.introduction.index', [
-        "active" => "introduction",
-        "active_navigation" => 1
-    ]);
-});
-
-Route::get('/dashboard/registration', function () {
-    return view('dashboard.client.page.registration.create', [
-        "active" => "registration",
-        "active_navigation" => 2
-    ]);
-});
-Route::post('/dashboard/registration', [AuthController::class, 'registration']);
-
 // Mail Sender
-Route::post('/dashboard/mail/send', [Helper\MailerController::class, 'composeEmail']);
+Route::get('/registration/verification-code/{email}', [Helper\MailerController::class, 'composeEmail']);
 
 // Admin Route
 Route::get('/dashboard/admin', [Admin\DashboardController::class, 'index'])->middleware(['auth', 'is_admin']);
@@ -69,6 +54,14 @@ Route::put('dashboard/payment/verification/{payment}', [Admin\PaymentController:
 // ----------------------------------------------------------------------------------
 
 // Client Route
+Route::get('/introduction', function () {
+    return view('dashboard.client.page.introduction.index', [
+        "active" => "introduction",
+        "active_navigation" => 1
+    ]);
+});
+Route::get('/registration', [Client\ClientController::class, 'create']);
+Route::post('/registration', [Client\ClientController::class, 'store']);
 Route::resource('/wedding', Client\ClientController::class)->middleware(['auth', 'is_client']);
 Route::post('/wedding/storeChoosedThemeAndVendor', [Client\WeddingController::class, 'storeChoosedThemeAndVendor'])->middleware(['auth', 'is_client']);
 Route::put('/wedding/updateChoosedThemeAndVendor/{wedding}', [Client\WeddingController::class, 'updateChoosedThemeAndVendor'])->middleware(['auth', 'is_client']);

@@ -4,42 +4,35 @@ namespace App\Http\Controllers\Helper;
 
 use App\Http\Controllers\Controller;
 use Exception;
-use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
-use Ramsey\Uuid\Uuid;
 
 class MailerController extends Controller
 {
-    public function composeEmail(Request $request)
+    public function composeEmail($email)
     {
         $mail = new PHPMailer(true);
-        $uuid = Uuid::uuid4();
+        $verification_code = substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTU"), 0, 6);
         try {
-
-            // Email server settings
             $mail->SMTPDebug = 0;
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';             //  smtp host
+            $mail->Host = env("MAIL_HOST");
             $mail->SMTPAuth = true;
-            $mail->Username = 'abangfiq85@gmail.com';   //  sender username
-            $mail->Password = 'vtobmaogvyzfiqnc';       // sender password
-            $mail->SMTPSecure = 'ssl';                  // encryption - ssl/tls
-            $mail->Port = 465;                          // port - 587/465
+            $mail->Username = env("MAIL_USERNAME");
+            $mail->Password = env("MAIL_PASSWORD");
+            $mail->SMTPSecure = env("MAIL_ENCRYPTION");
+            $mail->Port = env("MAIL_PORT");
 
-            $mail->setFrom('abangfiq85@gmail.com', 'Jingga Kreatif');
-            $mail->addAddress($request->email);
+            $mail->setFrom(env("MAIL_FROM_ADDRESS"), 'Jingga Kreatif');
+            $mail->addAddress($email);
 
-            $mail->isHTML(true);                // Set email content format to HTML
-
-            // $mail->Subject = $request->emailSubject;
-            // $mail->Body    = $request->emailBody;
-            $mail->Subject = "Kode Aktivasi Email";
-            $mail->Body    = "Kode Aktivasi Email Anda Adalah: <strong>" . $uuid . "</strong>";
+            $mail->isHTML(true);
+            $mail->Subject = "Kode Verifikasi Email";
+            $mail->Body    = "Kode Verifikasi Email Anda Adalah: <strong>" . $verification_code . "</strong>";
 
             if (!$mail->send())
-                return response()->json(['message' => 'Email not sent.']);
+                return response()->json(['message' => 'Email not sent.', 'isSuccess' => false]);
             else
-                return response()->json(['message' => 'Email has been sent.', 'Uuid' => $uuid]);
+                return response()->json(['message' => 'Email has been sent.', 'isSuccess' => true, 'verificationCode' => $verification_code]);
         } catch (Exception $e) {
             return response()->json(['message' => 'Message could not be sent.']);
         }

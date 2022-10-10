@@ -7,7 +7,7 @@
         <div class="jumbotron-content text-center">
             <h1 class=""><strong>Jingga</strong>Kreatif</h1>
             <h2 class="fw-light mb-4">With Us Your Dream Event Will Come True</h2>
-            <a href="/dashboard/introduction" class="btn btn-outline-primary rounded-pill text-white">LAKUKAN PEMESANAN</a>
+            <a href="/introduction" class="btn btn-outline-primary rounded-pill text-white">LAKUKAN PEMESANAN</a>
         </div>
     </div>
     <div class="container-fluid">

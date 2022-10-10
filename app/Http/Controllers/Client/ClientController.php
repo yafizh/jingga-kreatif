@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\User;
+use App\Models\Wedding;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -26,6 +27,49 @@ class ClientController extends Controller
             return redirect('/groom');
 
         abort(500, 'SERVER ERROR');
+    }
+
+    public function create()
+    {
+        return view('dashboard.client.page.registration.create', [
+            "active" => "registration",
+            "active_navigation" => 2
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'phone_number' => 'required',
+            'email' => 'required|unique:clients',
+            'email_verification_code' => 'required',
+            'password' => 'required',
+            'confirm_password' => 'required'
+        ],[
+            'email.unique' => 'Email telah digunakan!'
+        ]);
+
+        if (!$this->isPasswordSame($validatedData['password'], $validatedData['confirm_password']))
+            return back();
+
+        $user_id = User::create([
+            'email' => $validatedData['email'],
+            'password' => bcrypt($validatedData['password'])
+        ])->id;
+
+        $client_id = Client::create([
+            'user_id' => $user_id,
+            'name' => $validatedData['name'],
+            'phone_number' => $validatedData['phone_number'],
+            'email' => $validatedData['email'],
+        ])->id;
+
+        Wedding::create([
+            'client_id' => $client_id
+        ]);
+
+        return redirect('/login')->with('login', 'Login untuk melanjutkan!');
     }
 
     public function edit(Request $request, Client $client)
