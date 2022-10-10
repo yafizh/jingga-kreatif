@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 class NewlywedController extends Controller
 {
-    public function index()
+    public function create()
     {
         if (Route::currentRouteName() === 'groom') {
             return view('dashboard.client.page.newlywed.create', [

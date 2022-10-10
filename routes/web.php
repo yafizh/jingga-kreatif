@@ -89,9 +89,6 @@ Route::put('/client/change-email/{client}', [Client\ClientController::class, 'up
 Route::put('/client/change-password/{client}', [Client\ClientController::class, 'updatePassword'])->middleware(['auth', 'is_client']);
 
 // --- AJAX Route ---
-Route::get('/theme/getCategorizedTheme', [Client\ThemeController::class, 'getCategorizedTheme'])->middleware(['auth', 'is_client']);
-Route::get('/vendor/getCategorizedVendor', [Client\VendorController::class, 'getCategorizedVendor'])->middleware(['auth', 'is_client']);
-Route::get('/bank/getAllBank', [Client\BankController::class, 'getAllBank'])->middleware(['auth', 'is_client']);
 Route::post('/payment/{payment}', [Client\PaymentController::class, 'store'])->middleware(['auth', 'is_client']);
 
 // ----------------------------------------------------------------------------------
@@ -100,3 +97,10 @@ Route::post('/payment/{payment}', [Client\PaymentController::class, 'store'])->m
 Route::get('/', [Landing\HomeController::class, 'index']);
 Route::get('/vendor', [Landing\VendorController::class, 'index']);
 Route::get('/crew', [Landing\CrewController::class, 'index']);
+
+// ----------------------------------------------------------------------------------
+
+// --- AJAX ROUTE ---
+Route::get('/theme/getCategorizedTheme', [Client\ThemeController::class, 'getCategorizedTheme']);
+Route::get('/vendor/getCategorizedVendor', [Client\VendorController::class, 'getCategorizedVendor']);
+Route::get('/bank/getAllBank', [Client\BankController::class, 'getAllBank']);

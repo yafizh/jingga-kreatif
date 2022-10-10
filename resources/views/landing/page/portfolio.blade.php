@@ -1,37 +1,9 @@
 @extends('landing.layout.main')
 
 @section('content')
-    <style>
-        .jumbotron {
-            width: 100%;
-            height: 512px;
-            position: relative;
-        }
-
-        .jumbotron-bg {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            object-fit: cover;
-            object-position: 0 0;
-            filter: brightness(50%);
-        }
-
-        .jumbotron-content {
-            position: relative;
-        }
-
-        h1,
-        h2,
-        h3 {
-            font-family: 'Poppins', sans-serif;
-        }
-    </style>
     <div class="jumbotron d-flex justify-content-center align-items-center flex-column text-white">
         <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
-            class="jumbotron-bg" alt="">
+            class="jumbotron-bg" alt="Jumbotron Images">
         <div class="jumbotron-content text-center">
             <h1 class=""><strong>Jingga</strong>Kreatif</h1>
             <h2 class="fw-light mb-4">With Us Your Dream Event Will Come True</h2>
@@ -54,7 +26,7 @@
         {{-- End Profile Section --}}
 
         {{-- Section --}}
-        <div class="row justify-content-center py-5" style="background-color: #F5F5F7;">
+        <div class="row justify-content-center py-5 striped">
             <div class="col-12 col-md-9 col-xl-6 mb-5 text-center">
                 <h3>ALASAN KENAPA HARUS PAKAI WO</h3>
                 <p>Kenapa ya? coba kita baca sama-sama alasannya pada bagian bawah ini</p>

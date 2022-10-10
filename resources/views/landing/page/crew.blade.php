@@ -3,45 +3,24 @@
 @section('content')
     <div class="container-fluid">
         {{-- Our Principle Section --}}
-        <div class="row justify-content-center py-5" style="background-color: #F5F5F7;">
+        <div class="row justify-content-center py-5 striped">
             <div class="col-12 col-md-9 col-xl-6 text-center">
-                <h3 style="font-weight: 600;">PRINSIP KAMI</h3>
-                <h4 class="mt-5">“Kepentingan Utama Kami Terletak pada Kepuasan Klien Kami Terhadap Layanan yang Kami
+                <h3 class="mb-5">PRINSIP KAMI</h3>
+                <h4>“Kepentingan Utama Kami Terletak pada Kepuasan Klien Kami Terhadap Layanan yang Kami
                     Berikan”</h4>
             </div>
         </div>
         {{-- End Our Principle Section --}}
 
-        <style>
-            .crew-name {
-                text-align: center;
-                width: 250px;
-                background-color: #ff5100;
-                border-radius: 30px;
-                font-size: .9rem;
-                padding: .4rem 1.5rem;
-            }
-
-            .crew-position {
-                width: 200px;
-                text-align: center;
-                background-color: #E7EAED;
-                border-radius: 30px;
-                font-size: .9rem;
-                padding: .4rem 1.5rem;
-            }
-        </style>
-
         {{-- The Vendors Section --}}
         <div class="row justify-content-center py-5">
-            <h3 style="font-weight: 600;" class="text-center mb-5">Meet The Team</h3>
+            <h3 class="text-center mb-5">Meet The Team</h3>
             <div class="col-10 col-sm-10 col-xl-9 col-xxl-8">
                 <div class="row justify-content-center">
                     @foreach ($employees as $employee)
                         <div class="col-auto">
                             <div class="mb-5 d-flex flex-column align-items-center">
-                                <img src="{{ asset('storage/' . $employee->photo) }}" class="rounded-circle mb-3"
-                                    style="width: 150px; height: 150px; object-fit: cover;">
+                                <img src="{{ asset('storage/' . $employee->photo) }}" class="rounded-circle mb-3 crew-photo">
                                 <div class="text-white mb-2 crew-name">{{ $employee->name }}</div>
                                 <div class="crew-position">{{ $employee->position }}</div>
                             </div>

@@ -134,7 +134,7 @@
         </div>
         <div class="theme-vendor pagebreak mt-5">
             <h5>Konsep dan Vendor</h5>
-            <table class="table table-borderless">
+            <table class="table table-bordered">
                 <tbody>
                     <tr>
                         <td class="small-td">Konsep</td>

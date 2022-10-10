@@ -1,0 +1,23 @@
+.crew-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.crew-name {
+    text-align: center;
+    width: 250px;
+    background-color: #ff5100;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    padding: 0.4rem 1.5rem;
+}
+
+.crew-position {
+    width: 200px;
+    text-align: center;
+    background-color: #e7eaed;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    padding: 0.4rem 1.5rem;
+}

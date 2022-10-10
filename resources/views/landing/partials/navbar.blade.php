@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #010101">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="portfolio.php">
-            <img src="/images/logo.png" width="150" alt="">
+            <img src="/images/logo.png" alt="Brand Logo">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,10 +21,9 @@
                     <a class="nav-link {{ $active == 'crew' ? 'text-primary' : 'text-white' }}" href="/crew">Crew</a>
                 </li>
             </ul>
-        </div>
-        <div>
-            <a href="/login" class="me-3 btn btn-outline-primary rounded-1 text-white">Login</a>
-            <a style="visibility: hidden;" href="/login" class="me-3 btn btn-outline-primary text-white">Login</a>
+            <div class="d-flex pe-5 me-5">
+                <a href="/login" class="me-3 btn btn-outline-primary rounded-1 text-white">Login</a>
+            </div>
         </div>
     </div>
 </nav>

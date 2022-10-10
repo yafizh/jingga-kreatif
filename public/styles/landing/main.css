@@ -1,0 +1,32 @@
+h1,
+h2,
+h3 {
+    font-family: "Poppins", sans-serif;
+}
+
+.striped {
+    background-color: #f5f5f7;
+}
+
+.navbar-brand img {
+    width: 150px;
+}
+
+nav,
+footer {
+    background-color: #010101;
+}
+
+.icon {
+    font-size: 24px;
+    margin: 0 16px;
+}
+
+.footer-divider {
+    height: 4px;
+    background-color: #ffffff;
+}
+
+.btn-outline-primary:hover {
+    color: white !important;
+}

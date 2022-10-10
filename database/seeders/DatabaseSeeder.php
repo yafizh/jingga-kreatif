@@ -106,7 +106,7 @@ class DatabaseSeeder extends Seeder
         Theme::create([
             'name' => 'Modern',
             'thumbnail' => 'theme-thumbnail/modern.jpg',
-            'description' => 'Pernikahan modern biasanya dipenuhi dengan garis-garis bersih, bentuk geometris, dan desain yang minimalis. Agar tidak terkesan datar, gunakan sesuatu yang membuat Anda menonjol seperti gaun pengantin dengan warna selain putih, dekorasi dengan warna yang lebih tegas.',
+            'description' => '<strong>Pernikahan</strong> modern biasanya dipenuhi dengan garis-garis bersih, bentuk geometris, dan desain yang minimalis. Agar tidak terkesan datar, gunakan sesuatu yang membuat Anda menonjol seperti gaun pengantin dengan warna selain putih, dekorasi dengan warna yang lebih tegas.',
         ]);
 
         ThemeImage::create([
