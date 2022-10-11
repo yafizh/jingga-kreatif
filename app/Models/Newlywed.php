@@ -15,4 +15,9 @@ class Newlywed extends Model
     {
         return $this->belongsTo(Wedding::class);
     }
+
+    public function documents()
+    {
+        return $this->hasMany(NewlywedDocument::class);
+    }
 }

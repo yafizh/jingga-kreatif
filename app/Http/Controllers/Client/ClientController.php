@@ -18,7 +18,7 @@ class ClientController extends Controller
             return redirect('/payment');
 
         if (Auth::user()->client->wedding->newlyweds->count() === 2)
-            return redirect('/vendor');
+            return redirect('/theme-vendor');
 
         if (Auth::user()->client->wedding->newlyweds->count() === 1)
             return redirect('/bride');

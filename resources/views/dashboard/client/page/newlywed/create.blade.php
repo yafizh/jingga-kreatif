@@ -48,7 +48,7 @@
                     <input type="radio" name="sex" value="1" {{ $newlywed ? 'checked' : '' }} hidden>
                     <input type="radio" name="sex" value="0" {{ $newlywed ? '' : 'checked' }} hidden>
                     <input type="file" name="photo" id="photo" hidden required>
-                    <input type="file" name="documents[]" hidden>
+                    <input type="file" name="documents[]" id="documents" multiple hidden>
                     <div class="d-flex justify-content-center w-100 mt-4">
                         <button type="submit" class="btn btn-primary text-white"
                             onclick="return confirm('Yakin dengan identitas mempelai {{ $newlywed ? 'pria' : 'wanita' }} yang dimasukan?')">Kirim</button>
@@ -59,10 +59,10 @@
         <div class="col-12 col-lg-4 col-xxl-3 mb-3">
             <div class="row h-100">
                 <div class="col-12 col-sm-6 col-lg-12 d-flex align-items-center pb-2">
-                    <div class="d-flex justify-content-between flex-column px-5 py-4 bg-white jingga-shadow rounded-2 w-100"
+                    <div id="upload-photo" class="d-flex justify-content-between flex-column px-5 py-4 bg-white jingga-shadow rounded-2 w-100"
                         style="min-height: 240px;">
                         <h5 class="text-center">Tidak ada gambar</h5>
-                        <p id="preview-upload-photo" class="text-center">Upload gambar mempelai pria di sini dengan menekan
+                        <p class="text-center">Upload gambar mempelai pria di sini dengan menekan
                             tombol Pilih Gambar</p>
                         <button id="btn-upload-photo" class="btn btn-primary">
                             <i class="fa-solid fa-cloud-arrow-up"></i>
@@ -72,21 +72,16 @@
                 </div>
                 <div class="col-12 col-sm-6 col-lg-12 d-flex align-items-center pb-2">
                     <div class="d-flex justify-content-center w-100">
-                        <div class="d-flex justify-content-between flex-column px-5 py-4 bg-white jingga-shadow rounded-2 w-100"
+                        <div id="upload-documents" class="d-flex justify-content-between flex-column px-5 py-4 bg-white jingga-shadow rounded-2 w-100"
                             style="min-height: 240px;">
                             <h5 class="text-center">Tidak ada Dokumen</h5>
                             <p class="text-center">Upload dokumen tambahan jika ada di sini dengan menekan tombol Pilih
                                 Dokumen
                             </p>
-                            {{-- <ol>
-                                <li><a href="" target="_blank">Dokumen 1</a></li>
-                                <li><a href="" target="_blank">Dokumen 1</a></li>
-                                <li><a href="" target="_blank">Dokumen 1</a></li>
-                                <li><a href="" target="_blank">Dokumen 1</a></li>
-                            </ol> --}}
-
-                            <button class="btn btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Pilih
-                                Dokumen</button>
+                            <button id="btn-upload-documents" class="btn btn-primary">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                Pilih Dokumen
+                            </button>
                         </div>
                     </div>
                 </div>

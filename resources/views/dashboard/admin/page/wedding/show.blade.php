@@ -102,7 +102,7 @@
                                     @if ($groom)
                                         <div class="tab-pane {{ $section == 'groom' ? 'active' : '' }}" id="groom">
                                             <form action="/dashboard/newlywed/{{ $groom->id }}" method="POST"
-                                                class="form-horizontal">
+                                                class="form-horizontal" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('PUT')
                                                 <div class="form-group row">
@@ -175,11 +175,34 @@
                                                             <input type="file" class="custom-file-input"
                                                                 id="photo" name="photo"
                                                                 {{ is_null($wedding->status) ? '' : 'disabled' }}>
-                                                            <label class="custom-file-label" for="photo">Pilih
-                                                                Foto</label>
+                                                            <label class="custom-file-label" for="photo">
+                                                                Ganti Foto
+                                                            </label>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @foreach ($groom->documents as $document)
+                                                    <div class="form-group row">
+                                                        <label for="document" class="col-sm-2 col-form-label">
+                                                            Dokumen {{ $loop->iteration }}
+                                                            |
+                                                            <a href="{{ asset('storage/' . $document->document) }}"
+                                                                target="_blank">Lihat</a>
+                                                        </label>
+                                                        <div class="input-group col-sm-10">
+                                                            <div class="custom-file">
+                                                                <input type="file" class="custom-file-input"
+                                                                    id="document" name="documents[]"
+                                                                    {{ is_null($wedding->status) ? '' : 'disabled' }}>
+                                                                <input type="text" name="id_documents[]"
+                                                                    value="{{ $document->id }}">
+                                                                <label class="custom-file-label" for="document">
+                                                                    Ganti Dokumen
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
                                                 @if (is_null($wedding->status))
                                                     <div class="form-group row">
                                                         <div class="offset-sm-2 col-sm-10">
@@ -194,7 +217,7 @@
                                     @if ($bride)
                                         <div class="tab-pane {{ $section == 'bride' ? 'active' : '' }}" id="bride">
                                             <form action="/dashboard/newlywed/{{ $bride->id }}" method="POST"
-                                                class="form-horizontal">
+                                                class="form-horizontal" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('PUT')
                                                 <div class="form-group row">
@@ -272,6 +295,28 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @foreach ($bride->documents as $document)
+                                                <div class="form-group row">
+                                                    <label for="document" class="col-sm-2 col-form-label">
+                                                        Dokumen {{ $loop->iteration }}
+                                                        |
+                                                        <a href="{{ asset('storage/' . $document->document) }}"
+                                                            target="_blank">Lihat</a>
+                                                    </label>
+                                                    <div class="input-group col-sm-10">
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input"
+                                                                id="document" name="documents[]"
+                                                                {{ is_null($wedding->status) ? '' : 'disabled' }}>
+                                                            <input type="text" name="id_documents[]"
+                                                                value="{{ $document->id }}">
+                                                            <label class="custom-file-label" for="document">
+                                                                Ganti Dokumen
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                                 @if (is_null($wedding->status))
                                                     <div class="form-group row">
                                                         <div class="offset-sm-2 col-sm-10">

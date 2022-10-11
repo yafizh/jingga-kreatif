@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Newlywed;
+use App\Models\NewlywedDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -47,7 +48,7 @@ class NewlywedController extends Controller
         if ($request->file('photo'))
             $validatedData['photo'] = $request->file('photo')->store('newlywed-photo');
 
-        Newlywed::create([
+        $newlywed_id = Newlywed::create([
             'wedding_id' => Auth::user()->client->wedding->id,
             'nik' => $validatedData['nik'],
             'name' => $validatedData['name'],
@@ -57,7 +58,16 @@ class NewlywedController extends Controller
             'father_name' => $validatedData['father_name'],
             'mother_name' => $validatedData['mother_name'],
             'photo' => $validatedData['photo'],
-        ]);
+        ])->id;
+
+        if ($request->hasFile('documents')) {
+            foreach ($request->file('documents') as $document) {
+                NewlywedDocument::create([
+                    'newlywed_id' => $newlywed_id,
+                    'document' => $document->store('newlywed-documents'),
+                ]);
+            }
+        }
 
         if ($validatedData['sex'])
             return redirect('/bride');
@@ -102,6 +112,33 @@ class NewlywedController extends Controller
             'mother_name' => $validatedData['mother_name'],
             'photo' => $validatedData['photo'],
         ]);
+
+        // Update Code
+        if ($request->hasFile('old_documents')) {
+            foreach ($request->file('old_documents') as $i => $document) {
+                if ($document)
+                    NewlywedDocument::where('id', $request->id_old_documents[$i])->update([
+                        'document' => $document->store('newlywed-documents')
+                    ]);
+            }
+        }
+
+        // Delete Code
+        foreach ($request->state_old_documents as $i => $state_old_documents) {
+            if ($state_old_documents == 'delete')
+                NewlywedDocument::where('id', $request->id_old_documents[$i])->delete();
+        }
+
+        // Add New Documents
+        if ($request->hasFile('documents')) {
+            foreach ($request->file('documents') as $document) {
+                NewlywedDocument::create([
+                    'newlywed_id' => $newlywed->id,
+                    'document' => $document->store('newlywed-documents'),
+                ]);
+            }
+        }
+
 
         return redirect('/groom/' . $newlywed->id . '/edit')->with('success', "Berhasil memperbaharui data mempelai " . ($newlywed->sex ? 'pria' : 'wanita') . '.');
     }

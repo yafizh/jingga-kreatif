@@ -78,17 +78,12 @@ class WeddingController extends Controller
         $section = session('section', 'profile');
         Session::forget('section');
 
-        if(is_null($wedding->status)){
+        if (is_null($wedding->status))
             $active = "wedding";
-        }
-
-        if($wedding->status){
+        elseif ($wedding->status)
             $active = "finish";
-        }
-
-        if(!$wedding->status){
+        elseif (!$wedding->status)
             $active = "cancel";
-        }
 
         return view('dashboard.admin.page.wedding.show', [
             "active" => $active,

@@ -60,7 +60,12 @@
                         <label for="mother_name">Nama Ibu</label>
                     </div>
                     <input type="file" name="photo" id="photo" hidden>
-                    <input type="file" name="documents[]" hidden>
+                    <input type="file" name="documents[]" id="documents" hidden multiple>
+                    @foreach ($newlywed->documents as $document)
+                        <input type="file" name="old_documents[]" hidden>
+                        <input type="text" name="state_old_documents[]" value="keep" hidden>
+                        <input type="text" name="id_old_documents[]" value="{{ $document->id }}" hidden>
+                    @endforeach
                     <div class="d-flex justify-content-between w-100 mt-4">
                         <a href="/setting" class="btn btn-secondary">Kembali</a>
                         <button type="submit" class="btn btn-primary text-white"
@@ -69,13 +74,14 @@
                 </form>
             </div>
         </div>
+
         <div class="col-12 col-lg-4 col-xxl-3 mb-3">
             <div class="row h-100">
-                <div class="col-12 col-sm-6 col-lg-12 d-flex align-items-center pb-2">
-                    <div class="d-flex justify-content-between flex-column px-5 py-4 bg-white jingga-shadow rounded-2 w-100"
+                <div class="col-12 col-sm-6 col-lg-12 d-flex align-items-center pb-3">
+                    <div id="upload-photo" class="d-flex text-center justify-content-between flex-column px-5 py-4 bg-white jingga-shadow rounded-2 w-100"
                         style="min-height: 240px;">
-                        <h5 class="text-center">Tidak ada gambar</h5>
-                        <p id="preview-upload-photo" class="text-center">
+                        <h5>Tidak ada gambar</h5>
+                        <p>
                             <a href="{{ asset('storage/' . $newlywed->photo) }}" target="_blank">
                                 Lihat Foto
                             </a>
@@ -84,23 +90,32 @@
                             Pilih Gambar Baru</button>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-lg-12 d-flex align-items-center pb-2">
+                <div class="col-12 col-sm-6 col-lg-12 d-flex align-items-center pb-3">
                     <div class="d-flex justify-content-center w-100">
-                        <div class="d-flex justify-content-between flex-column px-5 py-4 bg-white jingga-shadow rounded-2 w-100"
+                        <div id="upload-documents" class="d-flex text-center justify-content-between flex-column px-4 py-4 bg-white jingga-shadow rounded-2 w-100"
                             style="min-height: 240px;">
-                            <h5 class="text-center">Tidak ada Dokumen</h5>
-                            <p class="text-center">Upload dokumen tambahan jika ada di sini dengan menekan tombol Pilih
-                                Dokumen
-                            </p>
-                            {{-- <ol>
-                                <li><a href="" target="_blank">Dokumen 1</a></li>
-                                <li><a href="" target="_blank">Dokumen 1</a></li>
-                                <li><a href="" target="_blank">Dokumen 1</a></li>
-                                <li><a href="" target="_blank">Dokumen 1</a></li>
-                            </ol> --}}
-
-                            <button class="btn btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Pilih
-                                Dokumen</button>
+                            @if ($newlywed->documents->count())
+                                <h5>Dokumen Terpilih</h5>
+                                @foreach ($newlywed->documents as $document)
+                                    <div class="mb-3 border rounded py-3">
+                                        <p>Dokumen {{ $loop->iteration }}</p>
+                                        <a href="{{ asset('storage/' . $document->document) }}" target="_blank"
+                                            class="btn-detail btn btn-sm d-inline-block btn-info text-white">Lihat</a>
+                                        <button class="btn-edit btn btn-sm d-inline-block btn-warning text-white">Ganti</button>
+                                        <button class="btn-delete btn btn-sm d-inline-block btn-danger">Hapus</button>
+                                    </div>
+                                @endforeach
+                                <p id="new-document"></p>
+                            @else
+                                <h5>Tidak ada Dokumen</h5>
+                                <p id="new-document">Upload dokumen tambahan jika ada di sini dengan menekan tombol Pilih
+                                    Dokumen
+                                </p>
+                            @endif
+                            <button id="btn-upload-documents" class="btn btn-primary">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                Tambah Dokumen Baru
+                            </button>
                         </div>
                     </div>
                 </div>

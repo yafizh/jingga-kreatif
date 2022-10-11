@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Newlywed;
+use App\Models\NewlywedDocument;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class NewlywedController extends Controller
@@ -22,11 +22,20 @@ class NewlywedController extends Controller
             "mother_name" => "required",
         ]);
 
-        if ($request->file('photo'))
+        if ($request->hasFile('photo'))
             $validatedData['photo'] = $request->file('photo')->store('newlywed-photo');
         else
             $validatedData['photo'] = $newlywed->photo;
 
+        if ($request->hasFile('documents')) {
+            foreach ($request->file('documents') as $i => $document) {
+                if ($document) {
+                    NewlywedDocument::where('id', $request->id_documents[$i])->update([
+                        'document' => $document->store('newlywed-documents')
+                    ]);
+                }
+            }
+        }
 
         Newlywed::where('id', $newlywed->id)->update([
             'wedding_id' => $newlywed->wedding_id,
@@ -38,6 +47,7 @@ class NewlywedController extends Controller
             'mother_name' => $validatedData['mother_name'],
             'photo' => $validatedData['photo'],
         ]);
+
 
         if ($newlywed->sex)
             Session::flash('section', 'groom');
