@@ -64,9 +64,10 @@
                         <h5 class="text-center">Tidak ada gambar</h5>
                         <p id="preview-upload-photo" class="text-center">Upload gambar mempelai pria di sini dengan menekan
                             tombol Pilih Gambar</p>
-                        {{-- <p class="text-center"><a href="" target="_blank">Mempelai pria.jpg</a></p> --}}
-                        <button id="btn-upload-photo" class="btn btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i>
-                            Pilih Gambar</button>
+                        <button id="btn-upload-photo" class="btn btn-primary">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            Pilih Gambar
+                        </button>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-12 d-flex align-items-center pb-2">

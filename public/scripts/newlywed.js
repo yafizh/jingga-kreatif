@@ -19,7 +19,6 @@ input_photo.addEventListener("change", function () {
     ).innerHTML = `<a href='${URL.createObjectURL(
         file
     )}' target='_blank'>Lihat Gambar</a>`;
-
 });
 
 // document.querySelector('form').addEventListener('submit', function(e){
@@ -29,5 +28,3 @@ input_photo.addEventListener("change", function () {
 //     e.preventDefault();
 //     console.log('prevent')
 // });
-
-

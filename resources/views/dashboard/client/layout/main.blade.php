@@ -34,8 +34,10 @@
         <script src="/scripts/registration.js"></script>
     @elseif ($active == 'setting.client')
         <script src="/scripts/client/edit_client.js"></script>
-    @elseif ($active == 'groom' || $active == 'bride' || $active == 'setting.newlywed')
+    @elseif ($active == 'groom' || $active == 'bride')
         <script src="/scripts/newlywed.js"></script>
+    @elseif ($active == 'setting.newlywed')
+        <script src="/scripts/client/edit_newlywed.js"></script>
     @elseif ($active == 'payment')
         <script src="/scripts/payment.js"></script>
     @elseif ($active == 'meeting')

@@ -23,5 +23,8 @@ main {
 }
 
 .toast-container {
-    padding: 8px;
+    top: 0!important;
+    right: 0!important;
+    z-index: 99;
+    padding: 8px!important;
 }

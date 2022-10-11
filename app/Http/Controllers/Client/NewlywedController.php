@@ -65,11 +65,6 @@ class NewlywedController extends Controller
         return redirect('/theme-vendor');
     }
 
-    public function show(Newlywed $newlywed)
-    {
-        //
-    }
-
     public function edit(Newlywed $newlywed)
     {
         return view('dashboard.client.page.newlywed.edit', [
@@ -80,6 +75,9 @@ class NewlywedController extends Controller
 
     public function update(Request $request, Newlywed $newlywed)
     {
+        // if (!$this->isAuthorized(Auth::user()->client->id, $newlywed->wedding->client->id))
+        //     abort(403, 'DILARANG');
+
         $validatedData = $request->validate([
             "nik" => "required",
             "name" => "required",
@@ -105,6 +103,14 @@ class NewlywedController extends Controller
             'photo' => $validatedData['photo'],
         ]);
 
-        return redirect('/setting');
+        return redirect('/groom/' . $newlywed->id . '/edit')->with('success', "Berhasil memperbaharui data mempelai " . ($newlywed->sex ? 'pria' : 'wanita') . '.');
+    }
+
+    public function isAuthorized($client_id, $client_id_newlywed)
+    {
+        // Apakah mempelai ini merupakan mempelai dari client dengan id yang benar
+        if ($client_id === $client_id_newlywed) return true;
+
+        return false;
     }
 }

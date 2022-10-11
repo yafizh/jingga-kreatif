@@ -70,7 +70,7 @@
     </div>
 
     {{-- Toast Container --}}
-    <div class="toast-container align-items-end d-flex flex-column position-fixed top-0 end-0"></div>
+    <div class="toast-container align-items-end d-flex flex-column position-fixed"></div>
 
     {{-- Detail Modal --}}
     <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
