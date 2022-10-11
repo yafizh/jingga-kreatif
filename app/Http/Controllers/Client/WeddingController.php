@@ -13,22 +13,22 @@ class WeddingController extends Controller
 {
     public function index()
     {
-        $wedding_id = Auth::user()->client->wedding->id;
-        $client_id = Auth::user()->client->id;
-        $groom_id = Auth::user()->client->wedding->newlyweds->filter(function ($newlyweds) {
+        $wedding = Auth::user()->client->wedding;
+        $client = Auth::user()->client;
+        $groom = Auth::user()->client->wedding->newlyweds->filter(function ($newlyweds) {
             return $newlyweds->sex;
-        })->first()->id;
+        })->first();
 
-        $bride_id = Auth::user()->client->wedding->newlyweds->filter(function ($newlyweds) {
+        $bride = Auth::user()->client->wedding->newlyweds->filter(function ($newlyweds) {
             return !$newlyweds->sex;
-        })->first()->id;
+        })->first();
 
         return view('dashboard.client.page.setting.index', [
             'active' => 'setting',
-            'client' => $client_id,
-            'groom' => $groom_id,
-            'bride' => $bride_id,
-            'wedding' => $wedding_id,
+            'client' => $client,
+            'groom' => $groom,
+            'bride' => $bride,
+            'wedding' => $wedding,
         ]);
     }
 

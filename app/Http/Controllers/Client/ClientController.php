@@ -14,16 +14,16 @@ class ClientController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->client->wedding->vendors)
+        if (Auth::user()->client->wedding->vendors->count() && Auth::user()->client->wedding->theme)
             return redirect('/payment');
 
-        if (count(Auth::user()->client->wedding->newlyweds) === 2)
+        if (Auth::user()->client->wedding->newlyweds->count() === 2)
             return redirect('/vendor');
 
-        if (count(Auth::user()->client->wedding->newlyweds) === 1)
+        if (Auth::user()->client->wedding->newlyweds->count() === 1)
             return redirect('/bride');
 
-        if (!count(Auth::user()->client->wedding->newlyweds))
+        if (!Auth::user()->client->wedding->newlyweds->count())
             return redirect('/groom');
 
         abort(500, 'SERVER ERROR');
