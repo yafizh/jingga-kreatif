@@ -29,78 +29,78 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('admin'),
         ]);
 
-        // User::create([
-        //     'email' => 'jinggakreatif93@gmail.com',
-        //     'password' => bcrypt('jinggakreatif93@gmail.com'),
-        // ]);
+        User::create([
+            'email' => 'jinggakreatif93@gmail.com',
+            'password' => bcrypt('jinggakreatif93@gmail.com'),
+        ]);
 
-        // Client::create([
-        //     'user_id' => 2,
-        //     'name' => 'Nurcholis',
-        //     'phone_number' => '098766222322',
-        //     'email' => 'jinggakreatif93@gmail.com',
-        // ]);
+        Client::create([
+            'user_id' => 2,
+            'name' => 'Nurcholis',
+            'phone_number' => '098766222322',
+            'email' => 'jinggakreatif93@gmail.com',
+        ]);
 
-        // Wedding::create([
-        //     'client_id' => 1
-        // ]);
+        Wedding::create([
+            'client_id' => 1
+        ]);
 
-        // Newlywed::create([
-        //     'wedding_id' => 1,
-        //     'nik' => '3525015201880002',
-        //     'name' => 'Muhammad Putra',
-        //     'birthplace' => 'Martapura',
-        //     'birthdate' => '2000-01-01',
-        //     'sex' => true,
-        //     'father_name' => 'Putra',
-        //     'mother_name' => 'Putri',
-        //     'photo' => '',
-        // ]);
+        Newlywed::create([
+            'wedding_id' => 1,
+            'nik' => '3525015201880002',
+            'name' => 'Muhammad Putra',
+            'birthplace' => 'Martapura',
+            'birthdate' => '2000-01-01',
+            'sex' => true,
+            'father_name' => 'Putra',
+            'mother_name' => 'Putri',
+            'photo' => '',
+        ]);
 
-        // Newlywed::create([
-        //     'wedding_id' => 1,
-        //     'nik' => '3525016005650004',
-        //     'name' => 'Just Putri',
-        //     'birthplace' => 'Banjarbaru',
-        //     'birthdate' => '2000-05-05',
-        //     'sex' => false,
-        //     'father_name' => 'Putra 2',
-        //     'mother_name' => 'Putri 2',
-        //     'photo' => '',
-        // ]);
+        Newlywed::create([
+            'wedding_id' => 1,
+            'nik' => '3525016005650004',
+            'name' => 'Just Putri',
+            'birthplace' => 'Banjarbaru',
+            'birthdate' => '2000-05-05',
+            'sex' => false,
+            'father_name' => 'Putra 2',
+            'mother_name' => 'Putri 2',
+            'photo' => '',
+        ]);
 
-        // MeetingHistory::create([
-        //     'wedding_id' => 1,
-        //     'topic' => 'Pertemuan 1',
-        //     'meeting_date' => Carbon::now(),
-        //     'meeting_time' => Carbon::now(),
-        //     'body' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae optio odio cum asperiores rem delectus aut laborum maxime culpa sunt. Exercitationem voluptatem praesentium nesciunt accusamus fugit explicabo laboriosam dolorem autem!',
-        //     'photo' => 'meeting-photo/cafe1.avif'
-        // ]);
+        MeetingHistory::create([
+            'wedding_id' => 1,
+            'topic' => 'Pertemuan 1',
+            'meeting_date' => Carbon::now(),
+            'meeting_time' => Carbon::now(),
+            'body' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae optio odio cum asperiores rem delectus aut laborum maxime culpa sunt. Exercitationem voluptatem praesentium nesciunt accusamus fugit explicabo laboriosam dolorem autem!',
+            'photo' => 'meeting-photo/cafe1.avif'
+        ]);
 
-        // MeetingHistory::create([
-        //     'wedding_id' => 1,
-        //     'topic' => 'Pertemuan 2',
-        //     'meeting_date' => Carbon::now(),
-        //     'meeting_time' => Carbon::now(),
-        //     'body' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus ipsum, quisquam neque nobis molestiae quam qui numquam. Possimus harum nostrum iste architecto cumque distinctio, officia iure placeat minus et voluptas?
-        //     Iusto doloremque, ab nisi, sunt ipsam quidem sit laboriosam itaque hic neque tempora commodi facilis? Dolore nesciunt saepe maxime odio delectus? Accusantium nostrum libero odit, ea eaque earum necessitatibus rerum?
-        //     Odit iusto, voluptatem aspernatur ducimus reprehenderit aliquam harum quasi porro officia omnis nulla ut necessitatibus ea beatae consequuntur, quos, a sapiente cumque. Eos, laborum repellat praesentium impedit dolore dignissimos nemo.
-        //     Exercitationem repudiandae officia reprehenderit tenetur maiores fugit aliquam, quae quibusdam quod impedit enim sequi nostrum debitis, dolorem provident asperiores deleniti laboriosam. Similique quia saepe vel nam earum explicabo sed aperiam.
-        //     Quam rem minima fugiat. Facere inventore voluptate dolorum eius architecto nihil nulla iusto hic perferendis? Incidunt, ab illo! Ad libero quam voluptatem deserunt amet quo reprehenderit et molestiae autem suscipit?
-        //     Quam labore voluptatem illum illo consequuntur nesciunt eligendi quidem obcaecati praesentium nihil deleniti aliquam, eum ipsam neque beatae quia laborum dolores facilis. Enim laudantium nihil atque voluptatum mollitia libero aliquam.
-        //     Sapiente quaerat rerum nesciunt deserunt odit repudiandae minus, quos praesentium itaque ad laudantium corrupti nostrum expedita eveniet dolorum cumque fugiat reiciendis voluptate eligendi nemo doloremque earum ipsum. Voluptate, possimus nesciunt.
-        //     Doloremque deleniti beatae quae tempore aspernatur facere praesentium harum fugiat corporis eligendi dolores dolore provident corrupti nobis inventore non quo molestias ab eos, qui vel laborum debitis. Eaque, cupiditate nostrum.
-        //     Sint perspiciatis maiores iste sit harum eos voluptates, suscipit nesciunt tempora, ut nihil magni beatae dolor enim non porro error nisi repellat excepturi quos doloribus inventore a. Cupiditate, qui consequatur.
-        //     Eum facilis eveniet odio sequi corrupti provident doloremque porro cupiditate dolores debitis ipsum sint laboriosam, magni accusantium, numquam aperiam commodi harum? Id maxime inventore itaque adipisci! Deleniti aliquam magni est?',
-        //     'photo' => 'meeting-photo/cafe2.avif'
-        // ]);
+        MeetingHistory::create([
+            'wedding_id' => 1,
+            'topic' => 'Pertemuan 2',
+            'meeting_date' => Carbon::now(),
+            'meeting_time' => Carbon::now(),
+            'body' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus ipsum, quisquam neque nobis molestiae quam qui numquam. Possimus harum nostrum iste architecto cumque distinctio, officia iure placeat minus et voluptas?
+            Iusto doloremque, ab nisi, sunt ipsam quidem sit laboriosam itaque hic neque tempora commodi facilis? Dolore nesciunt saepe maxime odio delectus? Accusantium nostrum libero odit, ea eaque earum necessitatibus rerum?
+            Odit iusto, voluptatem aspernatur ducimus reprehenderit aliquam harum quasi porro officia omnis nulla ut necessitatibus ea beatae consequuntur, quos, a sapiente cumque. Eos, laborum repellat praesentium impedit dolore dignissimos nemo.
+            Exercitationem repudiandae officia reprehenderit tenetur maiores fugit aliquam, quae quibusdam quod impedit enim sequi nostrum debitis, dolorem provident asperiores deleniti laboriosam. Similique quia saepe vel nam earum explicabo sed aperiam.
+            Quam rem minima fugiat. Facere inventore voluptate dolorum eius architecto nihil nulla iusto hic perferendis? Incidunt, ab illo! Ad libero quam voluptatem deserunt amet quo reprehenderit et molestiae autem suscipit?
+            Quam labore voluptatem illum illo consequuntur nesciunt eligendi quidem obcaecati praesentium nihil deleniti aliquam, eum ipsam neque beatae quia laborum dolores facilis. Enim laudantium nihil atque voluptatum mollitia libero aliquam.
+            Sapiente quaerat rerum nesciunt deserunt odit repudiandae minus, quos praesentium itaque ad laudantium corrupti nostrum expedita eveniet dolorum cumque fugiat reiciendis voluptate eligendi nemo doloremque earum ipsum. Voluptate, possimus nesciunt.
+            Doloremque deleniti beatae quae tempore aspernatur facere praesentium harum fugiat corporis eligendi dolores dolore provident corrupti nobis inventore non quo molestias ab eos, qui vel laborum debitis. Eaque, cupiditate nostrum.
+            Sint perspiciatis maiores iste sit harum eos voluptates, suscipit nesciunt tempora, ut nihil magni beatae dolor enim non porro error nisi repellat excepturi quos doloribus inventore a. Cupiditate, qui consequatur.
+            Eum facilis eveniet odio sequi corrupti provident doloremque porro cupiditate dolores debitis ipsum sint laboriosam, magni accusantium, numquam aperiam commodi harum? Id maxime inventore itaque adipisci! Deleniti aliquam magni est?',
+            'photo' => 'meeting-photo/cafe2.avif'
+        ]);
 
-        // Payment::create([
-        //     'wedding_id' => 1,
-        //     'name' => 'Pembayaran Vendor',
-        //     'nominal' => 75000000
-        // ]);
+        Payment::create([
+            'wedding_id' => 1,
+            'name' => 'Pembayaran Vendor',
+            'nominal' => 75000000
+        ]);
 
         // Konsep
         Theme::create([

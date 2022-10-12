@@ -12,33 +12,19 @@ class PaymentController extends Controller
 {
     public function index()
     {
-        $payments = Payment::where('wedding_id', Auth::user()->client->wedding->id)->where('is_deleted', false)->orderBy('id', 'DESC')->get();
-        $need_to_pay = $payments->filter(function ($payment) {
-            return !$payment->paymentHistories->count() || !$payment->paymentHistories->first()->status;
-        })->map(function ($payment) {
-            return $payment->nominal;
-        })->sum();
-
-        $already_pay = $payments->filter(function ($payment) {
-            return $payment->paymentHistories->count();
-        })->filter(function ($payment) {
-            return $payment->paymentHistories->first()->status;
-        })->map(function ($payment) {
-            return $payment->nominal;
-        })->sum();
-
         return view('dashboard.client.page.payment.index', [
             "active" => "payment",
             "active_navigation" => 6,
-            "payments" => $payments,
-            "need_to_pay" => $need_to_pay ?? 0,
-            "already_pay" => $already_pay ?? 0,
+            "payments" => Payment::getPaymentByWeddingId(Auth::user()->client->wedding->id),
+            "need_to_pay" => Payment::getNeedToPayPaymentByWeddingId(Auth::user()->client->wedding->id),
+            "already_pay" => Payment::getAlreadyPayPaymentByWeddingId(Auth::user()->client->wedding->id),
         ]);
     }
 
     public function store(Request $request, Payment $payment)
     {
         $validatedData = $request->validate([
+            'bank' => 'required',
             'photo' => 'required'
         ]);
 
@@ -47,6 +33,7 @@ class PaymentController extends Controller
 
         PaymentHistory::create([
             'payment_id' => $payment->id,
+            'bank_id' => $validatedData['bank'],
             'photo' => $validatedData['photo']
         ]);
 

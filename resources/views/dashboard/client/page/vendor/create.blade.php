@@ -14,47 +14,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12" id="grid-container">
-            {{-- <div class="row mb-3">
-                <div class="col-12 mb-3">
-                    <h4>Dekorasi</h4>
-                </div>
-                <div class="col-12 col-sm-4 col-md-3 col-xl-2 mb-3">
-                    <div class="card h-100">
-                        <div class="card-image">
-                            <img src="https://static.wixstatic.com/media/7b1dfb_1a74b1d718ca44219eb9a8a4ba1dab09~mv2.png">
-                        </div>
-                        <div class="card-body d-flex justify-content-between flex-column">
-                            <div class="card-title text-center">
-                                <h5>Tradisional</h5>
-                                <h6 class="text-muted">Rp. 5.000.000</h6>
-                            </div>
-                            <div class="button-container">
-                                <button class="choose btn btn-outline-primary btn-sm w-100 mb-2">Pilih Vendor</button>
-                                <button class="btn btn-outline-primary btn-sm w-100">Lihat Detail</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-4 col-md-3 col-xl-2 mb-3">
-                    <div class="card h-100">
-                        <div class="card-image border">
-                            <img src="https://static.wixstatic.com/media/7b1dfb_1a74b1d718ca44219eb9a8a4ba1dab09~mv2.png">
-                        </div>
-                        <div class="card-body d-flex justify-content-between flex-column">
-                            <div class="card-title">
-                                <h5 class="text-start">Mega Sound Sytem</h5>
-                                <h6 class="text-center text-muted">Rp. 5.000.000</h6>
-                            </div>
-                            <div class="button-container">
-                                <button class="choose btn btn-outline-primary btn-sm w-100 mb-2">Pilih Vendor</button>
-                                <button class="btn btn-outline-primary btn-sm w-100">Lihat Detail</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-        </div>
+        <div class="col-12" id="grid-container"></div>
         <div class="col-12">
             <div class="d-flex justify-content-center w-100 mt-4">
                 <form action="/wedding/storeChoosedThemeAndVendor" method="POST">
@@ -96,10 +56,6 @@
                     </div>
                     <div class="description p-3"></div>
                 </div>
-                {{-- <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div> --}}
             </div>
         </div>
     </div>

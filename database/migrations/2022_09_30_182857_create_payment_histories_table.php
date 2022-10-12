@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('payment_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('payment_id');
+            $table->foreignId('bank_id');
             $table->string('photo');
             $table->string('comments')->nullable()->default(null);
             $table->boolean('status')->nullable()->default(null);
