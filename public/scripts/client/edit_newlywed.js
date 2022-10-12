@@ -1,16 +1,38 @@
 const input_photo = document.getElementById("photo");
 const input_documents = document.getElementById("documents");
 
-const btn_upload_photo = document.getElementById("btn-upload-photo");
-const btn_upload_documents = document.getElementById("btn-upload-documents");
+const new_documents_container = document.getElementById(
+    "new-document-container"
+);
 
-btn_upload_photo.addEventListener("click", function () {
-    input_photo.click();
-});
+const cardDocumentGenerator = (file) => {
+    const container = document.createElement("div");
+    container.classList.add("mb-3", "border", "rounded", "py-3");
 
-btn_upload_documents.addEventListener("click", function () {
-    input_documents.click();
-});
+    const p = document.createElement("p");
+    p.innerText = "Dokumen Baru";
+
+    const flex_container = document.createElement("div");
+    flex_container.classList.add("d-flex", "justify-content-center", "gap-1");
+    const button_detail = document.createElement("a");
+    button_detail.setAttribute("href", `${URL.createObjectURL(file)}`);
+    button_detail.setAttribute("target", "_blank");
+    button_detail.classList.add("btn", "btn-sm", "btn-info", "text-white");
+    button_detail.innerText = "Lihat";
+
+    container.append(p);
+    flex_container.append(button_detail);
+    container.append(flex_container);
+
+    return container;
+};
+
+document
+    .getElementById("btn-upload-photo")
+    .addEventListener("click", () => input_photo.click());
+document
+    .getElementById("btn-upload-documents")
+    .addEventListener("click", () => input_documents.click());
 
 input_photo.addEventListener("change", function () {
     document.querySelector("#upload-photo h5").innerText = "Gambar Terpilih";
@@ -23,47 +45,28 @@ input_photo.addEventListener("change", function () {
 });
 
 input_documents.addEventListener("change", function () {
-    console.log(document.querySelector("#upload-documents p"));
     if (document.querySelector("#upload-documents p#no-document"))
         document.querySelector("#upload-documents p#no-document").remove();
-    document.querySelector("#upload-documents p#new-document").innerText = "";
+
     document.querySelector("#upload-documents h5").innerText =
         "Dokumen Terpilih";
 
-    if (document.querySelectorAll(".btn-delete").length) {
-        const hr = document.createElement("hr");
-        document
-            .querySelector("#upload-documents")
-            .insertBefore(
-                hr,
-                document.querySelector("#upload-documents p#new-document")
-            );
-    }
+    new_documents_container.innerText = "";
 
-    for (let i = 0; i < this.files.length; i++) {
-        document
-            .querySelector("#upload-documents #new-document")
-            .insertAdjacentHTML(
-                "beforeend",
-                `<a class='d-block mb-1' href='${URL.createObjectURL(
-                    this.files[i]
-                )}' target='_blank'>Lihat Dokumen ${i + 1} (Baru)</a>`
-            );
-    }
+    if (document.querySelectorAll(".btn-delete").length)
+        new_documents_container.innerHTML = "<hr>";
+
+    for (const file of this.files)
+        new_documents_container.append(cardDocumentGenerator(file));
 });
 
-if (document.querySelector(".toast")) {
-    new bootstrap.Toast(document.querySelector(".toast"), {
-        animation: true,
-        autohide: true,
-        delay: 2000,
-    }).show();
-}
 document.querySelectorAll(".btn-delete").forEach((button, index) => {
     button.addEventListener("click", function () {
-        this.parentNode.remove();
+        this.parentNode.parentNode.remove();
 
-        document.querySelectorAll('input[name="state_old_documents[]"]')[index].value = 'delete';
+        document.querySelectorAll('input[name="state_old_documents[]"]')[
+            index
+        ].value = "delete";
 
         if (!document.querySelectorAll(".btn-delete").length) {
             document.querySelector("#upload-documents h5").innerText =
@@ -88,6 +91,10 @@ document.querySelectorAll(".btn-edit").forEach((button, index) => {
     document
         .querySelectorAll('input[name="old_documents[]"]')
         [index].addEventListener("change", function () {
+            document.querySelectorAll('input[name="state_old_documents[]"]')[
+                index
+            ].value = "edit";
+
             document
                 .querySelectorAll("#upload-documents .btn-detail")
                 [index].setAttribute(
@@ -108,3 +115,11 @@ document.querySelectorAll(".btn-edit").forEach((button, index) => {
             [index].click();
     });
 });
+
+if (document.querySelector(".toast")) {
+    new bootstrap.Toast(document.querySelector(".toast"), {
+        animation: true,
+        autohide: true,
+        delay: 2000,
+    }).show();
+}

@@ -113,20 +113,15 @@ class NewlywedController extends Controller
             'photo' => $validatedData['photo'],
         ]);
 
-        // Update Code
-        if ($request->hasFile('old_documents')) {
-            foreach ($request->file('old_documents') as $i => $document) {
-                if ($document)
-                    NewlywedDocument::where('id', $request->id_old_documents[$i])->update([
-                        'document' => $document->store('newlywed-documents')
-                    ]);
-            }
-        }
-
         // Delete Code
         foreach ($request->state_old_documents as $i => $state_old_documents) {
             if ($state_old_documents == 'delete')
                 NewlywedDocument::where('id', $request->id_old_documents[$i])->delete();
+
+            if ($state_old_documents == 'edit')
+                NewlywedDocument::where('id', $request->id_old_documents[$i])->update([
+                    'document' => $request->file('old_documents')[$i]->store('newlywed-documents')
+                ]);
         }
 
         // Add New Documents

@@ -78,7 +78,8 @@
         <div class="col-12 col-lg-4 col-xxl-3 mb-3">
             <div class="row h-100">
                 <div class="col-12 col-sm-6 col-lg-12 d-flex align-items-center pb-3">
-                    <div id="upload-photo" class="d-flex text-center justify-content-between flex-column px-5 py-4 bg-white jingga-shadow rounded-2 w-100"
+                    <div id="upload-photo"
+                        class="d-flex text-center justify-content-between flex-column px-5 py-4 bg-white jingga-shadow rounded-2 w-100"
                         style="min-height: 240px;">
                         <h5>Tidak ada gambar</h5>
                         <p>
@@ -92,34 +93,37 @@
                 </div>
                 <div class="col-12 col-sm-6 col-lg-12 d-flex align-items-center pb-3">
                     <div class="d-flex justify-content-center w-100">
-                        <div id="upload-documents" class="d-flex text-center justify-content-between flex-column px-4 py-4 bg-white jingga-shadow rounded-2 w-100"
+                        <div id="upload-documents"
+                            class="d-flex text-center justify-content-between flex-column px-4 py-4 bg-white jingga-shadow rounded-2 w-100"
                             style="min-height: 240px;">
                             @if ($newlywed->documents->count())
                                 <h5>Dokumen Terpilih</h5>
                                 @foreach ($newlywed->documents as $document)
-                                    <div class="mb-3 border rounded py-3">
+                                    <div class="border rounded py-3 @if (!$loop->last) mb-3 @endif">
                                         <p>Dokumen {{ $loop->iteration }}</p>
-                                        <a href="{{ asset('storage/' . $document->document) }}" target="_blank"
-                                            class="btn-detail btn btn-sm d-inline-block btn-info text-white">Lihat</a>
-                                        <button class="btn-edit btn btn-sm d-inline-block btn-warning text-white">Ganti</button>
-                                        <button class="btn-delete btn btn-sm d-inline-block btn-danger">Hapus</button>
+                                        <div class="d-flex justify-content-center gap-1">
+                                            <a href="{{ asset('storage/' . $document->document) }}" target="_blank"
+                                                class="btn-detail btn btn-sm btn-info text-white">Lihat</a>
+                                            <button class="btn-edit btn btn-sm btn-warning text-white">Ganti</button>
+                                            <button class="btn-delete btn btn-sm btn-danger">Hapus</button>
+                                        </div>
                                     </div>
                                 @endforeach
-                                <p id="new-document"></p>
+                                <div id="new-document-container"></div>
                             @else
                                 <h5>Tidak ada Dokumen</h5>
                                 <p id="new-document">Upload dokumen tambahan jika ada di sini dengan menekan tombol Pilih
                                     Dokumen
                                 </p>
                             @endif
-                            <button id="btn-upload-documents" class="btn btn-primary">
+                            <button id="btn-upload-documents" class="btn btn-primary mt-3">
                                 <i class="fa-solid fa-cloud-arrow-up"></i>
                                 Tambah Dokumen Baru
                             </button>
+                            </>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection
