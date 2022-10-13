@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\StateClient;
 use App\Models\Client;
 use App\Models\User;
 use App\Models\Wedding;
@@ -14,23 +15,14 @@ class ClientController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->client->wedding->vendors->count() && Auth::user()->client->wedding->theme)
-            return redirect('/payment');
-
-        if (Auth::user()->client->wedding->newlyweds->count() === 2)
-            return redirect('/theme-vendor');
-
-        if (Auth::user()->client->wedding->newlyweds->count() === 1)
-            return redirect('/bride');
-
-        if (!Auth::user()->client->wedding->newlyweds->count())
-            return redirect('/groom');
-
         abort(500, 'SERVER ERROR');
     }
 
     public function create()
     {
+        if (Auth::user())
+            return redirect('/wedding');
+
         return view('dashboard.client.page.registration.create', [
             "active" => "registration",
             "active_navigation" => 2
@@ -46,7 +38,7 @@ class ClientController extends Controller
             'email_verification_code' => 'required',
             'password' => 'required',
             'confirm_password' => 'required'
-        ],[
+        ], [
             'email.unique' => 'Email telah digunakan!'
         ]);
 
@@ -74,6 +66,9 @@ class ClientController extends Controller
 
     public function edit(Request $request, Client $client)
     {
+        if (!$this->isAuthorized(Auth::user()->client->id, $client->id))
+            abort(403, 'UNAUTHORIZED ACTION');
+
         if ($request->query('q') == 'change-password') {
             return view('dashboard.client.page.registration.edit_password', [
                 'active' => 'setting',
@@ -142,10 +137,20 @@ class ClientController extends Controller
     public function isOldPassword($new_password, $old_password)
     {
         if (Hash::check($new_password, $old_password)) return true;
+        return false;
     }
 
     public function isPasswordSame($password1, $password2)
     {
         if ($password1 == $password2) return true;
+        return false;
+    }
+
+    public function isAuthorized($client_id, $client_id_newlywed)
+    {
+        // Apakah mempelai ini merupakan mempelai dari client dengan id yang benar
+        if ($client_id === $client_id_newlywed) return true;
+
+        return false;
     }
 }

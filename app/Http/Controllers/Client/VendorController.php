@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Vendor;
 use App\Models\Wedding;
+use Illuminate\Support\Facades\Auth;
 
 class VendorController extends Controller
 {
@@ -18,6 +19,9 @@ class VendorController extends Controller
 
     public function edit(Wedding $wedding)
     {
+        if (!$this->isAuthorized(Auth::user()->client->id, $wedding->client->id))
+            abort(403, 'UNAUTHORIZED ACTION');
+
         $vendors = [];
         $total_price = 0;
         foreach ($wedding->vendors as $vendor) {
@@ -52,5 +56,13 @@ class VendorController extends Controller
             }
         }
         return response()->json($vendors);
+    }
+
+    public function isAuthorized($client_id, $client_id_newlywed)
+    {
+        // Apakah mempelai ini merupakan mempelai dari client dengan id yang benar
+        if ($client_id === $client_id_newlywed) return true;
+
+        return false;
     }
 }

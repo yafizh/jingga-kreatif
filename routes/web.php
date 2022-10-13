@@ -54,26 +54,21 @@ Route::put('dashboard/payment/verification/{payment}', [Admin\PaymentController:
 // ----------------------------------------------------------------------------------
 
 // Client Route
-Route::get('/introduction', function () {
-    return view('dashboard.client.page.introduction.index', [
-        "active" => "introduction",
-        "active_navigation" => 1
-    ]);
-});
+Route::get('/introduction', [Client\IntroductionController::class, 'index']);
 Route::get('/registration', [Client\ClientController::class, 'create']);
 Route::post('/registration', [Client\ClientController::class, 'store']);
-Route::resource('/wedding', Client\ClientController::class)->middleware(['auth', 'is_client']);
+Route::resource('/wedding', Client\ClientController::class)->middleware(['auth', 'is_client', 'state_client']);
 Route::post('/wedding/storeChoosedThemeAndVendor', [Client\WeddingController::class, 'storeChoosedThemeAndVendor'])->middleware(['auth', 'is_client']);
 Route::put('/wedding/updateChoosedThemeAndVendor/{wedding}', [Client\WeddingController::class, 'updateChoosedThemeAndVendor'])->middleware(['auth', 'is_client']);
-Route::get('/groom', [Client\NewlywedController::class, 'create'])->name('groom')->middleware(['auth', 'is_client']);
-Route::get('/bride', [Client\NewlywedController::class, 'create'])->name('bride')->middleware(['auth', 'is_client']);
+Route::get('/groom', [Client\NewlywedController::class, 'create'])->name('groom')->middleware(['auth', 'is_client', 'state_client']);
+Route::get('/bride', [Client\NewlywedController::class, 'create'])->name('bride')->middleware(['auth', 'is_client', 'state_client']);
 Route::post('/newlywed', [Client\NewlywedController::class, 'store'])->middleware(['auth', 'is_client']);
 Route::get('/groom/{newlywed}/edit', [Client\NewlywedController::class, 'edit'])->middleware(['auth', 'is_client']);
 Route::get('/bride/{newlywed}/edit', [Client\NewlywedController::class, 'edit'])->middleware(['auth', 'is_client']);
 Route::put('/newlywed/{newlywed}', [Client\NewlywedController::class, 'update'])->middleware(['auth', 'is_client']);
-Route::get('/theme-vendor', [Client\VendorController::class, 'index'])->middleware(['auth', 'is_client']);
+Route::get('/theme-vendor', [Client\VendorController::class, 'index'])->name('theme-vendor')->middleware(['auth', 'is_client', 'state_client']);
 Route::get('/theme-vendor/{wedding}/edit', [Client\VendorController::class, 'edit'])->middleware(['auth', 'is_client']);
-Route::get('/payment', [Client\PaymentController::class, 'index'])->middleware(['auth', 'is_client']);
+Route::get('/payment', [Client\PaymentController::class, 'index'])->name('payment')->middleware(['auth', 'is_client']);
 Route::get('/meeting-history', [Client\MeetingHistoryController::class, 'index'])->middleware(['auth', 'is_client']);
 Route::get('/setting', [Client\WeddingController::class, 'index'])->middleware(['auth', 'is_client']);
 Route::get('/client/{client}/edit', [Client\ClientController::class, 'edit'])->middleware(['auth', 'is_client']);

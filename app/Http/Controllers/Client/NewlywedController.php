@@ -77,6 +77,9 @@ class NewlywedController extends Controller
 
     public function edit(Newlywed $newlywed)
     {
+        if (!$this->isAuthorized(Auth::user()->client->id, $newlywed->wedding->client->id))
+            abort(403, 'UNAUTHORIZED ACTION');
+
         return view('dashboard.client.page.newlywed.edit', [
             'active' => 'setting.newlywed',
             'newlywed' => $newlywed
@@ -85,9 +88,6 @@ class NewlywedController extends Controller
 
     public function update(Request $request, Newlywed $newlywed)
     {
-        // if (!$this->isAuthorized(Auth::user()->client->id, $newlywed->wedding->client->id))
-        //     abort(403, 'DILARANG');
-
         $validatedData = $request->validate([
             "nik" => "required",
             "name" => "required",
