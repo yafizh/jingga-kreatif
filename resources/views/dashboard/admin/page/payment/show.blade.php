@@ -49,6 +49,12 @@
                                                 disabled>
                                         </div>
                                         <div class="form-group">
+                                            <label>Tujuan Pembayaran</label>
+                                            <input type="text" class="form-control mb" value="{{ $payment->bank->bank_name }}" disabled>
+                                            <input type="text" class="form-control my-2" value="{{ $payment->bank->owner_name }}" disabled>
+                                            <input type="text" class="form-control mb" value="{{ $payment->bank->pin }}" disabled>
+                                        </div>
+                                        <div class="form-group">
                                             <label class="d-block">Bukti Pembayaran</label>
                                             <a href="{{ asset('storage/' . $payment->photo) }}" target="_blank">Lihat Foto</a>
                                         </div>

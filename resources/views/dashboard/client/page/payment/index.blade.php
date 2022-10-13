@@ -70,7 +70,7 @@
                         @csrf
                         <div class="mb-3">
                             <label for="bank" class="form-label">Opsi Pembayaran</label>
-                            <select class="form-control" name="bank" id="bank">
+                            <select class="form-control" name="bank" id="bank" required>
                                 <option value="" disabled selected>Pilih Bank</option>
                             </select>
                         </div>
@@ -84,7 +84,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="photo" class="form-label">Bukti Pembayaran</label>
-                            <input type="file" class="form-control" id="photo" name="photo">
+                            <input type="file" class="form-control" id="photo" name="photo" required>
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
