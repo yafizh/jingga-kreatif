@@ -14,7 +14,7 @@ class VendorController extends Controller
     {
         return view('dashboard.admin.page.vendor.index', [
             "active" => "vendor",
-            "vendors" => Vendor::where('is_deleted', false)->latest()->get()
+            "vendors" => Vendor::where('is_deleted', false)->orderBy('name')->get()
         ]);
     }
 
@@ -35,6 +35,8 @@ class VendorController extends Controller
             "logo" => "required",
             "description" => "required",
         ]);
+
+        $validatedData['price'] = implode('', explode('.', $validatedData['price']));
 
         if ($request->file('logo'))
             $validatedData['logo'] = $request->file('logo')->store('vendor-logo');
@@ -75,6 +77,8 @@ class VendorController extends Controller
             "price" => "required",
             "description" => "required",
         ]);
+
+        $validatedData['price'] = implode('', explode('.', $validatedData['price']));
 
         if ($request->file('logo'))
             $validatedData['logo'] = $request->file('logo')->store('vendor-logo');

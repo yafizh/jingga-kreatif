@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2 justify-content-center">
                     <div class="col-sm-6 text-center">
-                        <h1>Edit Data Klien</h1>
+                        <h1>Ganti Password Klien</h1>
                     </div>
                 </div>
             </div>
@@ -16,28 +16,30 @@
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-md-6">
+                        @if (session('failed'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('failed') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
                         <div class="card card-primary shadow">
-                            <form action="/dashboard/client/{{ $client->id }}" method="POST">
+                            <form action="/dashboard/client/edit-password/{{ $client->id }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="name">Nama Lengkap</label>
-                                        <input type="text" class="form-control" id="name"
-                                            placeholder="Masukkan Nama Lengkap" name="name" autocomplete="off"
-                                            value="{{ old('name', $client->name) }}" required>
+                                        <label for="new_password">Password Baru</label>
+                                        <input type="text" class="form-control" id="new_password"
+                                            placeholder="Masukkan Password Baru" name="new_password" autocomplete="off"
+                                            value="{{ old('new_password') }}" required autofocus>
                                     </div>
                                     <div class="form-group">
-                                        <label for="phone_number">Nomor Telepon</label>
-                                        <input type="text" class="form-control" id="phone_number"
-                                            placeholder="Masukkan No Telepon" name="phone_number" autocomplete="off"
-                                            value="{{ old('phone_number', $client->phone_number) }}" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="email"
-                                            placeholder="Masukkan Email" name="email" autocomplete="off"
-                                            value="{{ old('email', $client->email) }}" required>
+                                        <label for="confirm_password">Konfirmasi Password Baru</label>
+                                        <input type="text" class="form-control" id="confirm_password"
+                                            placeholder="Konfirmasi Password Baru" name="confirm_password"
+                                            autocomplete="off" value="{{ old('confirm_password') }}" required>
                                     </div>
                                     <div class="mt-4 d-flex justify-content-between">
                                         <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>

@@ -24,7 +24,7 @@
                                         <label for="name">Nama Vendor</label>
                                         <input type="text" class="form-control" id="name"
                                             placeholder="Masukkan Nama Vendor" name="name" autocomplete="off"
-                                            value="{{ old('name') }}">
+                                            value="{{ old('name') }}" autofocus required>
                                     </div>
                                     <div class="form-group">
                                         <label for="vendor_type_id">Jenis Vendor</label>
@@ -44,14 +44,14 @@
                                         <label for="price">Harga</label>
                                         <input type="text" class="form-control" id="price"
                                             placeholder="Masukkan Harga" name="price" autocomplete="off"
-                                            value="{{ old('price') }}">
+                                            value="{{ old('price') }}" oninput="inputNumberToBeRupiah(this)" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="logo">Logo</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="logo"
-                                                    name="logo">
+                                                    name="logo" required onchange="displayInputNameFile(this)">
                                                 <label class="custom-file-label" for="logo">Pilih Logo</label>
                                             </div>
                                         </div>
@@ -61,15 +61,16 @@
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="images"
-                                                    name="images[]" multiple>
+                                                    name="images[]" multiple required onchange="displayInputNameFile(this)">
                                                 <label class="custom-file-label" for="images">Pilih beberapa
                                                     gambar</label>
                                             </div>
                                         </div>
+                                        <small class="form-text text-muted">Dapat memilih lebih dari satu gambar.</small>
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Keterangan</label>
-                                        <input id="description" type="hidden" name="description">
+                                        <input id="description" type="hidden" name="description" required>
                                         <trix-editor input="description"></trix-editor>
                                     </div>
                                     <div class="d-flex justify-content-between mt-4">

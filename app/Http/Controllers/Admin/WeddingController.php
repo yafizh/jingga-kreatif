@@ -116,7 +116,7 @@ class WeddingController extends Controller
     public function destroy(Wedding $wedding)
     {
         Wedding::where('id', $wedding->id)->update(['is_deleted' => true]);
-        return redirect('/dashboard/wedding');
+        return redirect('/dashboard/wedding')->with('deleted', $wedding->client->name);
     }
 
     public function storeChoosedThemeAndVendor(Request $request)

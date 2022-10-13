@@ -23,6 +23,8 @@ Route::get('/dashboard/admin', [Admin\DashboardController::class, 'index'])->mid
 Route::resource('/dashboard/employee', Admin\EmployeeController::class)->middleware(['auth', 'is_admin']);
 Route::resource('/dashboard/bank', Admin\BankController::class)->except('show')->middleware(['auth', 'is_admin']);
 Route::resource('/dashboard/client', Admin\ClientController::class)->middleware(['auth', 'is_admin']);
+Route::get('/dashboard/client/{client}/edit-password', [Admin\ClientController::class, 'editPassword'])->middleware(['auth', 'is_admin']);
+Route::put('/dashboard/client/edit-password/{client}', [Admin\ClientController::class, 'updatePassword'])->middleware(['auth', 'is_admin']);
 Route::resource('/dashboard/vendor-type', Admin\VendorTypeController::class)->except('show')->middleware(['auth', 'is_admin']);
 Route::resource('/dashboard/theme', Admin\ThemeController::class)->middleware(['auth', 'is_admin']);
 Route::resource('/dashboard/vendor', Admin\VendorController::class)->middleware(['auth', 'is_admin']);

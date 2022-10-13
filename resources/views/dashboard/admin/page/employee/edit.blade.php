@@ -26,7 +26,7 @@
                                         <label for="name">Nama Lengkap</label>
                                         <input type="text" class="form-control" id="name"
                                             placeholder="Masukkan Nama Lengkap" name="name" autocomplete="off"
-                                            value="{{ old('name', $employee->name) }}">
+                                            value="{{ old('name', $employee->name) }}" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="position">Posisi</label>
@@ -52,10 +52,12 @@
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="photo"
                                                     name="photo">
-                                                <label class="custom-file-label" for="photo">Pilih foto bila ingin
-                                                    memperbaharui foto lama</label>
+                                                <label class="custom-file-label" for="photo">Pilih foto</label>
                                             </div>
                                         </div>
+                                        <small class="form-text text-muted">Pilih foto untuk memperbaharui foto
+                                            lama.
+                                            Kosongkan jika tidak ingin memperbaharui foto lama.</small>
                                     </div>
                                     <div class="mt-4 d-flex justify-content-between">
                                         <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
@@ -67,6 +69,5 @@
                     </div>
                 </div>
         </section>
-        <!-- /.content -->
     </div>
 @endsection

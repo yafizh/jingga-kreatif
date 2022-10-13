@@ -2,24 +2,25 @@
 
 @section('content')
     <div class="content-wrapper">
-
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row py-3">
                     <div class="col-12">
-
+                        @if (session('deleted'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                Berhasil menghapus data <strong>Wedding</strong> klien dengan nama
+                                <strong>{{ session('deleted') }}</strong>.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
                         <div class="card mt-3">
                             <div class="card-header d-flex align-items-center">
                                 <h4 class="flex-grow-1 m-0 font-weight-bold">Data Pengajuan</h4>
                             </div>
-                            <style>
-                                .small-td {
-                                    width: 1%;
-                                    white-space: nowrap;
-                                }
-                            </style>
                             <div class="card-body">
-                                <table id="example2" class="table table-bordered table-striped">
+                                <table id="dataTable" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th class="text-center small-td">No</th>

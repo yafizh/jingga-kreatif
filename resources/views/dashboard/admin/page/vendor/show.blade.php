@@ -46,7 +46,8 @@
                                     </button>
                                 </div>
                                 <div class="p-4">
-                                    <h5>{{ $vendor->name }}</h5>
+                                    <h5>{{ $vendor->name }} | Rp
+                                        {{ number_format($vendor->price, 0, ',', '.') }}</h5>
                                     <h6 class="text-muted">Vendor {{ $vendor->vendorType->name }}</h6>
                                     {!! $vendor->description !!}
                                     <div class="mt-4 d-flex justify-content-between">

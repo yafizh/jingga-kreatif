@@ -4,16 +4,31 @@
     <div class="content-wrapper">
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row py-3">
                     <div class="col-12">
-
+                        @if (session('created') || session('updated') || session('deleted'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                @if (session('created'))
+                                    Berhasil menambah data <strong>Vendor</strong>. <strong><a href="/dashboard/vendor/{{ session('created') }}">Lihat</a></strong>.
+                                @endif
+                                @if (session('updated'))
+                                    Berhasil memperbaharui data <strong>Vendor</strong>. <strong><a href="/dashboard/vendor/{{ session('updated') }}">Lihat</a></strong>.
+                                @endif
+                                @if (session('deleted'))
+                                    Berhasil menghapus data <strong>Vendor</strong> dengan nama <strong>{{ session('deleted') }}</strong>.
+                                @endif
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
                         <div class="card mt-3">
                             <div class="card-header d-flex align-items-center">
                                 <h4 class="flex-grow-1 m-0 font-weight-bold">Data Vendor</h4>
                                 <a href="/dashboard/vendor/create" class="btn btn-primary">Tambah</a>
                             </div>
                             <div class="card-body">
-                                <table id="example2" class="table table-bordered table-striped">
+                                <table id="dataTable" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th class="text-center small-td">No</th>

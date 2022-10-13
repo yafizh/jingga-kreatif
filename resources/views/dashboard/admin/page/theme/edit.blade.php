@@ -37,6 +37,9 @@
                                                 <label class="custom-file-label" for="thumbnail">Pilih Thumbnail</label>
                                             </div>
                                         </div>
+                                        <small class="form-text text-muted">Pilih thumbnail untuk memperbaharui thumbnail
+                                            lama.
+                                            Kosongkan jika tidak ingin memperbaharui thumbnail lama.</small>
                                     </div>
                                     <div class="form-group">
                                         <label for="images">Detail Gambar</label>
@@ -48,11 +51,15 @@
                                                     gambar</label>
                                             </div>
                                         </div>
+                                        <small class="form-text text-muted">Dapat memilih lebih dari satu gambar. Pilih
+                                            gambar untuk memperbaharui gambar lama. Kosongkan jika tidak ingin memperbaharui
+                                            gambar lama. Gambar yang dipilih akan mengganti semua gambar lama.</small>
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Keterangan</label>
                                         <input id="description" type="hidden"
-                                            value="{{ old('description', $theme->description) }}" name="description">
+                                            value="{{ old('description', $theme->description) }}" name="description"
+                                            required>
                                         <trix-editor input="description"></trix-editor>
                                     </div>
                                     <div class="d-flex justify-content-between mt-4">

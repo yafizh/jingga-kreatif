@@ -290,33 +290,33 @@
                                                             <input type="file" class="custom-file-input"
                                                                 id="photo" name="photo"
                                                                 {{ is_null($wedding->status) ? '' : 'disabled' }}>
-                                                            <label class="custom-file-label" for="photo">Pilih
+                                                            <label class="custom-file-label" for="photo">Ganti
                                                                 Foto</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 @foreach ($bride->documents as $document)
-                                                <div class="form-group row">
-                                                    <label for="document" class="col-sm-2 col-form-label">
-                                                        Dokumen {{ $loop->iteration }}
-                                                        |
-                                                        <a href="{{ asset('storage/' . $document->document) }}"
-                                                            target="_blank">Lihat</a>
-                                                    </label>
-                                                    <div class="input-group col-sm-10">
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input"
-                                                                id="document" name="documents[]"
-                                                                {{ is_null($wedding->status) ? '' : 'disabled' }}>
-                                                            <input type="text" name="id_documents[]"
-                                                                value="{{ $document->id }}">
-                                                            <label class="custom-file-label" for="document">
-                                                                Ganti Dokumen
-                                                            </label>
+                                                    <div class="form-group row">
+                                                        <label for="document" class="col-sm-2 col-form-label">
+                                                            Dokumen {{ $loop->iteration }}
+                                                            |
+                                                            <a href="{{ asset('storage/' . $document->document) }}"
+                                                                target="_blank">Lihat</a>
+                                                        </label>
+                                                        <div class="input-group col-sm-10">
+                                                            <div class="custom-file">
+                                                                <input type="file" class="custom-file-input"
+                                                                    id="document" name="documents[]"
+                                                                    {{ is_null($wedding->status) ? '' : 'disabled' }}>
+                                                                <input type="text" name="id_documents[]"
+                                                                    value="{{ $document->id }}">
+                                                                <label class="custom-file-label" for="document">
+                                                                    Ganti Dokumen
+                                                                </label>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
+                                                @endforeach
                                                 @if (is_null($wedding->status))
                                                     <div class="form-group row">
                                                         <div class="offset-sm-2 col-sm-10">
@@ -422,7 +422,8 @@
                                             @endif
                                             <div class="col-12 col-md-4 mb-3">
                                                 <a href="/dashboard/meeting-history/create/{{ $wedding->id }}">
-                                                    <div class="border rounded mb-3 p-3 h-100 bg-dark">
+                                                    <div class="border rounded mb-3 p-3 h-100 bg-dark"
+                                                        style="max-width: 10rem;">
                                                         <div
                                                             class="row h-100 justify-content-center align-items-center text-center">
                                                             <div class="col-12">
@@ -489,7 +490,8 @@
                                             @endif
                                             <div class="col-12 col-md-4 mb-3">
                                                 <a href="/dashboard/payment/create/{{ $wedding->id }}">
-                                                    <div class="border rounded mb-3 p-3 h-100 bg-dark">
+                                                    <div class="border rounded mb-3 p-3 h-100 bg-dark"
+                                                        style="max-width: 12rem;">
                                                         <div
                                                             class="row h-100 justify-content-center align-items-center text-center">
                                                             <div class="col-12">
@@ -581,6 +583,23 @@
                                                     <div class="col-4 d-flex align-items-center justify-content-end">
                                                         <button type="submit" class="btn btn-outline-danger"
                                                             onclick="return confirm('Are you sure?')">Batalkan
+                                                            Wedding</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <hr>
+                                            <form action="/dashboard/wedding/{{ $wedding->id }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <h6 class="mb-1 text-danger"><strong>Hapus Kegiatan
+                                                                Wedding</strong></h6>
+                                                        <h6 class="text-danger">Menghapus kegiatan wedding membuat anda tidak dapat melihat lagi data wedding tersebut.</h6>
+                                                    </div>
+                                                    <div class="col-4 d-flex align-items-center justify-content-end">
+                                                        <button type="submit" class="btn btn-outline-danger"
+                                                            onclick="return confirm('Are you sure?')">Hapus
                                                             Wedding</button>
                                                     </div>
                                                 </div>

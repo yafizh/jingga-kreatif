@@ -19,6 +19,11 @@
     <link rel="stylesheet" type="text/css" href="/styles/trix.css">
     <script type="text/javascript" src="/scripts/trix.js"></script>
 
+    {{-- Data Tables --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+    <script src="/scripts/helper.js"></script>
+
     @if (in_array($active, ['finish', 'wedding', 'cancel']))
         <link rel="stylesheet" href="/styles/admin/vendor.css">
     @endif
@@ -118,6 +123,15 @@
     <!-- Admin LTE -->
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript">
+        $('#dataTable').DataTable({
+            "aaSorting": [],
+            "ordering": false
+        });
+    </script>
 </body>
 
 </html>

@@ -26,7 +26,7 @@
                                         <label for="name">Nama Vendor</label>
                                         <input type="text" class="form-control" id="name"
                                             placeholder="Masukkan Nama Vendor" name="name" autocomplete="off"
-                                            value="{{ old('name', $vendor->name) }}">
+                                            value="{{ old('name', $vendor->name) }}" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="vendor_type_id">Jenis Vendor</label>
@@ -45,34 +45,40 @@
                                         <label for="price">Harga</label>
                                         <input type="text" class="form-control" id="price"
                                             placeholder="Masukkan Harga" name="price" autocomplete="off"
-                                            value="{{ old('price', $vendor->price) }}">
+                                            value="{{ old('price', number_format($vendor->price, 0, ',', '.')) }}" required
+                                            oninput="inputNumberToBeRupiah(this)">
                                     </div>
                                     <div class="form-group">
                                         <label for="logo">Logo</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="logo"
-                                                    name="logo">
-                                                <label class="custom-file-label" for="logo">Pilih Logo baru untuk
-                                                    mengganti logo lama</label>
+                                                    name="logo" onchange="displayInputNameFile(this)">
+                                                <label class="custom-file-label" for="logo">Pilih Logo</label>
                                             </div>
                                         </div>
+                                        <small class="form-text text-muted">Pilih logo untuk memperbaharui logo lama.
+                                            Kosongkan jika tidak ingin memperbaharui logo lama.</small>
                                     </div>
                                     <div class="form-group">
                                         <label for="images">Detail Gambar</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="images"
-                                                    name="images[]" multiple>
+                                                    name="images[]" multiple onchange="displayInputNameFile(this)">
                                                 <label class="custom-file-label" for="images">Pilih beberapa
                                                     gambar</label>
                                             </div>
                                         </div>
+                                        <small class="form-text text-muted">Dapat memilih lebih dari satu gambar. Pilih
+                                            gambar untuk memperbaharui gambar lama. Kosongkan jika tidak ingin memperbaharui
+                                            gambar lama. Gambar yang dipilih akan mengganti semua gambar lama.</small>
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Keterangan</label>
                                         <input id="description" type="hidden"
-                                            value="{{ old('description', $vendor->description) }}" name="description">
+                                            value="{{ old('description', $vendor->description) }}" name="description"
+                                            required>
                                         <trix-editor input="description"></trix-editor>
                                     </div>
                                     <div class="d-flex justify-content-between mt-4">

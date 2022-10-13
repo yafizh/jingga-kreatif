@@ -23,16 +23,9 @@
                                     <div class="form-group">
                                         <label for="name">Jenis Vendor</label>
                                         <input type="text" class="form-control" id="name"
-                                            placeholder="Masukkan Nama Lengkap" name="name" autocomplete="off"
+                                            placeholder="Masukkan Nama Jenis Vendor" name="name" autocomplete="off"
                                             value="{{ old('name') }}">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="description">Keterangan</label>
-                                        <input type="text" class="form-control" id="description"
-                                            placeholder="Masukkan Keterangan" name="description" autocomplete="off"
-                                            value="{{ old('description') }}">
-                                    </div>
-
                                     <div class="d-flex justify-content-between mt-4">
                                         <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
                                         <button type="submit" name="submit" class="btn btn-primary">Submit</button>

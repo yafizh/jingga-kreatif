@@ -31,8 +31,8 @@ class BankController extends Controller
             "pin" => "required",
         ]);
 
-        $bank_id = Bank::create($validatedData)->id;
-        return redirect('/dashboard/bank')->with('created', $bank_id);
+        Bank::create($validatedData);
+        return redirect('/dashboard/bank')->with('created', $validatedData['owner_name']);
     }
 
     public function edit(Bank $bank)
@@ -52,12 +52,12 @@ class BankController extends Controller
         ]);
 
         Bank::where('id', $bank->id)->update($validatedData);
-        return redirect('/dashboard/bank')->with('updated', $bank->id);
+        return redirect('/dashboard/bank')->with('updated', $validatedData['owner_name']);
     }
 
     public function destroy(Bank $bank)
     {
         Bank::where('id', $bank->id)->update(['is_deleted' => true]);
-        return redirect('/dashboard/bank')->with('deleted', $bank->bank_name);
+        return redirect('/dashboard/bank')->with('deleted', $bank->owner_name);
     }
 }

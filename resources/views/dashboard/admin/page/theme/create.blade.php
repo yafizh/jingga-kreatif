@@ -24,14 +24,14 @@
                                         <label for="name">Nama Konsep</label>
                                         <input type="text" class="form-control" id="name"
                                             placeholder="Masukkan Nama Konsep" name="name" autocomplete="off"
-                                            value="{{ old('name') }}" required>
+                                            value="{{ old('name') }}" required autofocus>
                                     </div>
                                     <div class="form-group">
                                         <label for="thumbnail">Thumbnail</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="thumbnail"
-                                                    name="thumbnail" required>
+                                                    name="thumbnail" required onchange="displayInputNameFile(this)">
                                                 <label class="custom-file-label" for="thumbnail">Pilih Thumbnail</label>
                                             </div>
                                         </div>
@@ -41,17 +41,20 @@
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="images"
-                                                    name="images[]" multiple>
-                                                <label class="custom-file-label" for="images">Pilih beberapa gambar</label>
+                                                    name="images[]" multiple required onchange="displayInputNameFile(this)">
+                                                <label class="custom-file-label" for="images">Pilih beberapa
+                                                    gambar</label>
                                             </div>
                                         </div>
+                                        <small class="form-text text-muted">Dapat memilih lebih dari satu gambar.</small>
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Keterangan</label>
-                                        <input id="description" type="hidden" name="description">
+                                        <input id="description" type="hidden" name="description" required>
                                         <trix-editor input="description"></trix-editor>
                                     </div>
-                                    <div class="d-flex justify-content-end mt-4">
+                                    <div class="d-flex justify-content-between mt-4">
+                                        <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
                                         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>

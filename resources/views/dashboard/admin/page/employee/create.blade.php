@@ -24,7 +24,7 @@
                                         <label for="name">Nama Lengkap</label>
                                         <input type="text" class="form-control" id="name"
                                             placeholder="Masukkan Nama Lengkap" name="name" autocomplete="off"
-                                            value="{{ old('name') }}" required>
+                                            value="{{ old('name') }}" required autofocus>
                                     </div>
                                     <div class="form-group">
                                         <label for="position">Posisi</label>

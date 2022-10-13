@@ -30,8 +30,8 @@ class VendorTypeController extends Controller
             "description" => "",
         ]);
 
-        $vendor_type_id = VendorType::create($validatedData)->id;
-        return redirect('/dashboard/vendor-type')->with('created', $vendor_type_id);
+        VendorType::create($validatedData);
+        return redirect('/dashboard/vendor-type')->with('created', $validatedData['name']);
     }
 
     public function edit(VendorType $vendorType)
@@ -50,7 +50,7 @@ class VendorTypeController extends Controller
         ]);
 
         VendorType::where('id', $vendorType->id)->update($validatedData);
-        return redirect('/dashboard/vendor-type')->with('updated', $vendorType->id);
+        return redirect('/dashboard/vendor-type')->with('updated', $validatedData['name']);
     }
 
     public function destroy(VendorType $vendorType)
