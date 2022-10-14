@@ -74,11 +74,11 @@
                                 <option value="" disabled selected>Pilih Bank</option>
                             </select>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 d-none">
                             <label for="owner_name" class="form-label">Nama Rekening</label>
                             <input type="text" class="form-control" disabled id="owner_name" name="owner_name">
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 d-none">
                             <label for="pin" class="form-label">Nomor Rekening</label>
                             <input type="text" class="form-control" disabled id="pin" name="pin">
                         </div>

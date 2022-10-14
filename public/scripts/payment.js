@@ -11,8 +11,27 @@ document.addEventListener("DOMContentLoaded", async function (event) {
         option.value = bank.id;
         $("#formPaymentModal #bank").append(option);
     });
+    const option = document.createElement("option");
+    option.innerText = "Pembayaran Tunai (Cash)";
+    option.value = 0;
+    $("#formPaymentModal #bank").append(option);
 
-    $("#formPaymentModal #bank").on("change", function (a, b) {
+    $("#formPaymentModal #bank").on("change", function () {
+        if (this.selectedIndex > allBank.length) {
+            document
+                .querySelector("#formPaymentModal #owner_name")
+                .parentNode.classList.add("d-none");
+            document
+                .querySelector("#formPaymentModal #pin")
+                .parentNode.classList.add("d-none");
+            return;
+        }
+        document
+            .querySelector("#formPaymentModal #owner_name")
+            .parentNode.classList.remove("d-none");
+        document
+            .querySelector("#formPaymentModal #pin")
+            .parentNode.classList.remove("d-none");
         $("#formPaymentModal #owner_name").val(
             allBank[this.selectedIndex - 1].owner_name
         );

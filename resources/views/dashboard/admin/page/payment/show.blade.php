@@ -48,15 +48,29 @@
                                             <input type="text" class="form-control" value="{{ $payment->payment_date }}"
                                                 disabled>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Tujuan Pembayaran</label>
-                                            <input type="text" class="form-control mb" value="{{ $payment->bank->bank_name }}" disabled>
-                                            <input type="text" class="form-control my-2" value="{{ $payment->bank->owner_name }}" disabled>
-                                            <input type="text" class="form-control mb" value="{{ $payment->bank->pin }}" disabled>
-                                        </div>
+                                        @if ($payment->paymentHistories->first()->bank)
+                                            <div class="form-group">
+                                                <label>Tujuan Pembayaran</label>
+                                                <input type="text" class="form-control mb"
+                                                    value="{{ $payment->paymentHistories->first()->bank->bank_name }}"
+                                                    disabled>
+                                                <input type="text" class="form-control my-2"
+                                                    value="{{ $payment->paymentHistories->first()->bank->owner_name }}"
+                                                    disabled>
+                                                <input type="text" class="form-control mb"
+                                                    value="{{ $payment->paymentHistories->first()->bank->pin }}" disabled>
+                                            </div>
+                                        @else
+                                            <div class="form-group">
+                                                <label class="d-block">Opsi Pembayaran</label>
+                                                <input type="text" class="form-control mb"
+                                                    value="Pembayaran Tunai (Cash)" disabled>
+                                            </div>
+                                        @endif
                                         <div class="form-group">
                                             <label class="d-block">Bukti Pembayaran</label>
-                                            <a href="{{ asset('storage/' . $payment->photo) }}" target="_blank">Lihat Foto</a>
+                                            <a href="{{ asset('storage/' . $payment->paymentHistories->first()->photo) }}" target="_blank">Lihat
+                                                Foto</a>
                                         </div>
                                     @endif
                                     <div class="d-flex justify-content-between mt-4">

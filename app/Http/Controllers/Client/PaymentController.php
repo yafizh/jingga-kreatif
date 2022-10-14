@@ -28,12 +28,15 @@ class PaymentController extends Controller
             'photo' => 'required'
         ]);
 
+        if ($validatedData['bank'] == '0')
+            $validatedData['bank'] = null;
+
         if ($request->file('photo'))
             $validatedData['photo'] = $request->file('photo')->store('payment-photo');
 
         PaymentHistory::create([
             'payment_id' => $payment->id,
-            'bank_id' => $validatedData['bank'],
+            'bank_id' => $validatedData['bank'] ?? null,
             'photo' => $validatedData['photo']
         ]);
 
