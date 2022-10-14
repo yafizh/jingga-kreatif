@@ -25,7 +25,8 @@
     </main>
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/scripts/helper.js"></script>
+    <script src="/scripts/helper/helper.js"></script>
+    <script src="/scripts/helper/email.js"></script>
     @if ($active == 'vendor')
         <script src="/scripts/vendor.js"></script>
     @elseif ($active == 'setting.theme-vendor')

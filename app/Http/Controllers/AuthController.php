@@ -30,7 +30,7 @@ class AuthController extends Controller
             return redirect()->intended('/dashboard/admin');
         }
 
-        return back()->with('auth', 'Username atau Password Salah!');
+        return back()->with('auth', 'Email atau Password Salah!');
     }
 
     public function logout()

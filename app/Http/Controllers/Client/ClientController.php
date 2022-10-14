@@ -91,14 +91,14 @@ class ClientController extends Controller
 
         Client::where('id', $client->id)->update($validatedData);
 
-        return redirect('/client/' . $client->id . '/edit');
+        return redirect('/client/' . $client->id . '/edit')->with('success', "Berhasil memperbaharui identitas");
     }
 
     public function updateEmail(Request $request, Client $client)
     {
         $validatedData = $request->validate([
             'email' => 'required',
-            'email_verification' => 'required',
+            'email_verification_code' => 'required',
         ]);
 
         Client::where('id', $client->id)->update([
@@ -109,7 +109,7 @@ class ClientController extends Controller
             'email' => $validatedData['email']
         ]);
 
-        return redirect('/client/' . $client->id . '/edit');
+        return redirect('/client/' . $client->id . '/edit')->with('success', "Berhasil memperbaharui alamat email aktif");;
     }
 
     public function updatePassword(Request $request, Client $client)
@@ -131,7 +131,7 @@ class ClientController extends Controller
             'password' => bcrypt($validatedData['new_password'])
         ]);
 
-        return redirect('/setting');
+        return redirect('/setting')->with('success', "Berhasil memperbaharui password");;
     }
 
     public function isOldPassword($new_password, $old_password)

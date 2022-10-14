@@ -1,77 +1,93 @@
-const input_email = document.querySelector("input[name=email]");
-const input_email_verification = document.querySelector(
-    "input[name=email_verification]"
-);
-const verif_code_button = document.getElementById("verif-code-btn");
-const submit_button = document.getElementById("submit-btn");
-let verif_code = null;
+$(document).ready(async () => {
+    const email = document.querySelector("input[name=email]");
+    const email_verification_code = document.querySelector(
+        "input[name=email_verification_code]"
+    );
+    const send_code_verification_button = document.getElementById(
+        "send-code-verification"
+    );
+    const submit_email_form_btn = document.getElementById(
+        "submit-email-form-btn"
+    );
+    let verification_code = null;
+    let startCountdown = null;
+    const oldEmail = email.value;
 
-input_email.addEventListener("input", function () {
-    if (
-        this.value &&
-        isEmail(this.value) &&
-        !verif_code_button.classList.contains("delay")
-    ) {
-        verif_code_button.removeAttribute("disabled");
-        return;
+    const countdown = (button) => {
+        localStorage.setItem(
+            "countdown",
+            Number(localStorage.getItem("countdown")) - 1
+        );
+        if (Number(localStorage.getItem("countdown")) < 1) {
+            clearInterval(startCountdown);
+            disableSendCodeVerificationButton(button, false);
+            return;
+        }
+        disableSendCodeVerificationButton(
+            button,
+            true,
+            Number(localStorage.getItem("countdown"))
+        );
+    };
+
+    // Email Validation
+    email.addEventListener("input", function () {
+        if (this.value == oldEmail) {
+            this.classList.remove("is-valid");
+            this.classList.remove("is-invalid");
+            send_code_verification_button.setAttribute("disabled", "");
+            return;
+        } else if (isEmail(this.value)) {
+            this.classList.add("is-valid");
+            this.classList.remove("is-invalid");
+        } else {
+            send_code_verification_button.setAttribute("disabled", "");
+            this.classList.remove("is-valid");
+            this.classList.add("is-invalid");
+            return;
+        }
+
+        if (!send_code_verification_button.classList.contains("delay"))
+            send_code_verification_button.removeAttribute("disabled");
+    });
+
+    email_verification_code.addEventListener("input", function () {
+        if (verification_code === this.value) {
+            this.classList.add("is-valid");
+            this.classList.remove("is-invalid");
+            submit_email_form_btn.removeAttribute("disabled");
+        } else {
+            submit_email_form_btn.setAttribute("disabled", "");
+            this.classList.remove("is-valid");
+            this.classList.add("is-invalid");
+        }
+    });
+
+    send_code_verification_button.addEventListener("click", async function () {
+        disableSendCodeVerificationButton(send_code_verification_button, true);
+        startCountdown = setInterval(() => {
+            countdown(send_code_verification_button);
+        }, 1000);
+        verification_code = (await getVerificationCode(email.value))
+            .verificationCode;
+    });
+
+    if (localStorage.getItem("countdown")) {
+        startCountdown = setInterval(() => {
+            countdown(send_code_verification_button);
+        }, 1000);
+        disableSendCodeVerificationButton(
+            send_code_verification_button,
+            true,
+            localStorage.getItem("countdown")
+        );
     }
 
-    verif_code_button.setAttribute("disabled", "");
-});
-
-input_email_verification.addEventListener("input", function () {
-    if (verif_code === this.value) {
-        this.classList.add("is-valid");
-        this.classList.remove("is-invalid");
-        submit_button.removeAttribute("disabled");
-        submit_button.removeAttribute("disabled");
-    } else {
-        this.classList.remove("is-valid");
-        this.classList.add("is-invalid");
-        submit_button.setAttribute("disabled", "");
+    if (document.querySelector(".toast")) {
+        new bootstrap.Toast(document.querySelector(".toast"), {
+            animation: true,
+            autohide: true,
+            delay: 2000,
+        }).show();
     }
-});
-
-verif_code_button.addEventListener("click", function () {
-    verif_code_button.toggleAttribute("disabled");
-    verif_code_button.classList.toggle("loading");
-    verif_code_button.classList.toggle("delay");
-    verif_code_button.innerText = "";
-
-    $.ajax({
-        url: `${window.location.origin}/dashboard/mail/send`,
-        method: "POST",
-        dataType: "json",
-        data: {
-            email: document.querySelector("input[name=email]").value,
-        },
-        headers: {
-            "X-CSRF-TOKEN": $('input[name="_token"]').val(),
-        },
-    })
-        .done(function (response) {
-            verif_code = response.Uuid;
-        })
-        .fail(function (e) {
-            console.log(e);
-            alert("error");
-        })
-        .always(function () {
-            verif_code_button.classList.toggle("loading");
-            verif_code_button.innerText = `Kirim Ulang Kode Dalam ${60}`;
-            const refreshIntervalId = setInterval(function () {
-                let a = verif_code_button.innerText.split(" ");
-                const seconds = parseInt(a[a.length - 1]);
-                verif_code_button.innerText = `Kirim Ulang Kode Dalam ${
-                    seconds - 1
-                }`;
-
-                if (seconds - 1 === 0) {
-                    verif_code_button.toggleAttribute("disabled");
-                    verif_code_button.classList.toggle("delay");
-                    clearInterval(refreshIntervalId);
-                    verif_code_button.innerText = "Kirim Kode Verifikasi";
-                }
-            }, 1000);
-        });
 });

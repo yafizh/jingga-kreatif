@@ -14,46 +14,20 @@ $(document).ready(async () => {
     let startCountdown = null;
 
     const countdown = () => {
-        const seconds = Number(
-            send_code_verification_button.innerText.split(" ")[4]
+        localStorage.setItem(
+            "countdown",
+            Number(localStorage.getItem("countdown")) - 1
         );
-        send_code_verification_button.innerText = `Kirim Ulang Kode Dalam ${
-            seconds - 1
-        }`;
-        localStorage.setItem("countdown", seconds - 1);
-        if (seconds - 1 === 0) {
+        if (Number(localStorage.getItem("countdown")) < 1) {
             clearInterval(startCountdown);
-            disableSendCodeVerificationButton(false);
+            disableSendCodeVerificationButton(button, false);
+            return;
         }
-    };
-
-    const getVerificationCode = async (email) => {
-        return fetch(
-            `${window.location.origin}/registration/verification-code/${email}`,
-            {
-                headers: {
-                    "X-CSRF-TOKEN": document.querySelector(
-                        'input[name="_token"]'
-                    ).value,
-                },
-            }
-        ).then((response) => response.json());
-    };
-
-    const disableSendCodeVerificationButton = (isTrue, countdown = 3) => {
-        if (isTrue) {
-            localStorage.setItem("countdown", countdown);
-            send_code_verification_button.classList.add("delay");
-            send_code_verification_button.setAttribute("disabled", "");
-            send_code_verification_button.innerText = `Kirim Ulang Kode Dalam ${localStorage.getItem(
-                "countdown"
-            )}`;
-        } else {
-            localStorage.removeItem("countdown");
-            send_code_verification_button.classList.remove("delay");
-            send_code_verification_button.removeAttribute("disabled");
-            send_code_verification_button.innerText = "Kirim Kode Verifikasi";
-        }
+        disableSendCodeVerificationButton(
+            button,
+            true,
+            Number(localStorage.getItem("countdown"))
+        );
     };
 
     // Email Validation
@@ -121,15 +95,22 @@ $(document).ready(async () => {
     });
 
     send_code_verification_button.addEventListener("click", async function () {
-        disableSendCodeVerificationButton(true);
-        startCountdown = setInterval(countdown, 1000);
-        verification_code = (await getVerificationCode(email.value)).verificationCode;
-        console.log(verification_code)
+        disableSendCodeVerificationButton(send_code_verification_button, true);
+        startCountdown = setInterval(
+            () => countdown(send_code_verification_button),
+            1000
+        );
+        verification_code = (await getVerificationCode(email.value))
+            .verificationCode;
     });
 
     if (localStorage.getItem("countdown")) {
-        startCountdown = setInterval(countdown, 1000);
+        startCountdown = setInterval(
+            () => countdown(send_code_verification_button),
+            1000
+        );
         disableSendCodeVerificationButton(
+            send_code_verification_button,
             true,
             localStorage.getItem("countdown")
         );

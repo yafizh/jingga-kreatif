@@ -25,7 +25,8 @@
                             placeholder="confirm password" name="confirm_password" required>
                         <label for="confirm_password">Konfirmasi Password</label>
                     </div>
-                    <div class="d-flex justify-content-center w-100 mt-4">
+                    <div class="d-flex justify-content-between w-100 mt-4">
+                        <a href="/setting" class="btn btn-secondary">Kembali</a>
                         <button type="submit" class="btn btn-primary text-white">
                             Ganti Password
                         </button>
