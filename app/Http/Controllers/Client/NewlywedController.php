@@ -114,15 +114,16 @@ class NewlywedController extends Controller
         ]);
 
         // Delete Code
-        foreach ($request->state_old_documents as $i => $state_old_documents) {
-            if ($state_old_documents == 'delete')
-                NewlywedDocument::where('id', $request->id_old_documents[$i])->delete();
+        if (!is_null($request->state_old_documents))
+            foreach ($request->state_old_documents as $i => $state_old_documents) {
+                if ($state_old_documents == 'delete')
+                    NewlywedDocument::where('id', $request->id_old_documents[$i])->delete();
 
-            if ($state_old_documents == 'edit')
-                NewlywedDocument::where('id', $request->id_old_documents[$i])->update([
-                    'document' => $request->file('old_documents')[$i]->store('newlywed-documents')
-                ]);
-        }
+                if ($state_old_documents == 'edit')
+                    NewlywedDocument::where('id', $request->id_old_documents[$i])->update([
+                        'document' => $request->file('old_documents')[$i]->store('newlywed-documents')
+                    ]);
+            }
 
         // Add New Documents
         if ($request->hasFile('documents')) {
