@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\StateClient;
 use App\Models\Client;
 use App\Models\User;
 use App\Models\Wedding;
@@ -43,7 +42,7 @@ class ClientController extends Controller
         ]);
 
         if (!$this->isPasswordSame($validatedData['password'], $validatedData['confirm_password']))
-            return back();
+            return back()->with('failed', "Password Baru Tidak Sama!");
 
         $user_id = User::create([
             'email' => $validatedData['email'],
@@ -61,7 +60,7 @@ class ClientController extends Controller
             'client_id' => $client_id
         ]);
 
-        return redirect('/login')->with('login', 'Login untuk melanjutkan!');
+        return redirect('/login')->with('register', 'Login Untuk Melanjutkan!');
     }
 
     public function edit(Request $request, Client $client)
@@ -126,12 +125,16 @@ class ClientController extends Controller
         if (!$this->isPasswordSame($validatedData['new_password'], $validatedData['confirm_password']))
             return back()->with('failed', "Password Baru Tidak Sama!");
 
-
         User::where('id', $client->user_id)->update([
             'password' => bcrypt($validatedData['new_password'])
         ]);
 
         return redirect('/setting')->with('success', "Berhasil memperbaharui password");;
+    }
+
+    public function resetPassword($url)
+    {
+        dd($url);
     }
 
     public function isOldPassword($new_password, $old_password)

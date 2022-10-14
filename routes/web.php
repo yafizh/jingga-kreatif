@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin as Admin;
 use App\Http\Controllers\Client as Client;
 use App\Http\Controllers\Landing as Landing;
 use App\Http\Controllers\Helper as Helper;
+use App\Http\Controllers\Helper\MailerController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -80,6 +81,12 @@ Route::put('/client/change-password/{client}', [Client\ClientController::class, 
 
 // --- AJAX Route ---
 Route::post('/payment/{payment}', [Client\PaymentController::class, 'store'])->middleware(['auth', 'is_client']);
+
+// Reset Password
+Route::get('/forgot-password', [AuthController::class, 'forgotPassword']);
+Route::post('/forgot-password/{email}', [MailerController::class, 'sendResetPasswordLink']);
+Route::get('/reset-password/{url}', [AuthController::class, 'resetPassword']);
+Route::put('/reset-password/{email}', [AuthController::class, 'updatePassword']);
 
 // ----------------------------------------------------------------------------------
 
