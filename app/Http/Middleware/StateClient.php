@@ -20,7 +20,7 @@ class StateClient
         if (Auth::user()->client->wedding->newlyweds->count() === 1 && Route::currentRouteName() !== 'bride')
             return redirect('/bride');
 
-        if (!Auth::user()->client->wedding->newlyweds->count() && Route::currentRouteName() !== 'grrom')
+        if (!Auth::user()->client->wedding->newlyweds->count() && Route::currentRouteName() !== 'groom')
             return redirect('/groom');
 
         return $next($request);

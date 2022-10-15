@@ -13,7 +13,7 @@ $(document).ready(async () => {
     let verification_code = null;
     let startCountdown = null;
 
-    const countdown = () => {
+    const countdown = (button) => {
         localStorage.setItem(
             "countdown",
             Number(localStorage.getItem("countdown")) - 1
@@ -96,19 +96,17 @@ $(document).ready(async () => {
 
     send_code_verification_button.addEventListener("click", async function () {
         disableSendCodeVerificationButton(send_code_verification_button, true);
-        startCountdown = setInterval(
-            () => countdown(send_code_verification_button),
-            1000
-        );
+        startCountdown = setInterval(() => {
+            countdown(send_code_verification_button);
+        }, 1000);
         verification_code = (await getVerificationCode(email.value))
             .verificationCode;
     });
 
     if (localStorage.getItem("countdown")) {
-        startCountdown = setInterval(
-            () => countdown(send_code_verification_button),
-            1000
-        );
+        startCountdown = setInterval(() => {
+            countdown(send_code_verification_button);
+        }, 1000);
         disableSendCodeVerificationButton(
             send_code_verification_button,
             true,

@@ -24,7 +24,7 @@
 <body>
     <div class="p-5">
         <h4 class="text-center">Laporan Data Wedding</h4>
-        <div class="client mt-5">
+        <div class="client pagebreak mt-5">
             <h5>Identitas Klien</h5>
             <table class="table table-borderless">
                 <tbody>
@@ -46,92 +46,96 @@
                 </tbody>
             </table>
         </div>
-        <div class="groom pagebreak mt-5">
-            <h5>Identitas Mempelai Pria</h5>
-            <table class="table table-borderless">
-                <tbody>
-                    <tr>
-                        <td class="small-td">NIK</td>
-                        <td class="small-td">:</td>
-                        <td>{{ $groom->nik }}</td>
-                    </tr>
-                    <tr>
-                        <td class="small-td">Name</td>
-                        <td class="small-td">:</td>
-                        <td>{{ $groom->name }}</td>
-                    </tr>
-                    <tr>
-                        <td class="small-td">Tempat Lahir</td>
-                        <td class="small-td">:</td>
-                        <td>{{ $groom->birthplace }}</td>
-                    </tr>
-                    <tr>
-                        <td class="small-td">Tanggal Lahir</td>
-                        <td class="small-td">:</td>
-                        <td>{{ $groom->birthdate }}</td>
-                    </tr>
-                    <tr>
-                        <td class="small-td">Nama Ayah</td>
-                        <td class="small-td">:</td>
-                        <td>{{ $groom->father_name }}</td>
-                    </tr>
-                    <tr>
-                        <td class="small-td">Nama Ibu</td>
-                        <td class="small-td">:</td>
-                        <td>{{ $groom->mother_name }}</td>
-                    </tr>
-                    <tr>
-                        <td class="small-td">Gambar</td>
-                        <td class="small-td">:</td>
-                        <td><img src="https://images.unsplash.com/photo-1591084728795-1149f32d9866?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
-                                style="width: 4cm; height: 6cm; object-fit: cover;"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="bride pagebreak mt-5">
-            <h5>Identitas Mempelai Wanita</h5>
-            <table class="table table-borderless">
-                <tbody>
-                    <tr>
-                        <td class="small-td">NIK</td>
-                        <td class="small-td">:</td>
-                        <td>{{ $bride->nik }}</td>
-                    </tr>
-                    <tr>
-                        <td class="small-td">Name</td>
-                        <td class="small-td">:</td>
-                        <td>{{ $bride->name }}</td>
-                    </tr>
-                    <tr>
-                        <td class="small-td">Tempat Lahir</td>
-                        <td class="small-td">:</td>
-                        <td>{{ $bride->birthplace }}</td>
-                    </tr>
-                    <tr>
-                        <td class="small-td">Tanggal Lahir</td>
-                        <td class="small-td">:</td>
-                        <td>{{ $bride->birthdate }}</td>
-                    </tr>
-                    <tr>
-                        <td class="small-td">Nama Ayah</td>
-                        <td class="small-td">:</td>
-                        <td>{{ $bride->father_name }}</td>
-                    </tr>
-                    <tr>
-                        <td class="small-td">Nama Ibu</td>
-                        <td class="small-td">:</td>
-                        <td>{{ $bride->mother_name }}</td>
-                    </tr>
-                    <tr>
-                        <td class="small-td">Gambar</td>
-                        <td class="small-td">:</td>
-                        <td><img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=386&q=80"
-                                style="width: 4cm; height: 6cm; object-fit: cover;"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        @if ($groom)
+            <div class="groom pagebreak mt-5">
+                <h5>Identitas Mempelai Pria</h5>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td class="small-td">NIK</td>
+                            <td class="small-td">:</td>
+                            <td>{{ $groom->nik }}</td>
+                        </tr>
+                        <tr>
+                            <td class="small-td">Name</td>
+                            <td class="small-td">:</td>
+                            <td>{{ $groom->name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="small-td">Tempat Lahir</td>
+                            <td class="small-td">:</td>
+                            <td>{{ $groom->birthplace }}</td>
+                        </tr>
+                        <tr>
+                            <td class="small-td">Tanggal Lahir</td>
+                            <td class="small-td">:</td>
+                            <td>{{ $groom->birthdate }}</td>
+                        </tr>
+                        <tr>
+                            <td class="small-td">Nama Ayah</td>
+                            <td class="small-td">:</td>
+                            <td>{{ $groom->father_name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="small-td">Nama Ibu</td>
+                            <td class="small-td">:</td>
+                            <td>{{ $groom->mother_name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="small-td">Gambar</td>
+                            <td class="small-td">:</td>
+                            <td><img src="{{ asset('storage/' . $groom->photo) }}"
+                                    style="width: 4cm; height: 6cm; object-fit: cover;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        @endif
+        @if ($bride)
+            <div class="bride pagebreak mt-5">
+                <h5>Identitas Mempelai Wanita</h5>
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td class="small-td">NIK</td>
+                            <td class="small-td">:</td>
+                            <td>{{ $bride->nik }}</td>
+                        </tr>
+                        <tr>
+                            <td class="small-td">Name</td>
+                            <td class="small-td">:</td>
+                            <td>{{ $bride->name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="small-td">Tempat Lahir</td>
+                            <td class="small-td">:</td>
+                            <td>{{ $bride->birthplace }}</td>
+                        </tr>
+                        <tr>
+                            <td class="small-td">Tanggal Lahir</td>
+                            <td class="small-td">:</td>
+                            <td>{{ $bride->birthdate }}</td>
+                        </tr>
+                        <tr>
+                            <td class="small-td">Nama Ayah</td>
+                            <td class="small-td">:</td>
+                            <td>{{ $bride->father_name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="small-td">Nama Ibu</td>
+                            <td class="small-td">:</td>
+                            <td>{{ $bride->mother_name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="small-td">Gambar</td>
+                            <td class="small-td">:</td>
+                            <td><img src="{{ asset('storage/' . $bride->photo) }}"
+                                    style="width: 4cm; height: 6cm; object-fit: cover;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        @endif
         <div class="theme-vendor pagebreak mt-5">
             <h5>Konsep dan Vendor</h5>
             <table class="table table-bordered">
