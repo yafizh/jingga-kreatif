@@ -17,10 +17,9 @@
     <link rel="stylesheet" href="/styles/mobile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
-
 <body>
     @include('dashboard.client.partials.sidebar')
-    <main class="d-flex flex-column align-items-center">
+    <main class="d-flex flex-column align-items-center h-100">
         @yield('content')
     </main>
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>

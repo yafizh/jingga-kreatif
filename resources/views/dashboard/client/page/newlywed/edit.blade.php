@@ -16,7 +16,7 @@
     @endif
     <div class="row w-100 justify-content-center">
         <div class="col-12">
-            <h3 class="mb-4 text-center">Perbaharui Identitas Mempelai {{ $newlywed->sex ? 'Pria' : 'Wanita' }}</h3>
+            <h3 class="my-4 text-center">Perbaharui Identitas Mempelai {{ $newlywed->sex ? 'Pria' : 'Wanita' }}</h3>
         </div>
         <div class="col-12 col-lg-8 col-xl-6 mb-3">
             <div class="p-4 bg-white jingga-shadow rounded-2 w-100">

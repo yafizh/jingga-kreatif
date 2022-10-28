@@ -23,7 +23,8 @@
     }
 
     main {
-        padding: 104px 8px 0 8px;
+        text-align: center;
+        padding: 72px 8px 0 8px;
     }
 
     .brand #navbar-toggle {
