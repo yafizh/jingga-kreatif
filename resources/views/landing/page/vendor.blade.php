@@ -4,8 +4,8 @@
     <div class="container-fluid">
         <div class="row justify-content-center py-5">
             <div class="col-12 col-md-9 col-xl-6">
-                <h3 class="text-center">APA ITU VENDOR?</h3>
-                <p style=" text-align: justify;">Dikutip dari Investopedia, vendor adalah pihak dalam rantai pasok yang
+                <h3 class="text-center">Apa itu Vendor</h3>
+                <p style=" text-align: center;">Dikutip dari Investopedia, vendor adalah pihak dalam rantai pasok yang
                     dibayar untuk menyediakan barang dan jasa bagi pihak lain. Vendor bisa berarti produsen atau bisa
                     diartikan pula distributor.</p>
             </div>
@@ -13,7 +13,7 @@
 
         <div class="row justify-content-center py-5 striped">
             <div class="col-12 col-md-9 col-xl-6 text-center">
-                <h3>VENDOR TERBAIK KAMI?</h3>
+                <h3>Vendor Terbaik Kami</h3>
                 <p>Kami menghadirkan Vendor-Vendor terbaik dari yang terbaik.</p>
                 <h4 class="mt-5">KLIK "LIHAT DETAIL" UNTUK MELIHAT INFO LEBIH LANJUT</h4>
             </div>

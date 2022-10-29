@@ -14,7 +14,7 @@
         {{-- Profile Section --}}
         <div class="row justify-content-center py-5">
             <div class="col-12 col-md-9 col-xl-6 text-center">
-                <h3 class="mb-3">APA ITU JINGGA KREATIF?</h3>
+                <h3 class="mb-3">Apa itu Jingga Kreatif</h3>
                 <p style=" text-align: justify;">Jingga Kreatif adalah suatu perusahaan yang bergerak dibidang Jasa
                     Pelayanan Wedding Organizer
                     (WO). Jingga Kreatif di dukung oleh high quality concept dan professionally skilled &
@@ -28,7 +28,7 @@
         {{-- Section --}}
         <div class="row justify-content-center py-5 striped">
             <div class="col-12 col-md-9 col-xl-6 mb-5 text-center">
-                <h3>ALASAN KENAPA HARUS PAKAI WO</h3>
+                <h3>Alasan Kenapa Harus Pakai Wedding Organizer</h3>
                 <p>Kenapa ya? coba kita baca sama-sama alasannya pada bagian bawah ini</p>
             </div>
             <div class="col-12 px-5">
@@ -87,7 +87,7 @@
         {{-- Our Work Section --}}
         <div class="row justify-content-center py-5">
             <div class="col-12 col-md-10">
-                <h3 class="text-center mb-5">HASIL KERJA KAMI</h3>
+                <h3 class="text-center mb-5">Hasil Kerja Kami</h3>
                 <div class="d-flex gap-3 flex-wrap justify-content-center">
                     <iframe width="400" height="220" src="https://www.youtube.com/embed/9tCFRiUFTwk"
                         title="YouTube video player" frameborder="0"
@@ -109,7 +109,7 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 </div>
                 <div class="text-center py-4">
-                    <button class="btn text-white btn-primary rounded-pill px-3">Lihat Lebih Banyak</button>
+                    <a href="https://www.youtube.com/" target="_blank" class="btn text-white btn-primary rounded-pill px-3">Lihat Lebih Banyak</a>
                 </div>
             </div>
         </div>

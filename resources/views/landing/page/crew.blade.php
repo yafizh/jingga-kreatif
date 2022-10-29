@@ -5,7 +5,7 @@
         {{-- Our Principle Section --}}
         <div class="row justify-content-center py-5 striped">
             <div class="col-12 col-md-9 col-xl-6 text-center">
-                <h3 class="mb-5">PRINSIP KAMI</h3>
+                <h3>Prinsip Kami</h3>
                 <h4>“Kepentingan Utama Kami Terletak pada Kepuasan Klien Kami Terhadap Layanan yang Kami
                     Berikan”</h4>
             </div>
