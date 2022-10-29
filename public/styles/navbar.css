@@ -4,11 +4,6 @@ nav {
     --line-width: 160px;
     --active-circle: 1;
 
-    /* margin: 0 auto; */
-    /* position: relative; */
-    /* left: 50%; */
-    /* margin-left: calc(0px - calc(var(--size-circle) / 2) - calc(var(--line-width) * calc(var(--active-circle) - 1)) - calc(var(--size-circle) * calc(var(--active-circle) - 1)) - calc(var(--margin-line) * calc(2 * calc(var(--active-circle) - 1)))); */
-
     width: 100%;
     overflow: auto;
 }

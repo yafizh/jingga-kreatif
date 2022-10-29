@@ -19,7 +19,7 @@
 </head>
 <body>
     @include('dashboard.client.partials.sidebar')
-    <main class="d-flex flex-column align-items-center h-100">
+    <main class="d-flex flex-column align-items-center">
         @yield('content')
     </main>
     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>

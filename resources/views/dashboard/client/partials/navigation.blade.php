@@ -1,6 +1,5 @@
 <nav>
     <div class="navigation">
-
         <div class="circle">
             <div class="outer mb-3 {{ $active_navigation >= 1 ? 'navigation-active' : '' }}">
                 <div class="inner"></div>

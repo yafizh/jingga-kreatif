@@ -12,7 +12,7 @@
     </div>
     <div class="row justify-content-center mb-4">
         <div class="col-12 col-md-6 col-xl-4">
-            <a href="" class="text-decoration-none">
+            <a href="https://wa.me/62895348676674" target="_blank" class="text-decoration-none">
                 <i class="icon fa-brands fa-whatsapp"></i>
             </a>
             <a href="https://www.instagram.com/7ingga.kreatif/" target="_blank" class="text-decoration-none">
