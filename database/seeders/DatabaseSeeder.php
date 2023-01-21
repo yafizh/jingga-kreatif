@@ -207,6 +207,13 @@ class DatabaseSeeder extends Seeder
             "logo" => "vendor-logo/cassia.jpg",
             "description" => "",
         ]);
+        Vendor::create([
+            "vendor_type_id" => $dekorasi,
+            "name" => "Cassia Decoration (2)",
+            "price" => 17000000,
+            "logo" => "vendor-logo/cassia.jpg",
+            "description" => "",
+        ]);
 
         // Vendor Dokumentasi
         Vendor::create([
@@ -313,6 +320,5 @@ class DatabaseSeeder extends Seeder
             'email' => 'gusti@yahoo.com',
             'photo' => 'employee-photo/3.jpg',
         ]);
-
     }
 }
