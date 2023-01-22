@@ -11,13 +11,16 @@ const getVerificationCode = async (email) => {
 };
 
 const disableSendCodeVerificationButton = (button, isTrue, countdown = 60) => {
+    
     if (isTrue) {
-        localStorage.setItem("countdown", countdown);
+        const today = new Date();
+        const a = localStorage.getItem("countdown").split(':')[0];
+        const b = localStorage.getItem("countdown").split(':')[1];
+        const c = localStorage.getItem("countdown").split(':')[2];
+        const e = ((Number(a) * 60 * 60) + ((Number(b) + 1) * 60) + Number(c)) - ((Number(today.getHours()) * 60 * 60) + (Number(today.getMinutes()) * 60) + Number(today.getSeconds()));
         button.classList.add("delay");
         button.setAttribute("disabled", "");
-        button.innerText = `Kirim Ulang Kode Dalam ${localStorage.getItem(
-            "countdown"
-        )}`;
+        button.innerText = `Kirim Ulang Kode Dalam ${e}`;
         return;
     }
 

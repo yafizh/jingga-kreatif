@@ -14,15 +14,15 @@ $(document).ready(async () => {
     let startCountdown = null;
 
     const countdown = (button) => {
-        localStorage.setItem(
-            "countdown",
-            Number(localStorage.getItem("countdown")) - 1
-        );
-        if (Number(localStorage.getItem("countdown")) < 1) {
+
+        const today = new Date();
+        const before = new Date(Number(today.getFullYear()), Number(today.getMonth()), Number(today.getDate()), Number(localStorage.getItem("countdown").split(':')[0]), Number(localStorage.getItem("countdown").split(':')[1]), Number(localStorage.getItem("countdown").split(':')[2]), 0);
+        if (today.getTime() > (before.getTime() + 60000)) {
             clearInterval(startCountdown);
             disableSendCodeVerificationButton(button, false);
             return;
         }
+
         disableSendCodeVerificationButton(
             button,
             true,
@@ -95,12 +95,15 @@ $(document).ready(async () => {
     });
 
     send_code_verification_button.addEventListener("click", async function () {
+        const today = new Date();
+        localStorage.setItem("countdown", (today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()));
         disableSendCodeVerificationButton(send_code_verification_button, true);
         startCountdown = setInterval(() => {
             countdown(send_code_verification_button);
         }, 1000);
         verification_code = (await getVerificationCode(email.value))
             .verificationCode;
+        console.log(verification_code)
     });
 
     if (localStorage.getItem("countdown")) {

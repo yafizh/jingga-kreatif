@@ -4,7 +4,9 @@
     <div class="login-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <img src="/images/logo.png" style="width: 100%;">
+                <a href="/">
+                    <img src="/images/logo.png" style="width: 100%;">
+                </a>
             </div>
             <div class="card-body">
                 @if (session()->has('auth'))
@@ -13,7 +15,7 @@
                     </div>
                 @endif
                 @if (session()->has('register'))
-                    <div class="alert alert-info" role="alert">
+                    <div class="alert alert-success" role="alert">
                         {{ session()->get('register') }}
                     </div>
                 @endif

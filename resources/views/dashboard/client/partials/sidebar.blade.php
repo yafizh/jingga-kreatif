@@ -1,7 +1,9 @@
 <aside class="jingga-shadow pt-3 px-4 closed">
     <div class="brand mb-3">
-        <div class="brand-logo"></div>
-        <h6 class="text-primary">Jingga Kreatif</h6>
+        <a href="/" class="text-decoration-none">
+            <div class="brand-logo"></div>
+            <h6 class="text-primary">Jingga Kreatif</h6>
+        </a>
         <button type="button" class="btn btn-primary" id="navbar-toggle">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -11,7 +13,8 @@
     <hr>
     <div class="menu w-100">
         <a href="/wedding" class="text-reset text-decoration-none">
-            <div class="sidebar-item my-3 {{ $active != 'meeting' && explode('.', $active)[0] != 'setting' ? 'sidebar-active' : '' }}">
+            <div
+                class="sidebar-item my-3 {{ $active != 'meeting' && explode('.', $active)[0] != 'setting' ? 'sidebar-active' : '' }}">
                 <div class="mb-2">
                     <i class="sidebar-icon fa-solid fa-house"></i>
                 </div>
